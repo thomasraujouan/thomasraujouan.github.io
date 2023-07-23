@@ -1,0 +1,26 @@
+---
+layout: post
+title: "xlab"
+date: 2023-07-23 08:28:52 +0900
+categories: jekyll update
+---
+
+xlab is an interactive software for the creation, visualization and investigation of surfaces in 3-dimensionnal spaces (Euclidean, hyperbolic, spherical) made by [Nick Schmitt][nick].
+To get a feeling of its features, see the [screenshots][screenshots] or try to [quickstart][quickstart] it on your machine!
+
+<!-- <a href="/images/standard-view.png">
+<img src="/images/standard-view.png" alt="The standard window.">
+</a>
+<figcaption>The typical screen when using xlab.</figcaption> -->
+
+<!-- {% highlight ruby %}
+def print_hi(name)
+puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+{% endhighlight %} -->
+
+[nick]: https://page.math.tu-berlin.de/~schmitt/
+[screenshots]: http://raujouan.eu/xlab/screenshots/
+[quickstart]: http://raujouan.eu/xlab/quickstart/
