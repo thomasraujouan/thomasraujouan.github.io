@@ -4,3 +4,14 @@
 
 layout: home
 ---
+
+Welcome
+
+# Surfaces
+
+Check out the [Costa surface][costa]
+
+<!-- or the [dressed catenoid][dressed-catenoid]. -->
+
+[costa]: /surfaces/costa.html
+[dressed-catenoid]: /surfaces/dressed-catenoid.html
