@@ -4,15 +4,24 @@ title: About
 permalink: /about/
 ---
 
-I'm a JSPS postdoc at [Kobe university][kobe].
+![me](/assets/me.jpg)
 
-# Publications
+I am a JSPS postdoc at Kobe University.
 
-1. hello
-2. hello
+I am working in the field of Differential Geometry, focusing on constant mean curvature
+surfaces. I use Weierstrass-type representations coming from Integrable Systems methods
+to construct new examples of minimal and CMC surfaces in various spaces
+and study some of their global properties such as embeddedness or Willmore energy.
 
-# General public
+## publications, talks, videos, etc...
 
-# CV
+### Peer reviewed
 
-[kobe]: http://www.math.kobe-u.ac.jp/
+1. bla
+2. blbla
+
+### General public
+
+### Video talks
+
+## bla

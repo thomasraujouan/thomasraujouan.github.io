@@ -91,7 +91,7 @@ addEventListener("mousemove", (event) => {
 });
 
 addEventListener("mousedown", (event) => {
-  console.log(camera);
+  // console.log(camera);
 });
 
 /* SCENE, CAMERA, LIGHTS */
