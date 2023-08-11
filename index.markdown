@@ -5,7 +5,7 @@
 layout: home
 ---
 
-Welcome
+<!-- This comment makes a whitespace on the page -->
 
 # Surfaces
 

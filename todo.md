@@ -1,6 +1,6 @@
 # Jekyll
 
-[ ] Remove the welcome on the front page?
+[x] Remove the welcome on the front page
 
 # Academic webpage
 
@@ -9,9 +9,11 @@
 
 # WebgGL
 
-[ ] Orbital camera
+[x] OrbitControls -> TrackballControls
 [ ] Barre de chargement
+[ ] Mieux gérer l'éclairage
 
 # misc.
 
 [ ] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit.
+[ ] Baisser la resolution des images

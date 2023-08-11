@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls"; // controls the camera
+// import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls"; // controls the camera
+import { TrackballControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/TrackballControls"; // controls the camera
 import { OBJLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/OBJLoader";
 
 /* GUI */
@@ -75,6 +76,7 @@ let frame = 0;
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+  controls.update();
   frame += 0.01;
 }
 
@@ -91,7 +93,7 @@ addEventListener("mousemove", (event) => {
 });
 
 addEventListener("mousedown", (event) => {
-  // console.log(camera);
+  console.log(controls);
 });
 
 /* SCENE, CAMERA, LIGHTS */
@@ -112,7 +114,7 @@ renderer.setSize(innerWidth, innerHeight);
 renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
 document.body.appendChild(renderer.domElement);
 
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new TrackballControls(camera, renderer.domElement);
 
 const initialTarget = {
   x: 0,
@@ -121,6 +123,11 @@ const initialTarget = {
 };
 
 controls.target.set(initialTarget.x, initialTarget.y, initialTarget.z);
+controls.rotateSpeed = 2.0;
+controls.zoomSpeed = 0.5;
+controls.panSpeed = 0.5;
+// controls.minPolarAngle = -Infinity;
+// controls.maxPolarAngle = +Infinity;
 
 light.position.set(0, 10, 10);
 backLight.position.set(0, 0, -10);
@@ -146,4 +153,4 @@ scene.add(ambientLight);
 
 animate();
 
-console.log(loaderCosta);
+// console.log(loaderCosta);
