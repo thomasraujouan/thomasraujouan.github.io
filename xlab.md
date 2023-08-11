@@ -21,4 +21,4 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 [nick]: https://page.math.tu-berlin.de/~schmitt/
 [screenshots]: http://raujouan.eu/xlab/screenshots/
-[quickstart]: /_posts/2023-07-22-xlab-install.markdown
+[quickstart]: /xlab/install

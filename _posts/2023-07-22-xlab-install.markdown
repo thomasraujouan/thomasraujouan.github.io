@@ -3,6 +3,7 @@ layout: post
 title: "Installing xlab"
 date: 2023-07-23 08:28:52 +0900
 categories: xlab
+permalink: xlab/install
 ---
 
 # 1. Install Docker
@@ -41,7 +42,7 @@ docker run --rm hello-world
 
 # 2. Load the xlab image
 
-[Click here][download] to download an xlab image, then load the image on your system: inside your download directory,
+[Click here][download] to download an xlab image (1.3 GB), then load the image on your system: inside your download directory,
 {% highlight bash %}
 docker load < xlab-docker-123456.tar.gz
 {% endhighlight %}
@@ -67,8 +68,9 @@ exit
 
 # Congratulations!
 
-You can now used xlab and compute your first example.
+You can now used xlab and [compute your first example][example].
 
+[example]: /xlab/catenoid
 [docker]: https://docs.docker.com/engine/install/
 [windows]: https://github.com/docker/for-win/issues/1549
 [sudo]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user

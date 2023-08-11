@@ -13,7 +13,12 @@
 [ ] Barre de chargement
 [ ] Mieux gérer l'éclairage
 
+# xlab
+
+Migrer l'ancien site:
+[ ] Share directories
+[ ] Save and read your own files
+
 # misc.
 
-[ ] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit.
-[ ] Baisser la resolution des images
+[ ] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit
