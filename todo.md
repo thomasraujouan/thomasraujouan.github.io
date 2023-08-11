@@ -1,16 +1,17 @@
-tester mon app webgl
-How to remove the welcome on the front page?
+# Jekyll
 
-# REMARKS
-
-On ne peut pas mettre l'image docker sur github: fichier trop volumineux.
+[ ] Remove the welcome on the front page?
 
 # Academic webpage
 
-faire une page speciale
+[x] faire une page speciale
+[ ] mail a Morimoto
 
-- adresse
-- link to personal website
-- research field
-- research summary
-- publications, talks, videos, etc...
+# WebgGL
+
+[ ] Orbital camera
+[ ] Barre de chargement
+
+# misc.
+
+[ ] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit.
