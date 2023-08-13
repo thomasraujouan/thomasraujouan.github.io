@@ -11,7 +11,8 @@
 # WebgGL
 
 [x] OrbitControls -> TrackballControls
-[ ] Barre de chargement
+[ ] Barre de chargement pour mobile
+[ ] Barre de chrgement pour toutes les surfaces
 [ ] Mieux gérer l'éclairage
 
 # xlab
