@@ -1,6 +1,7 @@
 # Jekyll
 
 [x] Remove the welcome on the front page
+[x] La date du dernier post n'est pas bonne
 
 # Academic webpage
 
@@ -16,9 +17,10 @@
 # xlab
 
 Migrer l'ancien site:
-[ ] Share directories
+[x] Share directories
 [ ] Save and read your own files
 
 # misc.
 
 [ ] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit
+[ ] Remplacer xlab par XLab

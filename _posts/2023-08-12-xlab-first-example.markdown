@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "xlab: catenoid"
-date: 2023-07-23 08:28:52 +0900
+date: 2023-08-12 08:28:52 +0900
 categories: xlab
 permalink: xlab/catenoid
 ---
