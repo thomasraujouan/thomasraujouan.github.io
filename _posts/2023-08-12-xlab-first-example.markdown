@@ -52,4 +52,8 @@ exit
 xhost -local:
 {% endhighlight %}
 
+Now you may want to [export your experiments][share].
+
 [install]: /xlab/install
+
+[share]: {% post_url 2023-08-14-xlab-share %}

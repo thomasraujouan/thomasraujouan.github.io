@@ -37,35 +37,19 @@ loaderCosta.load(
   },
   // called when loading is in progresses
   function (xhr) {
-    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    const info = document.getElementById("info");
+    const load = xhr.loaded / xhr.total;
+    const loadText = load * 100 + "% loaded";
+    console.log(loadText);
+    if (load != 1) {
+      info.innerText = loadText;
+    } else info.innerText = "";
   },
   // called when loading has errors
   function (error) {
     console.log("An error happened");
   }
 );
-// loaderDini.load(
-// 	// resource URL
-// 	'./obj/dini.obj',
-// 	// called when resource is loaded
-// 	function ( object ) {
-
-// 		scene.add( object );
-
-// 	},
-// 	// called when loading is in progresses
-// 	function ( xhr ) {
-
-// 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-// 	},
-// 	// called when loading has errors
-// 	function ( error ) {
-
-// 		console.log( 'An error happened' );
-
-// 	}
-// );
 
 /* GEOMETRY, MATERIALS, MESH */
 
