@@ -1,0 +1,39 @@
+---
+layout: post
+title: "xlab: read and write files"
+date: 2023-08-15 06:28:52 +0900
+categories: xlab
+permalink: xlab/read
+---
+
+We are going to save an experiment in a .xlab file and reopen it.
+This post is a continuation of [this one][share], where we computed our first example with xlab.
+
+# 1. Make your own example
+
+Open access to X and run an XLab container with a mounted shared/ directory.
+
+Compute the Enneper example:
+
+{% highlight bash %}
+xlab --compute --gui=gtk xlab/experiments/minimal/enneper.xlab
+{% endhighlight %}
+
+Let's modify this surface. Select the node "ComplexVectorFunction1", access Controls on the left panel and change the Text from {z,1} to{z^3,1}. Press Enter. Most of the nodes should turn red.
+Right click on the SurfaceWriter node and select Compute. Look at the surface: we need a finer domain.
+Select the SimpleTriGrid node and change the CountMultiplier from 1 to 5. Press Enter, some nodes should turn red. Right click on the SurfaceWriter node and select Compute. Look at the surface: it's much better.
+
+# 2. Export your data
+
+If you exit the container now, you will lose the work you've just done. So right click in the background of the node panel and select Write. Save your work in the shared directory "/shared/my-surface.xlab".
+Exit the container, close access to X, and take a look at the file shared/my-surface.xlab: it is basically json, so you can also modify it from a text editor.
+
+# 3. Re-open your data
+
+To read your data, open access to X, run an XLab container and compute your example:
+{% highlight bash %}
+xlab --compute --gui=gtk shared/my-surface.xlab
+{% endhighlight %}
+You can now read the contents of the examples section (to come).
+
+[share]:{% post_url 2023-08-14-xlab-share %}

@@ -68,6 +68,7 @@ xhost -local:
 
 {:start="8"}
 
-8. Open shared/my-picture.png. Congratulations, you brought your picture home.
+8. Open shared/my-picture.png. Congratulations, you brought your picture home. Now you can [save your experiments][save].
 
-[catenoid]:{% post_url 2023-08-12-xlab-first-example %}
+[catenoid]: {% post_url 2023-08-12-xlab-first-example %}
+[save]: {% post_url 2023-08-15-xlab-read %}
