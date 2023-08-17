@@ -6,8 +6,17 @@ permalink: /xlab/
 
 ![xlab' standard view](/assets/xlab-standard-view.png)
 
-xlab is an interactive software for the creation, visualization and investigation of surfaces in 3-dimensionnal spaces (Euclidean, hyperbolic, spherical) made by [Nick Schmitt][nick].
-To get a feeling of its features, see the [screenshots][screenshots] or [run it on your machine][quickstart]!
+xlab is an interactive software for the creation, visualization and investigation of surfaces in 3-dimensionnal spaces (Euclidean, hyperbolic, spherical) made by [Nick Schmitt][nick]. You can use it on your machine with the tutorials below.
+
+### [Installing XLab][install]
+
+### [Compute an example][example]
+
+### [Sharing directories][share]
+
+### [Read and write files][read]
+
+<!-- To get a feeling of its features, see the [screenshots][screenshots] or [run it on your machine][quickstart]! -->
 
 <!-- {% highlight bash %}
 sudo apt-get update
@@ -22,3 +31,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 [nick]: https://page.math.tu-berlin.de/~schmitt/
 [screenshots]: http://raujouan.eu/xlab/screenshots/
 [quickstart]: /xlab/install
+[install]: /xlab/install
+[example]: /xlab/catenoid
+[share]: /xlab/share
+[read]: /xlab/read

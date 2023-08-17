@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "xlab: read and write files"
+title: "Read and write files"
 date: 2023-08-15 06:28:52 +0900
 categories: xlab
 permalink: xlab/read
 ---
 
-We are going to save an experiment in a .xlab file and reopen it.
 This post is a continuation of [this one][share], where we computed our first example with xlab.
+We are going to save an experiment in a .xlab file and reopen it.
 
 # 1. Make your own example
 

@@ -12,8 +12,8 @@
 
 Migrer l'ancien site:
 [x] Share directories
-[ ] Save and read your own files
-[ ] Screenshots
+[x] Save and read your own files
+[?] Screenshots
 
 [ ] Utiliser des titres plutôt que des listes ordonnées.
 [ ] Remplacer xlab par XLab
@@ -29,3 +29,4 @@ Migrer l'ancien site:
 # misc.
 
 [ ] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit
+[ ] About xlab =!= about xlab

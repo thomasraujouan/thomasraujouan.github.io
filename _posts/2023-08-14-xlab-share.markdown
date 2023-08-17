@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "xlab: sharing directories"
+title: "Sharing directories"
 date: 2023-08-14 07:28:52 +0900
 categories: xlab
 permalink: xlab/share

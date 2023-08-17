@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "xlab: catenoid"
+title: "Compute an example"
 date: 2023-08-12 08:28:52 +0900
 categories: xlab
 permalink: xlab/catenoid
 ---
 
-We compute our first example with xlab.
+We compute our first example with xlab: a catenoid.
 This post is a continuation of [this one][install], where we installed the xlab container.
 
 1. Open acces to X:
