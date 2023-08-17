@@ -17,13 +17,13 @@ Migrer l'ancien site:
 
 [ ] Utiliser des titres plutôt que des listes ordonnées.
 [ ] Remplacer xlab par XLab
-[ ] Faire un lien vers tous les posts dans la page xlab
+[x] Faire un lien vers tous les posts dans la page xlab
 
 # WebgGL
 
 [x] OrbitControls -> TrackballControls
 [ ] Texte de chargement pour chrome
-[ ] Texte de chargement pour toutes les surfaces
+[x] Texte de chargement pour toutes les surfaces
 [ ] Mieux gérer l'éclairage
 
 # misc.

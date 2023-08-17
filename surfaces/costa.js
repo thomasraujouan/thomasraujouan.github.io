@@ -15,11 +15,30 @@ loaderCosta.load(
   "/assets/costa.obj",
   // called when resource is loaded
   function (object) {
+    // Adjust the object's position to the center of the scene
+    const boundingBox = new THREE.Box3().setFromObject(object);
+    const center = boundingBox.getCenter(new THREE.Vector3());
+    object.position.sub(center);
+    // Set the material.side property for each mesh in the object's children
+    object.traverse(function (child) {
+      if (child instanceof THREE.Mesh) {
+        child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
+      }
+    });
+    // add the model to the scene
     scene.add(object);
   },
   // called when loading is in progresses
   function (xhr) {
-    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    // Compute the loading progression
+    const load = xhr.loaded / xhr.total;
+    const loadText = load * 100 + "% loaded";
+    console.log(loadText);
+    // Display the loading progression
+    const info = document.getElementById("info");
+    if (load != 1) {
+      info.innerText = loadText;
+    } else info.innerText = "";
   },
   // called when loading has errors
   function (error) {

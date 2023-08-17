@@ -1,5 +1,4 @@
 import * as THREE from "three";
-// import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls"; // controls the camera
 import { TrackballControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/TrackballControls"; // controls the camera
 import { OBJLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/OBJLoader";
 
@@ -16,31 +15,27 @@ loaderCosta.load(
   "/assets/dressed-catenoid.obj",
   // called when resource is loaded
   function (object) {
-    // Calculate the bounding box of the loaded object
+    // Adjust the object's position to the center of the scene
     const boundingBox = new THREE.Box3().setFromObject(object);
-
-    // Calculate the center of the bounding box
     const center = boundingBox.getCenter(new THREE.Vector3());
-
-    // Adjust the object's position to center it in the scene
     object.position.sub(center);
-
     // Set the material.side property for each mesh in the object's children
     object.traverse(function (child) {
       if (child instanceof THREE.Mesh) {
-        child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no fce culling
+        child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
       }
     });
-
     // add the model to the scene
     scene.add(object);
   },
   // called when loading is in progresses
   function (xhr) {
-    const info = document.getElementById("info");
+    // Compute the loading progression
     const load = xhr.loaded / xhr.total;
     const loadText = load * 100 + "% loaded";
     console.log(loadText);
+    // Display the loading progression
+    const info = document.getElementById("info");
     if (load != 1) {
       info.innerText = loadText;
     } else info.innerText = "";
@@ -137,4 +132,4 @@ scene.add(ambientLight);
 
 animate();
 
-// console.log(loaderCosta);
+console.log(loaderCosta);
