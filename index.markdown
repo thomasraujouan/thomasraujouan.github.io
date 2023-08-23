@@ -9,9 +9,10 @@ layout: home
 
 # Surfaces
 
-Check out the [Costa surface][costa] or the [dressed catenoid][dressed-catenoid].
+Check out the [Costa surface][costa] or the [dressed catenoid][dressed-catenoid] ([boxed version][boxed-dressed-catenoid]).
 
 <!-- or the [dressed catenoid][dressed-catenoid]. -->
 
 [costa]: /surfaces/costa.html
 [dressed-catenoid]: /surfaces/dressed-catenoid.html
+[boxed-dressed-catenoid]: /surfaces/dressed-catenoid-boxed.html

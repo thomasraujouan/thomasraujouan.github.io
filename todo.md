@@ -18,6 +18,7 @@ Migrer l'ancien site:
 [ ] Utiliser des titres plutôt que des listes ordonnées.
 [ ] Remplacer xlab par XLab
 [x] Faire un lien vers tous les posts dans la page xlab
+[ ] About xlab =!= about xlab
 
 # WebgGL
 
@@ -25,8 +26,10 @@ Migrer l'ancien site:
 [ ] Texte de chargement pour chrome
 [x] Texte de chargement pour toutes les surfaces
 [ ] Mieux gérer l'éclairage
+[ ] Space bar: réinitialise la position
+[ ] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)
+[ ] Afficher le catenoid et le dressed catenoid ensemble.
 
 # misc.
 
 [ ] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit
-[ ] About xlab =!= about xlab
