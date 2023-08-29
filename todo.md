@@ -6,7 +6,7 @@
 # Academic webpage
 
 [x] faire une page speciale
-[ ] mail a Morimoto
+[x] mail a Morimoto
 
 # xlab
 
@@ -23,7 +23,8 @@ Migrer l'ancien site:
 # dressed catenoids
 
 [ ] 2dhalf2 is broken
-[ ] Put the obj of three planes dressed ctenoids
+[x] Put the obj of three planes dressed catenoids
+[ ] rotate them to have a standing catenoid
 
 # WebgGL
 
@@ -33,10 +34,10 @@ Migrer l'ancien site:
 [ ] Mieux gérer l'éclairage
 [ ] Space bar: réinitialise la position
 [ ] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)
+[ ] Switch between surfaces with arrow keys
 [ ] Afficher le catenoid et le dressed catenoid ensemble.
 [ ] Glisser-deposer obj files
 [ ] Smooth .obj's with threejs? Need normals in the obj file.
-[ ] Switch between surfaces
 
 # misc.
 
