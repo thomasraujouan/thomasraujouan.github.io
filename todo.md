@@ -20,6 +20,11 @@ Migrer l'ancien site:
 [x] Faire un lien vers tous les posts dans la page xlab
 [ ] About xlab =!= about xlab
 
+# dressed catenoids
+
+[ ] 2dhalf2 is broken
+[ ] Put the obj of three planes dressed ctenoids
+
 # WebgGL
 
 [x] OrbitControls -> TrackballControls
@@ -29,6 +34,9 @@ Migrer l'ancien site:
 [ ] Space bar: réinitialise la position
 [ ] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)
 [ ] Afficher le catenoid et le dressed catenoid ensemble.
+[ ] Glisser-deposer obj files
+[ ] Smooth .obj's with threejs? Need normals in the obj file.
+[ ] Switch between surfaces
 
 # misc.
 

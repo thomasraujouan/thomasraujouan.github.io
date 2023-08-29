@@ -23,6 +23,7 @@ loaderCosta.load(
     object.traverse(function (child) {
       if (child instanceof THREE.Mesh) {
         child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
+        child.geometry.computeVertexNormals(); // Calculate vertex normals for smooth shading (doesn't work)
       }
     });
     // add the model to the scene

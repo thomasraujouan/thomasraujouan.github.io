@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/OrbitControls"; // controls the camera
+import { TrackballControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/TrackballControls"; // controls the camera
 import { OBJLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/OBJLoader";
 
 /* GUI */
@@ -12,19 +12,21 @@ const loaderCosta = new OBJLoader();
 // load a resource
 loaderCosta.load(
   // resource URL
-  "/assets/costa.obj",
+  "/assets/dressed-catenoids/2dfull.obj",
   // called when resource is loaded
   function (object) {
+    // Adjust the object's position to the center of the scene
+    // const boundingBox = new THREE.Box3().setFromObject(object);
+    // const center = boundingBox.getCenter(new THREE.Vector3());
+    // object.position.sub(center);
     // Set the material.side property for each mesh in the object's children
     object.traverse(function (child) {
       if (child instanceof THREE.Mesh) {
         child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
       }
     });
-
     // add the model to the scene
     scene.add(object);
-    // console.log(object);
   },
   // called when loading is in progresses
   function (xhr) {
@@ -53,6 +55,7 @@ let frame = 0;
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+  controls.update();
   frame += 0.01;
 }
 
@@ -69,7 +72,7 @@ addEventListener("mousemove", (event) => {
 });
 
 addEventListener("mousedown", (event) => {
-  // console.log(camera);
+  console.log(controls);
 });
 
 /* SCENE, CAMERA, LIGHTS */
@@ -81,14 +84,16 @@ const camera = new THREE.PerspectiveCamera(
   0.001,
   1000
 );
-const light = new THREE.DirectionalLight(0xffffff, 1);
-const backLight = new THREE.DirectionalLight(0xffffff, 1);
+const light = new THREE.DirectionalLight(0xffffff, 0.5);
+const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+const ambientLight = new THREE.AmbientLight(0x404040); // Adjust the color as needed
+
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(innerWidth, innerHeight);
 renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
 document.body.appendChild(renderer.domElement);
 
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new TrackballControls(camera, renderer.domElement);
 
 const initialTarget = {
   x: 0,
@@ -97,13 +102,18 @@ const initialTarget = {
 };
 
 controls.target.set(initialTarget.x, initialTarget.y, initialTarget.z);
+controls.rotateSpeed = 2.0;
+controls.zoomSpeed = 0.5;
+controls.panSpeed = 0.5;
+// controls.minPolarAngle = -Infinity;
+// controls.maxPolarAngle = +Infinity;
 
-light.position.set(0, 1, 1);
-backLight.position.set(0, 0, -1);
+light.position.set(0, 10, 10);
+backLight.position.set(0, 0, -10);
 
-camera.position.x = -0;
-camera.position.y = -14.582293789408705;
-camera.position.z = 6.253515526845281;
+camera.position.x = 2.1231781962616725;
+camera.position.y = -0.05663821112201709;
+camera.position.z = 2.2765579681206227;
 
 camera.lookAt(initialTarget.x, initialTarget.y, initialTarget.z);
 
@@ -118,7 +128,8 @@ function onWindowResize() {
 
 scene.add(light);
 scene.add(backLight);
+scene.add(ambientLight);
 
 animate();
 
-// console.log(loaderCosta);
+console.log(loaderCosta);
