@@ -20,6 +20,10 @@ Joint work with N. Schmitt.
 - Symmetric: [full][3vfull] -- [3rd 1][3v3rd1] -- [3rd 2][3v3rd2].
 - Non-symmetric: [full][3dfull]
 
+# In hyperbolic space (Poincaré ball model)
+
+- [2 ends][h3-2v1]
+
 [2vfull]: /surfaces/dressed-catenoids/2vfull.html
 [2vhalf1]: /surfaces/dressed-catenoids/2vhalf1.html
 [2vhalf2]: /surfaces/dressed-catenoids/2vhalf2.html
@@ -30,3 +34,4 @@ Joint work with N. Schmitt.
 [3v3rd1]: /surfaces/dressed-catenoids/3v3rd1.html
 [3v3rd2]: /surfaces/dressed-catenoids/3v3rd2.html
 [3dfull]: /surfaces/dressed-catenoids/3dfull.html
+[h3-2v1]: /surfaces/dressed-catenoids/h3-2v1.html
