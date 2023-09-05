@@ -12,7 +12,7 @@ const loaderCosta = new OBJLoader();
 // load a resource
 loaderCosta.load(
   // resource URL
-  "/assets/dressed-catenoids/sample-with-normals.obj",
+  "/assets/dressed-catenoids/2vfull-normals.obj",
   // called when resource is loaded
   function (object) {
     // Adjust the object's position to the center of the scene
@@ -22,6 +22,15 @@ loaderCosta.load(
     // Set the material.side property for each mesh in the object's children
     object.traverse(function (child) {
       if (child instanceof THREE.Mesh) {
+        // Create a Phong material for the mesh
+        const material = new THREE.MeshPhongMaterial({
+          color: 0x808080, // Set your desired color
+          shininess: 20, // Set the shininess (adjust as needed)
+        });
+
+        child.material = material; // Assign the material to the mesh
+        child.castShadow = true; // Enable casting shadows for the mesh
+        child.receiveShadow = true; // Enable receiving shadows for the mesh
         child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
       }
     });
@@ -48,15 +57,47 @@ loaderCosta.load(
 
 /* GEOMETRY, MATERIALS, MESH */
 
-/* ANIMATION */
+/* SCENE, CAMERA, LIGHTS */
 
-let frame = 0;
+const light = new THREE.DirectionalLight(0xffffff, 0.75);
+const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+const ambientLight = new THREE.AmbientLight(0xffffff); // Adjust the color as needed
+light.position.set(0, 5, 5);
+backLight.position.set(0, -5, -5);
 
-function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
-  controls.update();
-  frame += 0.01;
+const camera = new THREE.PerspectiveCamera(
+  75,
+  innerWidth / innerHeight,
+  0.001,
+  1000
+);
+camera.position.x = 2.1231781962616725;
+camera.position.y = -0.05663821112201709;
+camera.position.z = 2.2765579681206227;
+const initialTarget = {
+  x: 0,
+  y: 0,
+  z: 0,
+};
+camera.lookAt(initialTarget.x, initialTarget.y, initialTarget.z);
+
+const scene = new THREE.Scene();
+scene.add(light);
+scene.add(backLight);
+scene.add(ambientLight);
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
+document.body.appendChild(renderer.domElement);
+
+window.addEventListener("resize", onWindowResize, false);
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 /* MOUSE */
@@ -75,60 +116,22 @@ addEventListener("mousedown", (event) => {
   console.log(controls);
 });
 
-/* SCENE, CAMERA, LIGHTS */
-
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-  75,
-  innerWidth / innerHeight,
-  0.001,
-  1000
-);
-const light = new THREE.DirectionalLight(0xffffff, 0.5);
-const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
-const ambientLight = new THREE.AmbientLight(0x404040); // Adjust the color as needed
-
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(innerWidth, innerHeight);
-renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
-document.body.appendChild(renderer.domElement);
-
 const controls = new TrackballControls(camera, renderer.domElement);
-
-const initialTarget = {
-  x: 0,
-  y: 0,
-  z: 0,
-};
-
 controls.target.set(initialTarget.x, initialTarget.y, initialTarget.z);
 controls.rotateSpeed = 2.0;
 controls.zoomSpeed = 0.5;
 controls.panSpeed = 0.5;
-// controls.minPolarAngle = -Infinity;
-// controls.maxPolarAngle = +Infinity;
 
-light.position.set(0, 10, 10);
-backLight.position.set(0, 0, -10);
+/* ANIMATION */
 
-camera.position.x = 2.1231781962616725;
-camera.position.y = -0.05663821112201709;
-camera.position.z = 2.2765579681206227;
+let frame = 0;
 
-camera.lookAt(initialTarget.x, initialTarget.y, initialTarget.z);
-
-window.addEventListener("resize", onWindowResize, false);
-
-function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+  controls.update();
+  frame += 0.01;
 }
-
-scene.add(light);
-scene.add(backLight);
-scene.add(ambientLight);
 
 animate();
 
