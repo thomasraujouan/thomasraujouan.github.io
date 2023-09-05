@@ -12,7 +12,7 @@ const loaderCosta = new OBJLoader();
 // load a resource
 loaderCosta.load(
   // resource URL
-  "/assets/dressed-catenoids/2vfull.obj",
+  "/assets/dressed-catenoids/2vfull-normals.obj",
   // called when resource is loaded
   function (object) {
     // Adjust the object's position to the center of the scene
