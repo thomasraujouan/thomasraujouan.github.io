@@ -8,6 +8,10 @@ categories: dressed-catenoids
 
 Joint work with N. Schmitt.
 
+# With texture (work in progress)
+
+- [Full][2v4th-textured]
+
 # 2 planar ends
 
 - Symmetric: [full][2vfull] -- [half 1][2vhalf1] -- [half 2][2vhalf2].
@@ -35,3 +39,4 @@ Joint work with N. Schmitt.
 [3v3rd2]: /surfaces/dressed-catenoids/3v3rd2.html
 [3dfull]: /surfaces/dressed-catenoids/3dfull.html
 [h3-2v1]: /surfaces/dressed-catenoids/h3-2v1.html
+[2v4th-textured]: /surfaces/dressed-catenoids/textured/2vfull-textured.html

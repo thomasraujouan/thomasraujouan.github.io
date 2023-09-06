@@ -39,6 +39,11 @@ Migrer l'ancien site:
 [ ] Glisser-deposer obj files
 [x] Smooth .obj's with threejs? Need normals in the obj file. I made a python script in /home/thomas/Python/objParser/vertexNormalsAdder.py
 [ ] Put textures
+[ ] Symmetries
+
+# Python
+
+[ ] Symmetries?
 
 # misc.
 
