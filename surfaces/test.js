@@ -9,10 +9,14 @@ import { OBJLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/
 // instantiate a loader
 const loaderCosta = new OBJLoader();
 
+// Load the texture image
+const textureLoader = new THREE.TextureLoader();
+const texture = textureLoader.load("/assets/texture.png"); // Replace with the path to your texture image
+
 // load a resource
 loaderCosta.load(
   // resource URL
-  "/assets/dressed-catenoids/2vfull-normals.obj",
+  "/assets/test-uv.obj",
   // called when resource is loaded
   function (object) {
     // Adjust the object's position to the center of the scene
@@ -24,8 +28,9 @@ loaderCosta.load(
       if (child instanceof THREE.Mesh) {
         // Create a Phong material for the mesh
         const material = new THREE.MeshPhongMaterial({
-          color: 0x808080, // Set your desired color
+          color: 0xffffff, // Set your desired color
           shininess: 20, // Set the shininess (adjust as needed)
+          map: texture,
         });
 
         child.material = material; // Assign the material to the mesh
@@ -113,7 +118,7 @@ addEventListener("mousemove", (event) => {
 });
 
 addEventListener("mousedown", (event) => {
-  console.log(controls);
+  console.log("mousedown");
 });
 
 const controls = new TrackballControls(camera, renderer.domElement);
@@ -134,5 +139,3 @@ function animate() {
 }
 
 animate();
-
-console.log(loaderCosta);
