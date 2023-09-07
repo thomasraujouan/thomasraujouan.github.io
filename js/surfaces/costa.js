@@ -12,7 +12,7 @@ const loaderCosta = new OBJLoader();
 // load a resource
 loaderCosta.load(
   // resource URL
-  "/assets/costa.obj",
+  "/assets/obj/costa.obj",
   // called when resource is loaded
   function (object) {
     // Set the material.side property for each mesh in the object's children

@@ -11,7 +11,7 @@ const loaderCosta = new OBJLoader();
 
 // Load the texture image
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load("/assets/chess-texture.svg"); // Replace with the path to your texture image
+const texture = textureLoader.load("/assets/textures/chess-texture.svg"); // Replace with the path to your texture image
 
 let fundamentalPiece = null;
 const pieces = [];
@@ -19,7 +19,7 @@ const pieces = [];
 // load a resource
 loaderCosta.load(
   // resource URL
-  "/assets/dressed-catenoids-with-texture/2v4th.obj",
+  "/assets/obj/dressed-catenoids/2v4th.obj",
   // called when resource is loaded
   function (object) {
     // Adjust the object's position to the center of the scene
