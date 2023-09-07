@@ -19,7 +19,7 @@ const pieces = [];
 // load a resource
 loaderCosta.load(
   // resource URL
-  "/assets/obj/output.obj",
+  "/assets/obj/dressed-catenoids/2d4th.obj",
   // called when resource is loaded
   function (object) {
     // Adjust the object's position to the center of the scene
