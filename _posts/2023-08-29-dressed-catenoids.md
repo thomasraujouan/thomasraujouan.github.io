@@ -12,8 +12,8 @@ Press the space key to the a fundamental piece.
 
 # 2 planar ends
 
-- [Symmetric][2v]
-- Non-symmetric: [full][2dfull] -- [half 1][2dhalf1]
+- [Vertical ends][2v]
+- [Non-vertical ends][2d]
 
  <!-- -- [half 2][2dhalf2] is broken -->
 
@@ -39,3 +39,4 @@ Press the space key to the a fundamental piece.
 [h3-2v1]: /surfaces/dressed-catenoids/h3-2v1.html
 [2v4th-textured]: /surfaces/dressed-catenoids/textured/2vfull-textured.html
 [2v]: /surfaces/dressed-catenoids/2v.html
+[2d]: /surfaces/dressed-catenoids/2d.html

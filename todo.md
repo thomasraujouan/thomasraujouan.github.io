@@ -41,6 +41,7 @@ Migrer l'ancien site:
 [x] Smooth .obj's with threejs? Need normals in the obj file. I made a python script in /home/thomas/Python/objParser/vertexNormalsAdder.py
 [ ] Put textures:
 [x] Symmetries
+[ ] Reverse the texture when reflecting the fundamental piece
 
 # Python
 
