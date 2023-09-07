@@ -13,7 +13,8 @@ const loaderCosta = new OBJLoader();
 const textureLoader = new THREE.TextureLoader();
 const texture = textureLoader.load("/assets/chess-texture.svg"); // Replace with the path to your texture image
 
-const objectsToDisplay = [];
+let fundamentalPiece = null;
+const pieces = [];
 
 // load a resource
 loaderCosta.load(
@@ -44,6 +45,7 @@ loaderCosta.load(
     // add the model to the scene
     object.rotateZ(Math.PI / 2);
     scene.add(object);
+    fundamentalPiece = object;
     // Create a copy of the loaded object
     const objectCopy1 = object.clone();
     const objectCopy2 = object.clone();
@@ -59,7 +61,7 @@ loaderCosta.load(
     scene.add(objectCopy1);
     scene.add(objectCopy2);
     scene.add(objectCopy3);
-    objectsToDisplay.push(object, objectCopy1, objectCopy2, objectCopy3);
+    pieces.push(objectCopy1, objectCopy2, objectCopy3);
   },
   // called when loading is in progresses
   function (xhr) {
@@ -145,15 +147,21 @@ addEventListener("mousedown", (event) => {
 let spaceKey = 0;
 addEventListener("keydown", (event) => {
   if (event.key === " ") {
-    spaceKey = (spaceKey + 1) % 2;
+    spaceKey = (spaceKey + 1) % 3;
     if (spaceKey === 0) {
-      objectsToDisplay[1].visible = true;
-      objectsToDisplay[2].visible = true;
-      objectsToDisplay[3].visible = true;
-    } else {
-      objectsToDisplay[1].visible = false;
-      objectsToDisplay[2].visible = false;
-      objectsToDisplay[3].visible = false;
+      pieces[0].visible = true;
+      pieces[1].visible = true;
+      pieces[2].visible = true;
+    }
+    if (spaceKey === 1) {
+      pieces[0].visible = false;
+      pieces[1].visible = false;
+      pieces[2].visible = false;
+    }
+    if (spaceKey === 2) {
+      pieces[0].visible = false;
+      pieces[1].visible = true;
+      pieces[2].visible = false;
     }
   }
 });
