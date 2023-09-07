@@ -19,7 +19,7 @@ Press the space key to the a fundamental piece.
 
 # 3 planar ends
 
-- Symmetric: [full][3vfull] -- [3rd 1][3v3rd1] -- [3rd 2][3v3rd2].
+- [Vertical ends][3v]
 - Non-symmetric: [full][3dfull]
 
 # In hyperbolic space (Poincaré ball model)
@@ -40,3 +40,4 @@ Press the space key to the a fundamental piece.
 [2v4th-textured]: /surfaces/dressed-catenoids/textured/2vfull-textured.html
 [2v]: /surfaces/dressed-catenoids/2v.html
 [2d]: /surfaces/dressed-catenoids/2d.html
+[3v]: /surfaces/dressed-catenoids/3v.html
