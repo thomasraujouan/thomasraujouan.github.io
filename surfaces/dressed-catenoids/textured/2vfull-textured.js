@@ -13,6 +13,8 @@ const loaderCosta = new OBJLoader();
 const textureLoader = new THREE.TextureLoader();
 const texture = textureLoader.load("/assets/chess-texture.svg"); // Replace with the path to your texture image
 
+const objectsToDisplay = [];
+
 // load a resource
 loaderCosta.load(
   // resource URL
@@ -57,6 +59,7 @@ loaderCosta.load(
     scene.add(objectCopy1);
     scene.add(objectCopy2);
     scene.add(objectCopy3);
+    objectsToDisplay.push(object, objectCopy1, objectCopy2, objectCopy3);
   },
   // called when loading is in progresses
   function (xhr) {
@@ -87,14 +90,14 @@ light.position.set(0, 5, 5);
 backLight.position.set(0, -5, -5);
 
 const camera = new THREE.PerspectiveCamera(
-  25,
+  30,
   innerWidth / innerHeight,
   0.001,
   1000
 );
-camera.position.x = 5;
+camera.position.x = 3;
 camera.position.y = 2;
-camera.position.z = 5;
+camera.position.z = 3;
 const initialTarget = {
   x: 0,
   y: 0,
@@ -103,12 +106,13 @@ const initialTarget = {
 camera.lookAt(initialTarget.x, initialTarget.y, initialTarget.z);
 
 const scene = new THREE.Scene();
+
 scene.background = new THREE.Color(0xffffff);
 scene.add(light);
 scene.add(backLight);
 scene.add(ambientLight);
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(innerWidth, innerHeight);
 renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
 document.body.appendChild(renderer.domElement);
@@ -135,7 +139,23 @@ addEventListener("mousemove", (event) => {
 });
 
 addEventListener("mousedown", (event) => {
-  console.log("mousedown");
+  // console.log("mousedown");
+});
+
+let spaceKey = 0;
+addEventListener("keydown", (event) => {
+  if (event.key === " ") {
+    spaceKey = (spaceKey + 1) % 2;
+    if (spaceKey === 0) {
+      objectsToDisplay[1].visible = true;
+      objectsToDisplay[2].visible = true;
+      objectsToDisplay[3].visible = true;
+    } else {
+      objectsToDisplay[1].visible = false;
+      objectsToDisplay[2].visible = false;
+      objectsToDisplay[3].visible = false;
+    }
+  }
 });
 
 const controls = new TrackballControls(camera, renderer.domElement);

@@ -31,6 +31,7 @@ Migrer l'ancien site:
 [x] OrbitControls -> TrackballControls
 [ ] Texte de chargement pour chrome
 [x] Texte de chargement pour toutes les surfaces
+[ ] Texte de chargement de la bonnne couleur
 [ ] Mieux gérer l'éclairage
 [ ] Space bar: réinitialise la position
 [ ] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)

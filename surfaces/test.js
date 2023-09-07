@@ -13,6 +13,8 @@ const loaderCosta = new OBJLoader();
 const textureLoader = new THREE.TextureLoader();
 const texture = textureLoader.load("/assets/chess-texture.svg"); // Replace with the path to your texture image
 
+const objectsToDisplay = [];
+
 // load a resource
 loaderCosta.load(
   // resource URL
@@ -57,6 +59,7 @@ loaderCosta.load(
     scene.add(objectCopy1);
     scene.add(objectCopy2);
     scene.add(objectCopy3);
+    objectsToDisplay.push(object, objectCopy1, objectCopy2, objectCopy3);
   },
   // called when loading is in progresses
   function (xhr) {
@@ -103,6 +106,7 @@ const initialTarget = {
 camera.lookAt(initialTarget.x, initialTarget.y, initialTarget.z);
 
 const scene = new THREE.Scene();
+
 scene.background = new THREE.Color(0xffffff);
 scene.add(light);
 scene.add(backLight);
@@ -135,7 +139,23 @@ addEventListener("mousemove", (event) => {
 });
 
 addEventListener("mousedown", (event) => {
-  console.log("mousedown");
+  // console.log("mousedown");
+});
+
+let spaceKey = 0;
+addEventListener("keydown", (event) => {
+  if (event.key === " ") {
+    spaceKey = (spaceKey + 1) % 2;
+    if (spaceKey === 0) {
+      objectsToDisplay[1].visible = true;
+      objectsToDisplay[2].visible = true;
+      objectsToDisplay[3].visible = true;
+    } else {
+      objectsToDisplay[1].visible = false;
+      objectsToDisplay[2].visible = false;
+      objectsToDisplay[3].visible = false;
+    }
+  }
 });
 
 const controls = new TrackballControls(camera, renderer.domElement);
