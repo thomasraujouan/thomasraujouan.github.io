@@ -12,6 +12,7 @@ const loaderCosta = new OBJLoader();
 // Load the texture image
 const textureLoader = new THREE.TextureLoader();
 const texture = textureLoader.load("/assets/textures/chess-texture.svg"); // Replace with the path to your texture image
+const texture2 = textureLoader.load("/assets/textures/chess-texture2.png"); // Replace with the path to your texture image
 
 const pieces = [];
 
@@ -46,6 +47,20 @@ loaderCosta.load(
     const objectCopy4 = objectCopy1.clone();
     const objectCopy5 = objectCopy2.clone();
     objectCopy3.scale.x = -1;
+    objectCopy3.traverse(function (child) {
+      if (child instanceof THREE.Mesh) {
+        // Create a Phong material for the mesh
+        const material = new THREE.MeshPhongMaterial({
+          color: 0xbbbbbb, // Set your desired color
+          shininess: 10, // Set the shininess (adjust as needed)
+          map: texture2,
+        });
+        child.material = material; // Assign the material to the mesh
+        child.castShadow = true; // Enable casting shadows for the mesh
+        child.receiveShadow = true; // Enable receiving shadows for the mesh
+        child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
+      }
+    });
     objectCopy4.scale.x = -1;
     objectCopy5.scale.x = -1;
 

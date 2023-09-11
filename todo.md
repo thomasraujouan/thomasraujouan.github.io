@@ -32,20 +32,20 @@ Migrer l'ancien site:
 [ ] Texte de chargement pour chrome
 [x] Texte de chargement pour toutes les surfaces
 [ ] Texte de chargement de la bonnne couleur
-[ ] Mieux gérer l'éclairage
-[ ] Space bar: réinitialise la position
+[x] Mieux gérer l'éclairage
+[ ] 0-key: réinitialise la position
 [ ] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)
 [ ] Switch between surfaces with arrow keys
-[ ] Afficher le catenoid et le dressed catenoid ensemble.
+[?] Afficher le catenoid et le dressed catenoid ensemble.
 [ ] Glisser-deposer obj files
 [x] Smooth .obj's with threejs? Need normals in the obj file. I made a python script in /home/thomas/Python/objParser/vertexNormalsAdder.py
-[ ] Put textures:
+[x] Put textures
 [x] Symmetries
 [ ] Reverse the texture when reflecting the fundamental piece
 
 # Python
 
-[ ] Symmetries?
+[?] Symmetries?
 
 # misc.
 
