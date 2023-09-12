@@ -11,7 +11,7 @@ const loaderCosta = new OBJLoader();
 
 // Load the texture image
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load("/assets/textures/chess-texture.svg"); // Replace with the path to your texture image
+const texture = textureLoader.load("/assets/textures/checker.jpg"); // Replace with the path to your texture image
 const texture2 = textureLoader.load("/assets/textures/chess-texture2.png"); // Replace with the path to your texture image
 
 const pieces = [];
@@ -19,7 +19,7 @@ const pieces = [];
 // load a resource
 loaderCosta.load(
   // resource URL
-  "/assets/obj/output.obj",
+  "/assets/obj/dressed-enneper-full.obj",
   // called when resource is loaded
   function (object) {
     // Set the material.side property for each mesh in the object's children
@@ -27,9 +27,9 @@ loaderCosta.load(
       if (child instanceof THREE.Mesh) {
         // Create a Phong material for the mesh
         const material = new THREE.MeshPhongMaterial({
-          color: 0xbbbbbb, // Set your desired color
-          shininess: 10, // Set the shininess (adjust as needed)
-          // map: texture,
+          color: 0x888888, // Set your desired color
+          shininess: 50, // Set the shininess (adjust as needed)
+          map: texture,
         });
         child.material = material; // Assign the material to the mesh
         child.castShadow = true; // Enable casting shadows for the mesh
@@ -38,13 +38,13 @@ loaderCosta.load(
       }
     });
     // object.rotateZ(Math.PI / 2);
-    const objectCopy1 = object.clone();
-    objectCopy1.scale.y = -1;
-    const objectCopy2 = object.clone();
-    objectCopy2.scale.z = -1;
-    const objectCopy3 = object.clone();
-    objectCopy3.scale.y = -1;
-    objectCopy3.scale.z = -1;
+    // const objectCopy1 = object.clone();
+    // objectCopy1.scale.y = -1;
+    // const objectCopy2 = object.clone();
+    // objectCopy2.scale.z = -1;
+    // const objectCopy3 = object.clone();
+    // objectCopy3.scale.y = -1;
+    // objectCopy3.scale.z = -1;
 
     // const objectCopy4 = objectCopy1.clone();
     // const objectCopy5 = objectCopy2.clone();
@@ -59,18 +59,18 @@ loaderCosta.load(
 
     // add the models to the scene
     scene.add(object);
-    scene.add(objectCopy1);
-    scene.add(objectCopy2);
-    scene.add(objectCopy3);
+    // scene.add(objectCopy1);
+    // scene.add(objectCopy2);
+    // scene.add(objectCopy3);
     // scene.add(objectCopy4);
     // scene.add(objectCopy5);
     // scene.add(objectCopy3);
     // Export the pieces for later use
     pieces.push(
-      object,
-      objectCopy1,
-      objectCopy2,
-      objectCopy3
+      object
+      // objectCopy1,
+      // objectCopy2,
+      // objectCopy3
       // objectCopy4,
       // objectCopy5
     );
@@ -97,14 +97,14 @@ loaderCosta.load(
 
 /* SCENE, CAMERA, LIGHTS */
 
-const light = new THREE.DirectionalLight(0xffffff, 0.5);
-const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+const light = new THREE.DirectionalLight(0xffffff, 1);
+const backLight = new THREE.DirectionalLight(0xffffff, 1);
 const ambientLight = new THREE.AmbientLight(0xffffff); // Adjust the color as needed
 light.position.set(0, 5, 5);
 backLight.position.set(0, -5, -5);
 
 const camera = new THREE.PerspectiveCamera(
-  30,
+  75,
   innerWidth / innerHeight,
   0.001,
   1000
@@ -121,7 +121,7 @@ camera.lookAt(initialTarget.x, initialTarget.y, initialTarget.z);
 
 const scene = new THREE.Scene();
 
-scene.background = new THREE.Color(0x000000);
+scene.background = new THREE.Color(0xffffff);
 scene.add(light);
 scene.add(backLight);
 scene.add(ambientLight);
