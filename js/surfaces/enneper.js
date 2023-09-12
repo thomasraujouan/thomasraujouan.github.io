@@ -109,9 +109,9 @@ const camera = new THREE.PerspectiveCamera(
   0.001,
   1000
 );
-camera.position.x = 3;
-camera.position.y = 2;
-camera.position.z = 3;
+camera.position.x = 12;
+camera.position.y = 12;
+camera.position.z = 12;
 const initialTarget = {
   x: 0,
   y: 0,
