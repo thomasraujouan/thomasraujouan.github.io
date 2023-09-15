@@ -42,6 +42,7 @@ Migrer l'ancien site:
 [x] Put textures
 [x] Symmetries
 [ ] Reverse the texture when reflecting the fundamental piece
+[ ] Finir la mise ne modules
 
 # Python
 
