@@ -8,7 +8,7 @@ categories: dressed-catenoids
 
 Joint work with N. Schmitt.
 
-Press the space key to the a fundamental piece.
+Press number keys to make the hide or show the fundamental pieces. Press the "a" key to show all pieces.
 
 # 2 planar ends
 
@@ -20,7 +20,7 @@ Press the space key to the a fundamental piece.
 # 3 planar ends
 
 - [Vertical ends][3v]
-- Non-symmetric: [full][3dfull]
+- [Non-vertical ends][3dfull]
 
 # In hyperbolic space (Poincaré ball model)
 

@@ -24,7 +24,7 @@ Migrer l'ancien site:
 
 [ ] 2dhalf2 is broken
 [x] Put the obj of three planes dressed catenoids
-[ ] rotate them to have a standing catenoid
+[ ] rotate them to have a standing catenoid as initial view
 
 # WebgGL
 
@@ -44,6 +44,7 @@ Migrer l'ancien site:
 [ ] Reverse the texture when reflecting the fundamental piece
 [ ] Finir la mise ne modules
 [ ] Charger THREE en local
+[ ] Refaire la surface de Costa
 
 # Python
 
