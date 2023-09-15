@@ -46,10 +46,10 @@ const center = function (object) {
   object.position.sub(center);
 };
 
-const setDefaultMaterial = function (object) {
+const setMaterial = function (object, material = defaultMaterial) {
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
-      child.material = defaultMaterial;
+      child.material = material;
       child.castShadow = true;
       child.receiveShadow = true;
       child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
@@ -57,21 +57,15 @@ const setDefaultMaterial = function (object) {
   });
 };
 
-const setDefaultTexture = function (object) {
+const setTexture = function (object, texture = defaultTexture) {
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
-      child.material.map = defaultTexture;
+      child.material.map = texture;
     }
   });
 };
 
-export {
-  loadOBJModel,
-  center,
-  defaultMaterial,
-  setDefaultMaterial,
-  setDefaultTexture,
-};
+export { loadOBJModel, center, defaultMaterial, setMaterial, setTexture };
 /*
 Usage:
 const scene = new THREE.Scene();

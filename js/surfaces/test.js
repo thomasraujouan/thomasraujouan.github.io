@@ -1,13 +1,9 @@
 import * as THREE from "three";
 import { TrackballControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/TrackballControls"; // controls the camera
-import {
-  loadOBJModel,
-  setDefaultMaterial,
-  setDefaultTexture,
-} from "../modules/loadObj.js";
+import { loadOBJModel, setMaterial, setTexture } from "../modules/loadObj.js";
 import { lightScene } from "../modules/lights.js";
 import { makeCamera } from "../modules/camera.js";
-import { switchPieces } from "../modules/keyboard.js";
+import { allVisible, numberPadSwitch } from "../modules/keyboard.js";
 
 /* GUI */
 
@@ -15,22 +11,31 @@ import { switchPieces } from "../modules/keyboard.js";
 const obj = await loadOBJModel("/assets/obj/dressed-catenoids/2v4th.obj");
 
 /* MATERIALS, TEXTURES */
-setDefaultMaterial(obj);
-setDefaultTexture(obj);
+setMaterial(obj);
+setTexture(obj);
 
 /* SYMMETRIES */
 const pieces = [];
-const copy = obj.clone();
-copy.rotateX(Math.PI);
+obj.rotateZ(Math.PI / 2);
+const copy1 = obj.clone();
+const copy2 = obj.clone();
+const copy3 = obj.clone();
+copy1.rotateX(Math.PI);
+copy2.rotateY(Math.PI);
+copy3.rotateX(Math.PI);
+copy3.rotateY(Math.PI);
 pieces.push(obj);
-pieces.push(copy);
+pieces.push(copy1);
+pieces.push(copy2);
+pieces.push(copy3);
 
 /* SCENE, CAMERA*/
 const scene = new THREE.Scene();
 const camera = makeCamera(undefined, innerWidth / innerHeight);
-scene.background = new THREE.Color(0x000000);
-scene.add(obj);
-scene.add(copy);
+scene.background = new THREE.Color(0xffffff);
+for (let index = 0; index < pieces.length; index++) {
+  scene.add(pieces[index]);
+}
 
 /* LIGHTS */
 lightScene(scene);
@@ -58,8 +63,8 @@ controls.zoomSpeed = 0.5;
 controls.panSpeed = 0.5;
 
 /* KEYBOARD */
-const spaceKey = { content: " ", count: 0 };
-addEventListener("keydown", switchPieces(spaceKey, pieces));
+addEventListener("keydown", numberPadSwitch(pieces));
+addEventListener("keydown", allVisible(pieces));
 
 /* ANIMATION */
 let frame = 0;

@@ -43,6 +43,7 @@ Migrer l'ancien site:
 [x] Symmetries
 [ ] Reverse the texture when reflecting the fundamental piece
 [ ] Finir la mise ne modules
+[ ] Charger THREE en local
 
 # Python
 
