@@ -50,6 +50,13 @@ Migrer l'ancien site:
 
 [?] Symmetries?
 
+# Javascript
+
+[ ] absolute path for modules?
+
 # misc.
 
-[ ] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit
+[x] On ne peut pas mettre l'image docker sur github: fichier trop volumineux. Trouver un endroit: gdrive
+[ ] Calculer la surface de costa moi-même
+[ ] Find the period of the dressed helicoid and display two of them
+[ ] Helicoid conformal coords

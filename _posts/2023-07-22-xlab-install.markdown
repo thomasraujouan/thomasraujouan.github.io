@@ -74,4 +74,4 @@ You can now used xlab and [compute your first example][example].
 [docker]: https://docs.docker.com/engine/install/
 [windows]: https://github.com/docker/for-win/issues/1549
 [sudo]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-[download]: http://raujouan.eu/xlab/download/xlab-docker-220804.tar.gz
+[download]: https://drive.google.com/u/0/uc?id=1GVyO0bixvcIXBdPFdlXunCepdSrl89M4&export=download
