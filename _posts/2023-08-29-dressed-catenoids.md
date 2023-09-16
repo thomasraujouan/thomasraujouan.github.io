@@ -8,7 +8,7 @@ categories: dressed-catenoids
 
 Joint work with N. Schmitt.
 
-Press number keys to make the hide or show the fundamental pieces. Press the "a" key to show all pieces.
+Press number keys hide or show the fundamental pieces. Press the "a" key to show all pieces.
 
 # 2 planar ends
 
