@@ -28,8 +28,8 @@ Press number keys to make the hide or show the fundamental pieces. Press the "a"
 
 # Extras
 
-- Dressed helicoid
-- Dressed Enneper
+- [Dressed helicoid][helicoid]
+- [Dressed Enneper][enneper]
 
 [2vfull]: /surfaces/dressed-catenoids/2vfull.html
 [2vhalf1]: /surfaces/dressed-catenoids/2vhalf1.html
@@ -46,3 +46,5 @@ Press number keys to make the hide or show the fundamental pieces. Press the "a"
 [2v]: /surfaces/dressed-catenoids/2v.html
 [2d]: /surfaces/dressed-catenoids/2d.html
 [3v]: /surfaces/dressed-catenoids/3v.html
+[helicoid]: /surfaces/dressed-helicoid.html
+[enneper]: /surfaces/enneper.html
