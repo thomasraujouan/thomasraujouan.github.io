@@ -1,15 +1,25 @@
 import * as THREE from "three";
-import { TrackballControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/TrackballControls"; // controls the camera
-import {
-  loadOBJModel,
-  setMaterial,
-  setTexture,
-} from "../../modules/loadObj.js";
-import { lightScene } from "../../modules/lights.js";
-import { makeCamera } from "../../modules/camera.js";
-import { allVisible, numberPadSwitch } from "../../modules/keyboard.js";
+import { TrackballControls } from "/js/modules/TrackballControls.js"; // controls the camera
+import { loadOBJModel, setMaterial, setTexture } from "/js/modules/loadObj.js";
+import { lightScene } from "/js/modules/lights.js";
+import { makeCamera } from "/js/modules/camera.js";
+import { allVisible, numberPadSwitch } from "/js/modules/keyboard.js";
+import { onWindowResize } from "/js/modules/window.js";
 
 /* GUI */
+
+/* SCENE, CAMERA, LIGHTS */
+const scene = new THREE.Scene();
+const camera = makeCamera(undefined, innerWidth / innerHeight);
+scene.background = new THREE.Color("white");
+lightScene(scene);
+
+/* RENDERER, WINDOW */
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
+document.body.appendChild(renderer.domElement);
+window.addEventListener("resize", onWindowResize(camera, renderer), false);
 
 /* OBJ LOADING */
 const obj = await loadOBJModel("/assets/obj/dressed-catenoids/2v4th.obj");
@@ -32,30 +42,8 @@ pieces.push(obj);
 pieces.push(copy1);
 pieces.push(copy2);
 pieces.push(copy3);
-
-/* SCENE, CAMERA*/
-const scene = new THREE.Scene();
-const camera = makeCamera(undefined, innerWidth / innerHeight);
-scene.background = new THREE.Color(0xffffff);
 for (let index = 0; index < pieces.length; index++) {
   scene.add(pieces[index]);
-}
-
-/* LIGHTS */
-lightScene(scene);
-
-/* RENDERER */
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(innerWidth, innerHeight);
-renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
-document.body.appendChild(renderer.domElement);
-
-/* WINDOW */
-window.addEventListener("resize", onWindowResize, false);
-function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 /* MOUSE */
@@ -79,4 +67,5 @@ function animate() {
   frame += 0.01;
 }
 
+/* MAIN */
 animate();
