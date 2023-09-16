@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { TrackballControls } from "https://unpkg.com/three@0.139.2/examples/jsm/controls/TrackballControls"; // controls the camera
+import { TrackballControls } from "/js/modules/TrackballControls.js"; // controls the camera
 import { loadOBJModel, setMaterial, setTexture } from "../modules/loadObj.js";
 import { lightScene } from "../modules/lights.js";
 import { makeCamera } from "../modules/camera.js";
