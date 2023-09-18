@@ -10,7 +10,7 @@ permalink: xlab/install
 
 _[WINDOWS USERS: please backup your data before installing Docker][windows]._
 
-In order to be cross-platform, xlab has been dockerized. The first step is thus to [install Docker Engine][docker].
+In order to be cross-platform, Xlab has been dockerized. The first step is thus to [install Docker Engine][docker].
 
 Here is how it shoud look like if you are on Debian:
 
@@ -40,17 +40,17 @@ Log out, log in, and check that you can run docker without sudo:
 docker run --rm hello-world
 {% endhighlight %}
 
-# 2. Load the xlab image
+# 2. Load the Xlab image
 
-[Click here][download] to download an xlab image (1.3 GB), then load the image on your system: inside your download directory,
+[Click here][download] to download an Xlab image (1.3 GB), then load the image on your system: inside your download directory,
 {% highlight bash %}
 docker load < xlab-docker-123456.tar.gz
 {% endhighlight %}
 It can take a few minutes.
 
-# 3. Run an xlab container
+# 3. Run an Xlab container
 
-Check that you can run an xlab container:
+Check that you can run an Xlab container:
 
 {% highlight bash %}
 docker run -it --rm xlab
@@ -68,7 +68,7 @@ exit
 
 # Congratulations!
 
-You can now used xlab and [compute your first example][example].
+You can now used Xlab and [compute your first example][example].
 
 [example]: /xlab/catenoid
 [docker]: https://docs.docker.com/engine/install/

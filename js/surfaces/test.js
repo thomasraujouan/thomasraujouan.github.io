@@ -22,22 +22,22 @@ document.body.appendChild(renderer.domElement);
 window.addEventListener("resize", onWindowResize(camera, renderer), false);
 
 /* OBJ LOADING */
-const obj = await loadOBJModel("/assets/obj/dressed-catenoids/2v4th.obj");
+const obj = await loadOBJModel("/assets/obj/dressed-catenoids/2d4th.obj");
 
 /* MATERIALS, TEXTURES */
 setMaterial(obj);
 setTexture(obj);
 
-/* SYMMETRIES */
+/* SYMMETRIES, POSITIONING*/
 const pieces = [];
 obj.rotateZ(Math.PI / 2);
 const copy1 = obj.clone();
 const copy2 = obj.clone();
 const copy3 = obj.clone();
-copy1.rotateX(Math.PI);
-copy2.rotateY(Math.PI);
+copy1.scale.y = -1;
+copy3.scale.y = -1;
+copy2.rotateX(Math.PI);
 copy3.rotateX(Math.PI);
-copy3.rotateY(Math.PI);
 pieces.push(obj);
 pieces.push(copy1);
 pieces.push(copy2);

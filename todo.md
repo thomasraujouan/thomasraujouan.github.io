@@ -15,9 +15,9 @@ Migrer l'ancien site:
 [x] Save and read your own files
 [?] Screenshots
 
-[ ] Utiliser des titres plutôt que des listes ordonnées.
-[ ] Remplacer xlab par XLab
+[x] Remplacer xlab par XLab
 [x] Faire un lien vers tous les posts dans la page xlab
+[ ] Utiliser des titres plutôt que des listes ordonnées.
 [ ] About xlab =!= about xlab
 
 # dressed catenoids
@@ -34,9 +34,8 @@ Migrer l'ancien site:
 [ ] Texte de chargement de la bonnne couleur
 [x] Mieux gérer l'éclairage
 [ ] 0-key: réinitialise la position
-[ ] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)
+[x] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)
 [ ] Switch between surfaces with arrow keys
-[?] Afficher le catenoid et le dressed catenoid ensemble.
 [ ] Glisser-deposer obj files
 [x] Smooth .obj's with threejs? Need normals in the obj file. I made a python script in /home/thomas/Python/objParser/vertexNormalsAdder.py
 [x] Put textures
@@ -45,6 +44,9 @@ Migrer l'ancien site:
 [ ] Finir la mise ne modules
 [ ] Charger THREE en local
 [ ] Refaire la surface de Costa
+[ ] Encode the symmetries in a json file to automate them
+[ ] Sphere intersection
+[?] Afficher le catenoid et le dressed catenoid ensemble.
 
 # Python
 
@@ -53,6 +55,8 @@ Migrer l'ancien site:
 # Javascript
 
 [ ] absolute path for modules?
+if I choose relative paths, i have a lot of "../../"
+if I chose non-relative, vscode writes "js/" instead of "/js/"
 
 # misc.
 

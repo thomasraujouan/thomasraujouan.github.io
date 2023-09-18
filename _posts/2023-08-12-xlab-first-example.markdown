@@ -6,21 +6,21 @@ categories: xlab
 permalink: xlab/catenoid
 ---
 
-We compute our first example with xlab: a catenoid.
-This post is a continuation of [this one][install], where we installed the xlab container.
+We compute our first example with Xlab: a catenoid.
+This post is a continuation of [this one][install], where we installed the Xlab container.
 
 1. Open acces to X:
 
 {% highlight bash %}
 xhost +local:
 {% endhighlight %}
-Remember to close the access when you are done with xlab.
+Remember to close the access when you are done with Xlab.
 
 <!-- Omitting the following line will cause to start the ordering back from 0 -->
 
 {:start="2"}
 
-2. Run an xlab container:
+2. Run an Xlab container:
 
 {% highlight bash %}
 docker run -it --rm --volume=/tmp/.X11-unix:/tmp/.X11-unix --device=/dev/dri/card0:/dev/dri/card0 --env "DISPLAY=$DISPLAY" --network="host" xlab

@@ -7,9 +7,6 @@ const defaultMaterial = new THREE.MeshPhongMaterial({
   // map: texture,
 });
 
-const textureLoader = new THREE.TextureLoader();
-const defaultTexture = textureLoader.load("/assets/textures/chess-texture.svg");
-
 // Usage: const obj = await loadOBJModel(objPath);
 const loadOBJModel = async function (objPath) {
   const loader = new OBJLoader();
@@ -57,7 +54,14 @@ const setMaterial = function (object, material = defaultMaterial) {
   });
 };
 
-const setTexture = function (object, texture = defaultTexture) {
+const setTexture = function (
+  object,
+  texturePath = "/assets/textures/chess-texture.svg",
+  flip = true
+) {
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load("/assets/textures/chess-texture.svg");
+  texture.flipY = flip;
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
       child.material.map = texture;

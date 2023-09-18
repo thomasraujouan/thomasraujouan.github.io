@@ -7,9 +7,9 @@ permalink: xlab/share
 ---
 
 The docker container and the host machine can share directories, allowing you to bring your experiments home.
-This post is a continuation of [this one][catenoid], where we computed our first example with xlab.
+This post is a continuation of [this one][catenoid], where we computed our first example with Xlab.
 
-1. Make an xlab directory and go to it:
+1. Make an Xlab directory and go to it:
 
 {% highlight bash %}
 mkdir xlab
@@ -34,7 +34,7 @@ xhost +local:
 
 {:start="4"}
 
-4. Run an xlab container with the shared directory mounted. You should replace ABSOLUTE-PATH-TO-SHARED by the absolute path to the shared directory of step 2.
+4. Run an Xlab container with the shared directory mounted. You should replace ABSOLUTE-PATH-TO-SHARED by the absolute path to the shared directory of step 2.
 
 {% highlight bash %}
 docker run -it --rm \

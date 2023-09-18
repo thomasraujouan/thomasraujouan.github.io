@@ -1,12 +1,12 @@
 ---
 layout: page
-title: xlab
+title: Xlab
 permalink: /xlab/
 ---
 
 ![xlab' standard view](/assets/xlab-standard-view.png)
 
-xlab is an interactive software for the creation, visualization and investigation of surfaces in 3-dimensionnal spaces (Euclidean, hyperbolic, spherical) made by [Nick Schmitt][nick]. You can use it on your machine with the tutorials below.
+Xlab is an interactive software for the creation, visualization and investigation of surfaces in 3-dimensionnal spaces (Euclidean, hyperbolic, spherical) made by [Nick Schmitt][nick]. You can use it on your machine with the tutorials below.
 
 ### [Installing XLab][install]
 
