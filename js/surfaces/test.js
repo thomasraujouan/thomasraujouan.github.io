@@ -3,12 +3,9 @@ import { TrackballControls } from "/js/modules/TrackballControls.js"; // control
 import { loadOBJModel, setMaterial, setTexture } from "/js/modules/loadObj.js";
 import { lightScene } from "/js/modules/lights.js";
 import { makeCamera } from "/js/modules/camera.js";
-import {
-  allVisible,
-  numberPadSwitch,
-  initialPosition,
-} from "/js/modules/keyboard.js";
+import { allVisible, numberPadSwitch } from "/js/modules/keyboard.js";
 import { onWindowResize } from "/js/modules/window.js";
+import { initialPosition } from "/js/modules/keyboard.js";
 
 /* GUI */
 
@@ -27,26 +24,23 @@ document.body.appendChild(renderer.domElement);
 window.addEventListener("resize", onWindowResize(camera, renderer), false);
 
 /* OBJ LOADING */
-const obj = await loadOBJModel("/assets/obj/dressed-catenoids/2d4th.obj");
-
+const obj = await loadOBJModel("/assets/obj/dressed-catenoids/3v6th.obj");
 /* MATERIALS, TEXTURES */
 setMaterial(obj);
 setTexture(obj);
 
-/* SYMMETRIES, POSITIONING*/
+/* SYMMETRIES */
 const pieces = [];
-obj.rotateZ(Math.PI / 2);
-const copy1 = obj.clone();
-const copy2 = obj.clone();
-const copy3 = obj.clone();
-copy1.scale.y = -1;
-copy3.scale.y = -1;
-copy2.rotateX(Math.PI);
-copy3.rotateX(Math.PI);
-pieces.push(obj);
-pieces.push(copy1);
-pieces.push(copy2);
-pieces.push(copy3);
+for (let k = 0; k < 6; k++) {
+  pieces.push(obj.clone());
+}
+pieces[1].rotateX((2 * Math.PI) / 3);
+pieces[2].rotateX((4 * Math.PI) / 3);
+pieces[3].scale.x = -1;
+pieces[4].rotateX((2 * Math.PI) / 3);
+pieces[4].scale.x = -1;
+pieces[5].rotateX((4 * Math.PI) / 3);
+pieces[5].scale.x = -1;
 for (let index = 0; index < pieces.length; index++) {
   scene.add(pieces[index]);
 }

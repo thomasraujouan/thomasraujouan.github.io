@@ -5,12 +5,15 @@ import { lightScene } from "/js/modules/lights.js";
 import { makeCamera } from "/js/modules/camera.js";
 import { allVisible, numberPadSwitch } from "/js/modules/keyboard.js";
 import { onWindowResize } from "../../modules/window.js";
+import { ColorManagement } from "../../modules/three.module.js";
+import { initialPosition } from "../../modules/keyboard.js";
 
 /* GUI */
 
 /* SCENE, CAMERA, LIGHTS */
 const scene = new THREE.Scene();
 const camera = makeCamera(undefined, innerWidth / innerHeight);
+const initialCamera = camera.clone();
 scene.background = new THREE.Color("white");
 lightScene(scene);
 
@@ -57,6 +60,7 @@ controls.panSpeed = 0.5;
 /* KEYBOARD */
 addEventListener("keydown", numberPadSwitch(pieces));
 addEventListener("keydown", allVisible(pieces));
+addEventListener("keydown", initialPosition(camera, initialCamera));
 
 /* ANIMATION */
 let frame = 0;
