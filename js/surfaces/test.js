@@ -3,7 +3,11 @@ import { TrackballControls } from "/js/modules/TrackballControls.js"; // control
 import { loadOBJModel, setMaterial, setTexture } from "/js/modules/loadObj.js";
 import { lightScene } from "/js/modules/lights.js";
 import { makeCamera } from "/js/modules/camera.js";
-import { allVisible, numberPadSwitch } from "/js/modules/keyboard.js";
+import {
+  allVisible,
+  numberPadSwitch,
+  initialPosition,
+} from "/js/modules/keyboard.js";
 import { onWindowResize } from "/js/modules/window.js";
 
 /* GUI */
@@ -11,6 +15,7 @@ import { onWindowResize } from "/js/modules/window.js";
 /* SCENE, CAMERA, LIGHTS */
 const scene = new THREE.Scene();
 const camera = makeCamera(undefined, innerWidth / innerHeight);
+const initialCamera = camera.clone();
 scene.background = new THREE.Color("white");
 lightScene(scene);
 
@@ -57,6 +62,7 @@ controls.panSpeed = 0.5;
 /* KEYBOARD */
 addEventListener("keydown", numberPadSwitch(pieces));
 addEventListener("keydown", allVisible(pieces));
+addEventListener("keydown", initialPosition(camera, initialCamera));
 
 /* ANIMATION */
 let frame = 0;

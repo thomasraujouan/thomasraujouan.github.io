@@ -40,4 +40,12 @@ const numberPadSwitch = function (pieces) {
   };
 };
 
-export { switchPieces, numberPadSwitch, allVisible };
+const initialPosition = function (camera, initialCamera) {
+  return (event) => {
+    if (event.key === " ") {
+      camera.copy(initialCamera);
+    }
+  };
+};
+
+export { switchPieces, numberPadSwitch, allVisible, initialPosition };

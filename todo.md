@@ -33,7 +33,7 @@ Migrer l'ancien site:
 [x] Texte de chargement pour toutes les surfaces
 [ ] Texte de chargement de la bonnne couleur
 [x] Mieux gérer l'éclairage
-[ ] 0-key: réinitialise la position
+[ ] space-key: réinitialise la position
 [x] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)
 [ ] Switch between surfaces with arrow keys
 [ ] Glisser-deposer obj files
