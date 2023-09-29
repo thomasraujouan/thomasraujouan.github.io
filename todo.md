@@ -33,7 +33,7 @@ Migrer l'ancien site:
 [x] Texte de chargement pour toutes les surfaces
 [ ] Texte de chargement de la bonnne couleur
 [x] Mieux gérer l'éclairage
-[ ] space-key: réinitialise la position
+[x] space-key: réinitialise la position
 [x] C-key: cut the surface (afficher 1/4, 1/2, or 1/1 sur la page)
 [ ] Switch between surfaces with arrow keys
 [ ] Glisser-deposer obj files
@@ -41,12 +41,28 @@ Migrer l'ancien site:
 [x] Put textures
 [x] Symmetries
 [ ] Reverse the texture when reflecting the fundamental piece
-[ ] Finir la mise ne modules
-[ ] Charger THREE en local
+[?] Finir la mise en modules
+[x] Charger THREE en local
 [ ] Refaire la surface de Costa
 [ ] Encode the symmetries in a json file to automate them
 [ ] Sphere intersection
 [?] Afficher le catenoid et le dressed catenoid ensemble.
+[ ] Hyperbolic vertex shader
+[ ] Write a hyperbolicPanCamera function in the style of TrackballControls.panCamera
+[ ] Add a hyperbolic_motion vertex shader in the pipeline in the style of displacement_map. You can train by modifying begin_vertex first.
+[ ] If Hyperbolic, replace TrackballControls.panCamera by hyperbolicPanCamera and ask THREE to execute the hyperbolic_motion vertex shader in the pipeline
+
+    - Plan: set TrackballControl.noPan to true, read the
+    - ShaderChunk in THREE module contains all the shaders
+    - ShaderLib contains uniforms and vertex/fragment shaders to use depending on the style (lambert, phong, toon, etc...)
+    - The PHONG material vertex shader is vertex$6
+    - Should we write a prevertexshader if ambiant space is hyperbolic?
+    - There is an unproject() method in THREE.Vector3
+    - begin_vertex doesn't do anything, it just copies vec3(position) into vec3(transformed). I should apply my hyperbolic motion here.
+    - Trackballcontrol.nopan = true
+    - read the mousepan, compute the hyperbolic transformation, apply it in begin_vertex
+
+[ ] TrackballControls already has a reset method: use it.
 
 # Python
 

@@ -60,7 +60,7 @@ const setTexture = function (
   flip = true
 ) {
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load("/assets/textures/chess-texture.svg");
+  const texture = textureLoader.load(texturePath);
   texture.flipY = flip;
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {

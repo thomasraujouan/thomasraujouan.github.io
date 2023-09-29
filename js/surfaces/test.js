@@ -1,17 +1,27 @@
 import * as THREE from "three";
-import { TrackballControls } from "/js/modules/TrackballControls.js"; // controls the camera
-import { loadOBJModel, setMaterial, setTexture } from "/js/modules/loadObj.js";
-import { lightScene } from "/js/modules/lights.js";
-import { makeCamera } from "/js/modules/camera.js";
-import { allVisible, numberPadSwitch } from "/js/modules/keyboard.js";
-import { onWindowResize } from "/js/modules/window.js";
-import { initialPosition } from "/js/modules/keyboard.js";
+import { loadOBJModel, setMaterial, setTexture } from "../modules/loadObj.js";
+import { lightScene } from "../modules/lights.js";
+import {
+  allVisible,
+  initialPosition,
+  numberPadSwitch,
+} from "../modules/keyboard.js";
+import { onWindowResize } from "../modules/window.js";
+import { TrackballControls } from "../modules/TrackballControls.js";
 
 /* GUI */
 
 /* SCENE, CAMERA, LIGHTS */
 const scene = new THREE.Scene();
-const camera = makeCamera(undefined, innerWidth / innerHeight);
+const camera = new THREE.PerspectiveCamera(
+  30,
+  innerWidth / innerHeight,
+  0.001,
+  1000
+);
+camera.translateX(4);
+camera.translateY(2);
+camera.translateZ(4);
 const initialCamera = camera.clone();
 scene.background = new THREE.Color("white");
 lightScene(scene);
@@ -34,6 +44,9 @@ const pieces = [];
 for (let k = 0; k < 6; k++) {
   pieces.push(obj.clone());
 }
+for (let index = 0; index < pieces.length; index++) {
+  pieces[index].rotateZ(Math.PI / 2);
+}
 pieces[1].rotateX((2 * Math.PI) / 3);
 pieces[2].rotateX((4 * Math.PI) / 3);
 pieces[3].scale.x = -1;
@@ -47,8 +60,7 @@ for (let index = 0; index < pieces.length; index++) {
 
 /* MOUSE */
 const controls = new TrackballControls(camera, renderer.domElement);
-const initialTarget = camera.initialTarget;
-controls.target.set(initialTarget.x, initialTarget.y, initialTarget.z);
+controls.target.set(0, 0, 0);
 controls.rotateSpeed = 2.0;
 controls.zoomSpeed = 0.5;
 controls.panSpeed = 0.5;
@@ -68,4 +80,5 @@ function animate() {
 }
 
 /* MAIN */
+controls.noPan = true;
 animate();
