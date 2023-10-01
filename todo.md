@@ -47,21 +47,25 @@ Migrer l'ancien site:
 [ ] Encode the symmetries in a json file to automate them
 [ ] Sphere intersection
 [?] Afficher le catenoid et le dressed catenoid ensemble.
+
 [ ] Hyperbolic vertex shader
+[ ] Example of onBeforeCompile usage: https://codepen.io/prisoner849/pen/BvxBPW
 [ ] Write a hyperbolicPanCamera function in the style of TrackballControls.panCamera
 [ ] Add a hyperbolic_motion vertex shader in the pipeline in the style of displacement_map. You can train by modifying begin_vertex first.
 [ ] If Hyperbolic, replace TrackballControls.panCamera by hyperbolicPanCamera and ask THREE to execute the hyperbolic_motion vertex shader in the pipeline
+[ ] use material.defines and material.onBeforeCompile
+[ ] You may need to move the normals too in your vertex shader
 
-    - Plan: set TrackballControl.noPan to true, read the
+    - don't forget to define functions before the main in glsl, this is in <common>
     - ShaderChunk in THREE module contains all the shaders
     - ShaderLib contains uniforms and vertex/fragment shaders to use depending on the style (lambert, phong, toon, etc...)
     - The PHONG material vertex shader is vertex$6
     - Should we write a prevertexshader if ambiant space is hyperbolic?
-    - There is an unproject() method in THREE.Vector3
-    - begin_vertex doesn't do anything, it just copies vec3(position) into vec3(transformed). I should apply my hyperbolic motion here.
+    - begin_vertex doesn't do anything, it just copies vec3(position) into vec3(transformed). I should use that to insert my pre-vertexshader.
     - Trackballcontrol.nopan = true
     - read the mousepan, compute the hyperbolic transformation, apply it in begin_vertex
 
+[ ] Maybe you should just copy the shaders that you really use and get rid of threejs step by step.
 [ ] TrackballControls already has a reset method: use it.
 
 # Python

@@ -1,9 +1,32 @@
 import { OBJLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
+import { hyperbolic_vertex } from "../shaders/hyperbolic_vertex.js";
 
 const defaultMaterial = new THREE.MeshPhongMaterial({
   color: 0xbbbbbb, // Set your desired color
   shininess: 10, // Set the shininess (adjust as needed)
+  // map: texture,
+});
+
+var customUniforms = THREE.UniformsUtils.merge([
+  THREE.ShaderLib.phong.uniforms,
+  { hyperbolic_u: { value: 0.1 } },
+]);
+
+// var customMaterial2 = new THREE.MeshPhongMaterial({
+//   color: 0xbbbbbb, // Set your desired color
+//   shininess: 10, // Set the shininess (adjust as needed)
+//   // map: texture,
+// });
+
+// customMaterial2.vertexShader = hyperbolic_vertex;
+// customMaterial2.uniforms = customUniforms;
+// customMaterial2.name = "custom-material";
+
+var hyperbolicMaterial = new THREE.MeshPhongMaterial({
+  color: 0xbbbbbb, // Set your desired color
+  shininess: 10, // Set the shininess (adjust as needed)
+  name: "hyperbolicMaterial",
   // map: texture,
 });
 
@@ -54,6 +77,26 @@ const setMaterial = function (object, material = defaultMaterial) {
   });
 };
 
+const setHyperbolicMaterial = function (object) {
+  setMaterial(object);
+  object.traverse(function (child) {
+    if (child instanceof THREE.Mesh) {
+      child.material.onBeforeCompile = function (shader) {
+        shader.uniforms.myUniform = 1;
+        shader.vertexShader = hyperbolic_vertex;
+      };
+    }
+  });
+};
+
+const makeMaterialHyperbolic = function (object) {
+  object.traverse(function (child) {
+    if (child instanceof THREE.Mesh) {
+      child.material.onBeforeCompile = () => {};
+    }
+  });
+};
+
 const setTexture = function (
   object,
   texturePath = "/assets/textures/chess-texture.svg",
@@ -69,7 +112,15 @@ const setTexture = function (
   });
 };
 
-export { loadOBJModel, center, defaultMaterial, setMaterial, setTexture };
+export {
+  loadOBJModel,
+  center,
+  defaultMaterial,
+  setMaterial,
+  setTexture,
+  makeMaterialHyperbolic,
+  setHyperbolicMaterial,
+};
 /*
 Usage:
 const scene = new THREE.Scene();

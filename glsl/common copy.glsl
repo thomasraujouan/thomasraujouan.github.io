@@ -89,15 +89,3 @@ vec2 equirectUv(in vec3 dir) {
     float v = asin(clamp(dir.y, -1.0, 1.0)) * RECIPROCAL_PI + 0.5;
     return vec2(u, v);
 }
-
-// These are my functions
-vec4 antiStereographicProjection(vec3 p) {
-    float norm2 = p.x * p.x + p.y * p.y + p.z * p.z;
-    float t = (1.0 + norm2) / (1.0 - norm2);
-    vec3 v = 2.0 * p / (1.0 - norm2);
-    return vec4(t, v.x, v.y, v.z);
-}
-vec3 stereographicProjection(vec4 p) {
-    float denominator = 1.0 + p.x;
-    return vec3(p.y, p.z, p.w) / denominator;
-}

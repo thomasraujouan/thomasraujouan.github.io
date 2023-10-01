@@ -43,6 +43,7 @@ window.addEventListener("resize", onWindowResize(camera, renderer), false);
 
 /* OBJ LOADING */
 const obj = await loadOBJModel("/assets/obj/dressed-catenoids/h3/2v1.obj");
+
 /* MATERIALS, TEXTURES */
 setHyperbolicMaterial(obj);
 setTexture(obj);
