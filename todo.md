@@ -93,4 +93,5 @@ if I chose non-relative, vscode writes "js/" instead of "/js/"
 
     - bounding box
     - automatic zoom
-    - color?
+    - automatic centering
+    - Think global settings (color, background, etc...)
