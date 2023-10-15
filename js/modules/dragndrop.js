@@ -28,5 +28,5 @@ function dropHandler(ev) {
   }
 }
 
-document.getElementById("div1").ondrop = dropHandler;
-document.getElementById("div1").ondragover = allowDrop;
+document.getElementById("dropzone").ondrop = dropHandler;
+document.getElementById("dropzone").ondragover = allowDrop;
