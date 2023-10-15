@@ -17,7 +17,14 @@
   <link rel="stylesheet" href="/assets/webgl.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="test dragndrop" />
-  <script type="module" src="/js/modules/dragndrop.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/js/modules/three.module.js"
+      }
+    }
+  </script>
+  <script tykpe="module" src="/js/modules/dragndrop.js"></script>
 </head>
 
 <body id="webgl">
@@ -30,6 +37,11 @@
   <p>Drag the obj file into the rectangle:</p>
   <div id="dropzone"></div>
   <br>
+</body>
+
+<body id="webgl">
+  <script type="module" src="/js/surfaces/dressed-catenoids/2d.js"></script>
+  <div id="info"></div>
 </body>
 
 </html>
