@@ -1,4 +1,5 @@
-import { OBJLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/OBJLoader";
+// import { OBJLoader } from "https://unpkg.com/three@0.139.2/examples/jsm/loaders/OBJLoader";
+import { OBJLoader } from "./OBJLoader.module.js";
 import * as THREE from "three";
 import { hyperbolic_vertex } from "../shaders/hyperbolic_vertex.js";
 

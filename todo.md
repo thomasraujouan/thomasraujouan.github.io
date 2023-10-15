@@ -84,6 +84,7 @@ if I chose non-relative, vscode writes "js/" instead of "/js/"
 [ ] Calculer la surface de costa moi-même
 [ ] Find the period of the dressed helicoid and display two of them
 [ ] Helicoid conformal coords
+[ ] Use a local version of OBJLoader
 
 # Katrin's viewer
 
