@@ -1,3 +1,5 @@
+const dropzone = document.getElementById("dropzone");
+
 function allowDrop(ev) {
   console.log("file in drop zone");
   ev.preventDefault();
@@ -16,17 +18,19 @@ function dropHandler(ev) {
     if (item.kind === "file") {
       console.log("you gave me a file");
       const f = item.getAsFile();
+      window.objFile = f;
       const reader = new FileReader();
       reader.onload = function (event) {
-        console.log(event.target.result);
+        window.objFile = event.target.result;
       };
-      console.log("here are the cntents of the file\n");
       reader.readAsText(f);
+      console.log("file saved in window.objFile\n");
     } else {
       console.log("don't know what to do with this");
     }
   }
 }
 
-document.getElementById("dropzone").ondrop = dropHandler;
-document.getElementById("dropzone").ondragover = allowDrop;
+dropzone.ondrop = dropHandler;
+dropzone.ondragover = allowDrop;
+dropzone.innerHTML = "Drop your obj file here.";

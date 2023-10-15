@@ -60,6 +60,35 @@ const loadOBJModel = async function (objPath) {
   }
 };
 
+const loadOBJString = async function (string) {
+  const loader = new OBJLoader();
+  try {
+    const obj = await new Promise((resolve, reject) => {
+      loader.load(
+        objPath,
+        (loadedObj) => {
+          resolve(loadedObj); // Resolve the Promise with the loaded object
+        },
+        function (xhr) {
+          // Compute the loading progression
+          const load = xhr.loaded / xhr.total;
+          const loadText = load * 100 + "% loaded";
+          console.log(loadText);
+          // Display the loading progression
+          const info = document.getElementById("info");
+          if (load != 1) {
+            info.innerText = loadText;
+          } else info.innerText = "";
+        },
+        reject
+      ); // Reject the Promise if there's an error
+    });
+    return obj; // Return the loaded object
+  } catch (error) {
+    throw new Error("Error loading OBJ model: " + error);
+  }
+};
+
 const center = function (object) {
   const boundingBox = new THREE.Box3().setFromObject(object);
   const center = boundingBox.getCenter(new THREE.Vector3());
