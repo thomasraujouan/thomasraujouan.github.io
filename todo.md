@@ -84,12 +84,15 @@ if I chose non-relative, vscode writes "js/" instead of "/js/"
 [ ] Calculer la surface de costa moi-même
 [ ] Find the period of the dressed helicoid and display two of them
 [ ] Helicoid conformal coords
-[ ] Use a local version of OBJLoader
+[x] Use a local version of OBJLoader
 
 # Katrin's viewer
 
 [ ] Drag and drop obj files
 [ ] obj parser written in js
+
+    - there is one in OBJLoader: parse(text)
+
 [ ] standard settings for the viewer
 
     - bounding box

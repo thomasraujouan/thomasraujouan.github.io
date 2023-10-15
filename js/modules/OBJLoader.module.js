@@ -1,3 +1,8 @@
+/*
+Taken from https://unpkg.com/three@0.139.2/examples/jsm/loaders/OBJLoader.js
+on 2023 Oct. 15
+*/
+
 import {
   BufferGeometry,
   FileLoader,
