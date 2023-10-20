@@ -11,6 +11,7 @@ import { fittingDistance, makeCamera } from "../../modules/camera.js";
 import { allVisible, numberPadSwitch } from "../../modules/keyboard.js";
 import { onWindowResize } from "../../modules/window.js";
 import { initialPosition } from "../../modules/keyboard.js";
+import { Surface } from "../../modules/Surface.js";
 
 /* SURFACE */
 
@@ -38,11 +39,12 @@ pieces.push(copy1);
 pieces.push(copy2);
 pieces.push(copy3);
 
+const surface = new Surface(pieces);
+
 /* SCENE */
 const scene = new THREE.Scene();
-for (let index = 0; index < pieces.length; index++) {
-  scene.add(pieces[index]);
-}
+surface.addToScene(scene);
+
 scene.background = new THREE.Color("white");
 lightScene(scene);
 
