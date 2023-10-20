@@ -6,7 +6,7 @@ import {
   setTexture,
 } from "../../modules/loadObj.js";
 import { lightScene } from "../../modules/lights.js";
-import { makeCamera } from "../../modules/camera.js";
+import { fittingDistance, makeCamera } from "../../modules/camera.js";
 import { allVisible, numberPadSwitch } from "../../modules/keyboard.js";
 import { onWindowResize } from "../../modules/window.js";
 import { initialPosition } from "../../modules/keyboard.js";
@@ -15,13 +15,19 @@ import { initialPosition } from "../../modules/keyboard.js";
 
 /* SCENE, CAMERA, LIGHTS */
 const scene = new THREE.Scene();
+const fov = 30;
+const distance = fittingDistance(fov, 1.3);
 const camera = makeCamera(
-  undefined,
+  fov,
   innerWidth / innerHeight,
   undefined,
   undefined,
   undefined,
-  { x: -4, y: 0, z: 4 }
+  {
+    x: -Math.sqrt((distance * distance) / 2),
+    y: 0,
+    z: -Math.sqrt((distance * distance) / 2),
+  }
 );
 const initialCamera = camera.clone();
 scene.background = new THREE.Color("white");
@@ -85,3 +91,6 @@ function animate() {
 
 /* MAIN */
 animate();
+const box = new THREE.Box3();
+box.setFromObject(obj);
+console.log(box);

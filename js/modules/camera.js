@@ -17,4 +17,11 @@ const makeCamera = (
   return camera;
 };
 
-export { makeCamera };
+const fittingDistance = function (fov, objectRadius) {
+  // https://stackoverflow.com/questions/14614252/how-to-fit-camera-to-object/14614736#14614736
+  const fovInDegrees = fov * (Math.PI / 180);
+  const distance = Math.abs(objectRadius / Math.sin(fovInDegrees / 2));
+  return distance;
+};
+
+export { makeCamera, fittingDistance };
