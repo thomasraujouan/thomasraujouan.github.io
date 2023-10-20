@@ -141,6 +141,19 @@ const setTexture = function (
   });
 };
 
+const flipTexture = function (object) {
+  object.traverse(function (child) {
+    if (child instanceof THREE.Mesh) {
+      const currentMaterialMap = child.material.map;
+      const newMaterialMap = child.material.map.clone();
+      newMaterialMap.flipY = false;
+      let newMaterial = child.material.clone();
+      newMaterial.map = newMaterialMap;
+      setMaterial(object, newMaterial);
+    }
+  });
+};
+
 export {
   loadOBJModel,
   center,
@@ -149,6 +162,7 @@ export {
   setTexture,
   makeMaterialHyperbolic,
   setHyperbolicMaterial,
+  flipTexture,
 };
 /*
 Usage:

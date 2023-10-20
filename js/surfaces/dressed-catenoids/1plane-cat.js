@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { TrackballControls } from "../../modules/TrackballControls.js"; // controls the camera
 import {
+  flipTexture,
   loadOBJModel,
   setMaterial,
   setTexture,
@@ -53,7 +54,9 @@ const copy1 = obj.clone();
 const copy2 = obj.clone();
 const copy3 = obj.clone();
 copy1.scale.y = -1;
+flipTexture(copy1);
 copy3.scale.y = -1;
+flipTexture(copy3);
 copy2.rotateX(Math.PI);
 copy3.rotateX(Math.PI);
 pieces.push(obj);
