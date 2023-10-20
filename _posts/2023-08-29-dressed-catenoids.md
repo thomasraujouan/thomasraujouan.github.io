@@ -10,6 +10,10 @@ Joint work with N. Schmitt.
 
 Press number keys hide or show the fundamental pieces. Press the "a" key to show all pieces.
 
+# 1 planar ends
+
+- [Vertical end][1v]
+
 # 2 planar ends
 
 - [Vertical ends][2v]
@@ -48,3 +52,4 @@ Press number keys hide or show the fundamental pieces. Press the "a" key to show
 [3v]: /surfaces/dressed-catenoids/3v.html
 [helicoid]: /surfaces/dressed-helicoid.html
 [enneper]: /surfaces/enneper.html
+[1v]: /surfaces/dressed-catenoids/1plane-cat.html

@@ -1,18 +1,29 @@
 import * as THREE from "three";
-import { TrackballControls } from "/js/modules/TrackballControls.js"; // controls the camera
-import { loadOBJModel, setMaterial, setTexture } from "/js/modules/loadObj.js";
-import { lightScene } from "/js/modules/lights.js";
-import { makeCamera } from "/js/modules/camera.js";
-import { allVisible, numberPadSwitch } from "/js/modules/keyboard.js";
-import { onWindowResize } from "../modules/window.js";
-import { ColorManagement } from "../modules/three.module.js";
-import { initialPosition } from "../modules/keyboard.js";
+import { TrackballControls } from "../../modules/TrackballControls.js"; // controls the camera
+import {
+  loadOBJModel,
+  setMaterial,
+  setTexture,
+} from "../../modules/loadObj.js";
+import { lightScene } from "../../modules/lights.js";
+import { makeCamera } from "../../modules/camera.js";
+import { allVisible, numberPadSwitch } from "../../modules/keyboard.js";
+import { onWindowResize } from "../../modules/window.js";
+import { ColorManagement } from "../../modules/three.module.js";
+import { initialPosition } from "../../modules/keyboard.js";
 
 /* GUI */
 
 /* SCENE, CAMERA, LIGHTS */
 const scene = new THREE.Scene();
-const camera = makeCamera(undefined, innerWidth / innerHeight);
+const camera = makeCamera(
+  undefined,
+  innerWidth / innerHeight,
+  undefined,
+  undefined,
+  undefined,
+  { x: 12, y: 0, z: 12 }
+);
 const initialCamera = camera.clone();
 scene.background = new THREE.Color("white");
 lightScene(scene);
@@ -36,6 +47,8 @@ setTexture(obj);
 /* SYMMETRIES, POSITIONING*/
 const pieces = [];
 obj.rotateZ(Math.PI / 2);
+obj.rotateY(Math.PI);
+// obj.rotateX(Math.PI);
 const copy1 = obj.clone();
 const copy2 = obj.clone();
 const copy3 = obj.clone();
