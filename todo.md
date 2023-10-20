@@ -47,6 +47,7 @@ Migrer l'ancien site:
 [ ] Encode the symmetries in a json file to automate them
 [ ] Sphere intersection
 [?] Afficher le catenoid et le dressed catenoid ensemble.
+[ ] Use EventDispacher to define a class Keyboard acting in the style of TrackballControls
 
 [ ] Hyperbolic vertex shader
 [ ] Example of onBeforeCompile usage: https://codepen.io/prisoner849/pen/BvxBPW

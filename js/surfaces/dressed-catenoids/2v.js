@@ -12,19 +12,16 @@ import { allVisible, numberPadSwitch } from "../../modules/keyboard.js";
 import { onWindowResize } from "../../modules/window.js";
 import { initialPosition } from "../../modules/keyboard.js";
 
-/* SCENE, LIGHTS */
-const scene = new THREE.Scene();
-scene.background = new THREE.Color("white");
-lightScene(scene);
+/* SURFACE */
 
-/* OBJ LOADING */
+// OBJ LOADING
 const obj = await loadOBJModel("/assets/obj/dressed-catenoids/2v4th.obj");
 
-/* MATERIALS, TEXTURES */
+// MATERIALS, TEXTURES
 setMaterial(obj);
 setTexture(obj);
 
-/* SYMMETRIES */
+// SYMMETRIES
 const pieces = [];
 obj.rotateZ(0);
 obj.rotateX(Math.PI / 2);
@@ -40,9 +37,14 @@ pieces.push(obj);
 pieces.push(copy1);
 pieces.push(copy2);
 pieces.push(copy3);
+
+/* SCENE */
+const scene = new THREE.Scene();
 for (let index = 0; index < pieces.length; index++) {
   scene.add(pieces[index]);
 }
+scene.background = new THREE.Color("white");
+lightScene(scene);
 
 /*CAMERA*/
 const fov = 30;
@@ -65,7 +67,7 @@ const initialCamera = camera.clone();
 
 /* GUI */
 
-/* RENDERER, WINDOW */
+/* RENDERER */
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(innerWidth, innerHeight);
 renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
