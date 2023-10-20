@@ -143,13 +143,16 @@ const setTexture = function (
 };
 
 const flipTexture = function (object) {
+  const textureLoader = new THREE.TextureLoader();
   object.traverse(function (child) {
-    if (child instanceof THREE.Mesh) {
-      const newMaterialMap = child.material.map.clone();
-      newMaterialMap.flipY = true;
-      const newMaterial = child.material.clone();
-      newMaterial.map = newMaterialMap;
-      child.material = newMaterial;
+    if (child instanceof THREE.Mesh && child.material.map) {
+      textureLoader.load("/assets/textures/chess-texture.svg", (texture) => {
+        texture.flipY = true;
+        const newMaterialMap = texture;
+        const newMaterial = child.material.clone();
+        newMaterial.map = newMaterialMap;
+        child.material = newMaterial;
+      });
     }
   });
 };
