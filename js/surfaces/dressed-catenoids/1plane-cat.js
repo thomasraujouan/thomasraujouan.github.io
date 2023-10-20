@@ -31,8 +31,9 @@ setTexture(obj);
 
 /* SYMMETRIES, POSITIONING*/
 const pieces = [];
-obj.rotateZ(Math.PI / 2);
-obj.rotateY(Math.PI);
+obj.rotateY((1 * Math.PI) / 8);
+obj.rotateX((-0 * Math.PI) / 16);
+obj.rotateZ((0 * Math.PI) / 2);
 // obj.rotateX(Math.PI);
 const copy1 = obj.clone();
 const copy2 = obj.clone();
@@ -55,9 +56,9 @@ const fov = 30;
 const radius = computeRadius(obj);
 const distance = fittingDistance(fov, radius);
 const position = {
-  x: -Math.sqrt((distance * distance) / 2),
-  y: 0,
-  z: -Math.sqrt((distance * distance) / 2),
+  x: -Math.sqrt((2 * (distance * distance)) / 5),
+  y: Math.sqrt((distance * distance) / 5),
+  z: -Math.sqrt((2 * (distance * distance)) / 5),
 };
 const camera = makeCamera(
   fov,
