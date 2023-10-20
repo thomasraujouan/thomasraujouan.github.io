@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { TrackballControls } from "../../modules/TrackballControls.js"; // controls the camera
 import {
+  computeRadius,
   loadOBJModel,
   setMaterial,
   setTexture,
@@ -11,34 +12,10 @@ import { allVisible, numberPadSwitch } from "../../modules/keyboard.js";
 import { onWindowResize } from "../../modules/window.js";
 import { initialPosition } from "../../modules/keyboard.js";
 
-/* GUI */
-
-/* SCENE, CAMERA, LIGHTS */
+/* SCENE, LIGHTS */
 const scene = new THREE.Scene();
-const fov = 30;
-const distance = fittingDistance(fov, 1.3);
-const camera = makeCamera(
-  fov,
-  innerWidth / innerHeight,
-  undefined,
-  undefined,
-  undefined,
-  {
-    x: -Math.sqrt((distance * distance) / 2),
-    y: 0,
-    z: -Math.sqrt((distance * distance) / 2),
-  }
-);
-const initialCamera = camera.clone();
 scene.background = new THREE.Color("white");
 lightScene(scene);
-
-/* RENDERER, WINDOW */
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(innerWidth, innerHeight);
-renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
-document.body.appendChild(renderer.domElement);
-window.addEventListener("resize", onWindowResize(camera, renderer), false);
 
 /* OBJ LOADING */
 const obj = await loadOBJModel("/assets/obj/dressed-catenoids/2v4th.obj");
@@ -67,6 +44,34 @@ for (let index = 0; index < pieces.length; index++) {
   scene.add(pieces[index]);
 }
 
+/*CAMERA*/
+const fov = 30;
+const radius = computeRadius(obj);
+const distance = fittingDistance(fov, radius);
+const position = {
+  x: -Math.sqrt((distance * distance) / 2),
+  y: 0,
+  z: -Math.sqrt((distance * distance) / 2),
+};
+const camera = makeCamera(
+  fov,
+  innerWidth / innerHeight,
+  undefined,
+  undefined,
+  undefined,
+  position
+);
+const initialCamera = camera.clone();
+
+/* GUI */
+
+/* RENDERER, WINDOW */
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
+document.body.appendChild(renderer.domElement);
+window.addEventListener("resize", onWindowResize(camera, renderer), false);
+
 /* MOUSE */
 const controls = new TrackballControls(camera, renderer.domElement);
 const initialTarget = camera.initialTarget;
@@ -91,6 +96,3 @@ function animate() {
 
 /* MAIN */
 animate();
-const box = new THREE.Box3();
-box.setFromObject(obj);
-console.log(box);

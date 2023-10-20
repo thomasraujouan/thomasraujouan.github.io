@@ -95,6 +95,14 @@ const center = function (object) {
   object.position.sub(center);
 };
 
+const computeRadius = function (object) {
+  const box = new THREE.Box3();
+  box.setFromObject(object);
+  const min = Math.min(...box.min, ...box.max);
+  const max = Math.max(...box.min, ...box.max);
+  return Math.max(Math.abs(min), Math.abs(max));
+};
+
 const setMaterial = function (object, material = defaultMaterial) {
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
@@ -166,6 +174,7 @@ export {
   makeMaterialHyperbolic,
   setHyperbolicMaterial,
   flipTexture,
+  computeRadius,
 };
 /*
 Usage:
