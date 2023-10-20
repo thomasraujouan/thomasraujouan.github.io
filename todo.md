@@ -40,10 +40,10 @@ Migrer l'ancien site:
 [x] Smooth .obj's with threejs? Need normals in the obj file. I made a python script in /home/thomas/Python/objParser/vertexNormalsAdder.py
 [x] Put textures
 [x] Symmetries
+[ ] Refaire la surface de Costa
 [ ] Reverse the texture when reflecting the fundamental piece
 [?] Finir la mise en modules
 [x] Charger THREE en local
-[ ] Refaire la surface de Costa
 [ ] Encode the symmetries in a json file to automate them
 [ ] Sphere intersection
 [?] Afficher le catenoid et le dressed catenoid ensemble.
