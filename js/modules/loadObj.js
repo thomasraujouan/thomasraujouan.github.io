@@ -129,11 +129,12 @@ const makeMaterialHyperbolic = function (object) {
 const setTexture = function (
   object,
   texturePath = "/assets/textures/chess-texture.svg",
-  flip = true
+  flip = false
 ) {
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load(texturePath);
-  texture.flipY = flip;
+  const texture = textureLoader.load(texturePath, (texture) => {
+    texture.flipY = flip;
+  });
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
       child.material.map = texture;
@@ -144,12 +145,11 @@ const setTexture = function (
 const flipTexture = function (object) {
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
-      const currentMaterialMap = child.material.map;
       const newMaterialMap = child.material.map.clone();
-      newMaterialMap.flipY = false;
-      let newMaterial = child.material.clone();
+      newMaterialMap.flipY = true;
+      const newMaterial = child.material.clone();
       newMaterial.map = newMaterialMap;
-      setMaterial(object, newMaterial);
+      child.material = newMaterial;
     }
   });
 };

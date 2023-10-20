@@ -7,6 +7,7 @@ import { allVisible, numberPadSwitch } from "/js/modules/keyboard.js";
 import { onWindowResize } from "../../modules/window.js";
 import { ColorManagement } from "../../modules/three.module.js";
 import { initialPosition } from "../../modules/keyboard.js";
+import { flipTexture } from "../../modules/loadObj.js";
 
 /* GUI */
 
@@ -38,7 +39,9 @@ const copy1 = obj.clone();
 const copy2 = obj.clone();
 const copy3 = obj.clone();
 copy1.scale.y = -1;
+flipTexture(copy1);
 copy3.scale.y = -1;
+flipTexture(copy3);
 copy2.rotateX(Math.PI);
 copy3.rotateX(Math.PI);
 pieces.push(obj);
