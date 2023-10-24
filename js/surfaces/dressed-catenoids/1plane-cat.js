@@ -63,8 +63,8 @@ const position = {
 const camera = makeCamera(
   fov,
   innerWidth / innerHeight,
-  undefined,
-  undefined,
+  0.1,
+  500,
   undefined,
   position
 );

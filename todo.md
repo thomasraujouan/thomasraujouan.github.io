@@ -48,6 +48,7 @@ Migrer l'ancien site:
 [ ] Sphere intersection
 [?] Afficher le catenoid et le dressed catenoid ensemble.
 [ ] Use EventDispacher to define a class Keyboard acting in the style of TrackballControls
+[ ] 2v.js can still be cut in half
 
 [ ] Hyperbolic vertex shader
 [ ] Example of onBeforeCompile usage: https://codepen.io/prisoner849/pen/BvxBPW
