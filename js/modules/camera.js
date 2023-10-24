@@ -3,8 +3,8 @@ import { PerspectiveCamera } from "three";
 const makeCamera = (
   fov = 30,
   aspect = 1,
-  near = 0.001,
-  far = 1000,
+  near = 0.1,
+  far = 500,
   initialTarget = { x: 0, y: 0, z: 0 },
   position = { x: 3, y: 2, z: 3 }
 ) => {
