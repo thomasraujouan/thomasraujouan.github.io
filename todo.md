@@ -49,6 +49,8 @@ Migrer l'ancien site:
 [?] Afficher le catenoid et le dressed catenoid ensemble.
 [ ] Use EventDispacher to define a class Keyboard acting in the style of TrackballControls
 [ ] 2v.js can still be cut in half
+[ ] compute z-near and z-far of camera in terms of bounding bow of object, not with magic numbers
+[ ] dressed catenoid with one plane has a hole in it: add precision
 
 [ ] Hyperbolic vertex shader
 [ ] Example of onBeforeCompile usage: https://codepen.io/prisoner849/pen/BvxBPW
