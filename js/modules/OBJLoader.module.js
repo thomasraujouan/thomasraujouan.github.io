@@ -401,6 +401,12 @@ class OBJLoader extends Loader {
     );
   }
 
+  // THIS IS MY FUNCTION
+  loadString(text) {
+    const scope = this;
+    scope.parse(text);
+  }
+
   setMaterials(materials) {
     this.materials = materials;
 
