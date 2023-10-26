@@ -50,7 +50,9 @@ Migrer l'ancien site:
 [ ] Use EventDispacher to define a class Keyboard acting in the style of TrackballControls
 [ ] 2v.js can still be cut in half
 [ ] compute z-near and z-far of camera in terms of bounding bow of object, not with magic numbers
-[ ] dressed catenoid with one plane has a hole in it: add precision
+[ ] dressed catenoid with one plane has a hole in it. Refining sampling in Mathematica does not seem to work. One could compute both the whole surface and the pieces and switch between the two when playing with symmetries.
+[ ] Compute the helicoid corresponding to the 1planar catenoid
+[ ] add a transparent sphere for H3
 
 [ ] Hyperbolic vertex shader
 [ ] Example of onBeforeCompile usage: https://codepen.io/prisoner849/pen/BvxBPW

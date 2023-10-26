@@ -28,6 +28,7 @@ Press number keys hide or show the fundamental pieces. Press the "a" key to show
 
 # In hyperbolic space (Poincaré ball model)
 
+- [1 end][h3-1end]
 - [2 ends][h3-2v1]
 
 # Extras
@@ -53,3 +54,4 @@ Press number keys hide or show the fundamental pieces. Press the "a" key to show
 [helicoid]: /surfaces/dressed-helicoid.html
 [enneper]: /surfaces/enneper.html
 [1v]: /surfaces/dressed-catenoids/1plane-cat.html
+[h3-1end]: /surfaces/dressed-catenoids/1plane-cat-h3.html
