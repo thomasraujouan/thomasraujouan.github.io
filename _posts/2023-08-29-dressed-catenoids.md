@@ -10,7 +10,7 @@ Joint work with N. Schmitt.
 
 Press number keys hide or show the fundamental pieces. Press the "a" key to show all pieces. Press the space bar to put the camera back to its original position.
 
-# 1 planar ends
+# 1 planar end
 
 - [Vertical end][1v]
 
