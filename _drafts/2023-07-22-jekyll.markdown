@@ -7,8 +7,6 @@ categories: jekyll update
 
 # [Test page][test]
 
-# [Texture test page][texture]
-
 # [Hyperbolic test page][hyperbolic]
 
 # [Katrin test page][katrin]
@@ -50,7 +48,6 @@ $$
 [jekyll-talk]: https://talk.jekyllrb.com/
 [test]: /surfaces/test.html
 [1planecatneoid]: /surfaces/1plane-cat.html
-[texture]: /surfaces/texture.html
 [hyperbolic]: /surfaces/hyperbolic-test.html
 [katrin]: /surfaces/test-katrin.html
 [dragndrop]: /surfaces/dragndrop.html

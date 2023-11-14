@@ -7,18 +7,46 @@ import {
   setMaterial,
   setTexture,
 } from "../../modules/loadObj.js";
-import { lightScene } from "../../modules/lights.js";
+// import { lightScene } from "../../modules/lights.js";
 import { fittingDistance, makeCamera } from "../../modules/camera.js";
 import { allVisible, numberPadSwitch } from "../../modules/keyboard.js";
 import { onWindowResize } from "../../modules/window.js";
-import { ColorManagement } from "../../modules/three.module.js";
+import {
+  ColorManagement,
+  DirectionalLight,
+} from "../../modules/three.module.js";
 import { initialPosition } from "../../modules/keyboard.js";
+
+const parameters = {
+  scene: {
+    backgroundColor: new THREE.Color("white"),
+  },
+  lights: {
+    front: {
+      color: 0xffffff,
+      intensity: 0.5,
+      position: [0, 5, 5],
+      type: THREE.DirectionalLight,
+    },
+    back: {
+      color: 0xffffff,
+      intensity: 0.5,
+      position: [0, -5, -5],
+      type: THREE.DirectionalLight,
+    },
+    ambient: {
+      color: 0xffffff,
+      intensity: 1,
+      position: [0, 0, 0],
+      type: THREE.AmbientLight,
+    },
+  },
+};
 
 /* SCENE, LIGHTS */
 const scene = new THREE.Scene();
-
-scene.background = new THREE.Color("white");
-lightScene(scene);
+scene.background = parameters.scene.backgroundColor;
+lightScene(scene, parameters.lights);
 
 /* OBJ LOADING */
 const obj = await loadOBJModel("/assets/obj/dressed-catenoids/h3/1end.obj");
@@ -101,3 +129,11 @@ function animate() {
 
 /* MAIN */
 animate();
+
+function lightScene(scene, lights) {
+  Object.entries(lights).forEach(([key, value]) => {
+    const light = new value.type(value.color, value.intensity);
+    light.position.set(...value.position);
+    scene.add(light);
+  });
+}
