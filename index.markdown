@@ -9,9 +9,11 @@ layout: home
 
 # Surfaces
 
-Check out the [Costa surface][costa] or the [dressed catenoids][dressed-catenoids].
+- [Dressed catenoids][dressed-catenoids]
+-
 
-<!-- or the [dressed catenoid][dressed-catenoid]. -->
+# [XLab][xlab]
 
 [costa]: /surfaces/costa.html
 [dressed-catenoids]: /dressed-catenoids
+[xlab]: /xlab

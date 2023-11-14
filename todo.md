@@ -2,6 +2,7 @@
 
 [x] Remove the welcome on the front page
 [x] La date du dernier post n'est pas bonne
+[ ] Link to below in the page
 
 # Academic webpage
 
