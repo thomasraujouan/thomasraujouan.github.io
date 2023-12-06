@@ -1,0 +1,29 @@
+---
+layout: page
+title: "Seminars"
+date: 2023-12-07 02:28:52 +0900
+categories:
+---
+
+## Workshop on Integrable Systems, Harmonic Maps and Surface Geometry
+
+### December 18th 2023
+
+Organized by Thomas Raujouan, funded by the JSPS.
+
+#### Agenda:
+
+- **15:00**: Udagawa Kyu, Title TBA.
+- **16:00**: [Lynn Heller][lynn], Title TBA.
+
+#### Venue:
+Building Z, Room B314, 
+[Kobe University][kobe-u], 1, Rokkodaicho, Nada Ward, Kobe, Hyogo 657-0013.
+
+#### Remarks:
+
+Joint dinner will take place at [Fukube][fukube], 〒657-0037 Hyogo, Kobe, Nada Ward, Bingocho, 3 Chome−2−16 2F.
+
+[lynn]:https://bimsa.net:10000/research/geometriewerkstatt2022/lynnheller.html
+[fukube]:https://maps.app.goo.gl/aTyABDkr64No3hxx8
+[kobe-u]:https://maps.app.goo.gl/wf946v53NQRFtxt19

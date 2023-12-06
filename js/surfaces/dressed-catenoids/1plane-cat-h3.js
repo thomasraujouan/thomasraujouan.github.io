@@ -37,9 +37,16 @@ const parameters = {
     ambient: {
       color: 0xffffff,
       intensity: 1,
-      position: [0, 0, 0],
+      position: [10, 0, 0],
       type: THREE.AmbientLight,
     },
+  },
+  camera: {
+    type: "hyperbolic", //to be implemented
+    fov: 30,
+    aspect: 1,
+    near: 0.1,
+    far: 500,
   },
 };
 

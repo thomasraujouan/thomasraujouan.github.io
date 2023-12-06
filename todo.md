@@ -20,6 +20,7 @@ Migrer l'ancien site:
 [x] Faire un lien vers tous les posts dans la page xlab
 [ ] Utiliser des titres plutôt que des listes ordonnées.
 [ ] About xlab =!= about xlab
+[ ] Indiquer qu'il vaut mieux utiliser Xorg que Wayland
 
 # dressed catenoids
 
