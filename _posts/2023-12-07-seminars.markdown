@@ -14,8 +14,9 @@ Organized by Thomas Raujouan, funded by the JSPS.
 
 #### Agenda:
 
-- **15:00**: Udagawa Kyu, Title TBA.
-- **16:00**: [Lynn Heller][lynn], Title TBA.
+- **15:00**: [Lynn Heller][lynn], Title TBA.
+- **16:00**: Tadashi Udagawa, Solutions of the $$tt^*$$-equations constructed from the $$(\mathrm{SU}_2)_k$$-fusion ring, and Smyth potentials. [Abstract][abstract-udagawa]
+
 
 #### Venue:
 Building Z, Room B314, 
@@ -28,3 +29,4 @@ Joint dinner will take place at [Fukube][fukube], 〒657-0037 Hyogo, Kobe, Nada 
 [lynn]:https://bimsa.net:10000/research/geometriewerkstatt2022/lynnheller.html
 [fukube]:https://maps.app.goo.gl/aTyABDkr64No3hxx8
 [kobe-u]:https://maps.app.goo.gl/wf946v53NQRFtxt19
+[abstract-udagawa]:/assets/pdf/abstract-udagawa.pdf
