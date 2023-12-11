@@ -14,9 +14,13 @@ Organized by Thomas Raujouan, funded by the JSPS.
 
 #### Agenda:
 
-- **15:00**: [Lynn Heller][lynn], Title TBA.
-- **16:00**: Tadashi Udagawa, Solutions of the $$tt^*$$-equations constructed from the $$(\mathrm{SU}_2)_k$$-fusion ring, and Smyth potentials. [Abstract][abstract-udagawa]
+- **15:00**: [Lynn Heller][lynn], Lawson surfaces and alternating multiple zeta values.
 
+**Abstract**: We construct special minimal surfaces in the round 3-sphere — Lawson surfaces $$\xi_{1,g}$$—  using integrable systems methods. We give an algorithm to compute the Taylor series for the area of $$\xi_{1,g}$$, whose coefficients turn out to be alternating multiple zeta values, and show that this series converges for $$g\geq 3$$ with explicit error bounds. As a corollary we obtain that the area  of $$\xi_{1,g} $$ is strictly monotonically increasing in $$g$$ for every $$g\geq0$$. 
+
+- **16:00**: Tadashi Udagawa, Solutions of the $$tt^*$$-equations constructed from the $$(\mathrm{SU}_2)_k$$-fusion ring, and Smyth potentials.
+
+**Abstract**: Cecotti and Vafa introduced the $$tt*$$ equations (topological-antitopological fusion equations), whose solutions describe massive deformations of supersymmetric conformal field theories. As a special case, the $$tt*$$ equations include the sinh-Gordon equation, and more generally the $$tt*$$-Toda equations which were studied by Guest, Its and Lin. In this talk, we consider another series of examples. We construct a solution directly from a finite number of solutions to the radial sinh-Gordon equation. It involves the $$(\mathrm{SU}_2)_k$$-fusion algebra, an object which has a prominent role in conformal field theory. The idea of the construction is due to Cecotti and Vafa. We give a precise mathematical formulation and a description of the “holomorphic data” corresponding to the solutions by using the DPW method. 
 
 #### Venue:
 Building Z, Room B314, 
