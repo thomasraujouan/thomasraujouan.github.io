@@ -14,8 +14,6 @@ import {
 } from "../modules/keyboard.js";
 import { onWindowResize } from "../modules/window.js";
 import { TrackballControls } from "../modules/TrackballControls.js";
-import { vertex$6 } from "../shaders/vertex$6.js";
-import { hyperbolic_vertex } from "../shaders/hyperbolic_vertex.js";
 
 /* GUI */
 

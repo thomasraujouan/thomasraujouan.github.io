@@ -107,3 +107,17 @@ if I chose non-relative, vscode writes "js/" instead of "/js/"
     - automatic zoom
     - automatic centering
     - Think global settings (color, background, etc...)
+
+# Hyperbolic movements
+
+Goal: be able to move a dressed catenoid in the poincare ball model
+
+[ ] Write a vertex shader:
+    [x] Antiprojection function
+    [ ] Hyperbolic motion using the uniform
+    [x] Projection function
+[x] Put the vertex shader in the pipeline
+[ ] Controls: use the right-click to move in hyperbolic space
+    it should control the uniform to apply on R4 in the vertex shader
+    [ ] Plug it to the arrow keys first
+    [ ] Plug it to Trackball controls

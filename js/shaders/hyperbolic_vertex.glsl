@@ -1,4 +1,3 @@
-const hyperbolic_vertex = `
 // Adapted from THREE meshphong_vert
 
 #define PHONG
@@ -78,6 +77,3 @@ void main() {
     #include <shadowmap_vertex>
     #include <fog_vertex>
 }
-`;
-
-export { hyperbolic_vertex };
