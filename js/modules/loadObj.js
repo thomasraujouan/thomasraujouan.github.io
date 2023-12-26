@@ -1,6 +1,6 @@
 import { OBJLoader } from "./OBJLoader.module.js";
 import * as THREE from "three";
-import { hyperbolic_vertex } from "../shaders/hyperbolic_vertex.js";
+import { hyperbolicVertex } from "./read-vertex-shader.js/index.js";
 
 const defaultMaterial = new THREE.MeshPhongMaterial({
   color: 0xbbbbbb, // Set your desired color
@@ -19,7 +19,7 @@ var customUniforms = THREE.UniformsUtils.merge([
 //   // map: texture,
 // });
 
-// customMaterial2.vertexShader = hyperbolic_vertex;
+// customMaterial2.vertexShader = hyperbolicVertex;
 // customMaterial2.uniforms = customUniforms;
 // customMaterial2.name = "custom-material";
 
@@ -120,7 +120,7 @@ const setHyperbolicMaterial = function (object) {
     if (child instanceof THREE.Mesh) {
       child.material.onBeforeCompile = function (shader) {
         shader.uniforms.myUniform = { value: 1.0 };
-        shader.vertexShader = hyperbolic_vertex;
+        shader.vertexShader = hyperbolicVertex.text;
       };
     }
   });

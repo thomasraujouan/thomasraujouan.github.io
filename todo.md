@@ -114,9 +114,10 @@ Goal: be able to move a dressed catenoid in the poincare ball model
 
 [ ] Write a vertex shader:
     [x] Antiprojection function
-    [ ] Hyperbolic motion using the uniform
+    [x] Hyperbolic motion using the uniform
     [x] Projection function
-    [ ] Import the glsl file as a string
+    [x] Import the glsl file as a string
+    [ ] Fix the "string is null" bug
 [x] Put the vertex shader in the pipeline
 [ ] Controls: use the right-click to move in hyperbolic space
     it should control the uniform to apply on R4 in the vertex shader
