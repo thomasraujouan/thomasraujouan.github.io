@@ -119,7 +119,7 @@ const setHyperbolicMaterial = function (object) {
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
       child.material.onBeforeCompile = function (shader) {
-        shader.uniforms.myUniform = 1;
+        shader.uniforms.myUniform = { value: 1.0 };
         shader.vertexShader = hyperbolic_vertex;
       };
     }

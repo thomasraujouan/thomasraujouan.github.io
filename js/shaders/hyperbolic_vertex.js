@@ -4,6 +4,7 @@ const hyperbolic_vertex = `
 #define PHONG
 
 varying vec3 vViewPosition;
+uniform float myUniform;
 
 #include <common>
 vec4 antiStereographicProjection(vec3 p) {
@@ -16,8 +17,7 @@ vec3 stereographicProjection(vec4 p) {
     float denominator = 1.0 + p.x;
     return vec3(p.y, p.z, p.w) / denominator;
 }
-vec4 lorentztx(vec4 p) {
-    float a = 0.0;
+vec4 lorentztx(vec4 p, float a) {
     vec4 c1 = vec4(cosh(a), sinh(a), 0.0, 0.0);
     vec4 c2 = vec4(sinh(a), cosh(a), 0.0, 0.0);
     vec4 c3 = vec4(0.0, 0.0, 1.0, 0.0);
@@ -25,8 +25,7 @@ vec4 lorentztx(vec4 p) {
     mat4 lorentzMatrix = mat4(c1, c2, c3, c4);
     return lorentzMatrix * p;
 }
-vec4 lorentzty(vec4 p) {
-    float a = 0.0;
+vec4 lorentzty(vec4 p, float a) {
     vec4 c1 = vec4(cosh(a), 0.0, sinh(a), 0.0);
     vec4 c2 = vec4(0.0, 1.1, 0.0, 0.0);
     vec4 c3 = vec4(sinh(a), 0.0, cosh(a), 0.0);
@@ -36,7 +35,7 @@ vec4 lorentzty(vec4 p) {
 }
 vec3 hyperbolicMovement(vec3 p) {
     vec4 v = antiStereographicProjection(p);
-    v = lorentzty(v);
+    v = lorentzty(v, myUniform);
     return stereographicProjection(v);
 }
 
