@@ -43,7 +43,7 @@ window.addEventListener("resize", onWindowResize(camera, renderer), false);
 const obj = await loadOBJModel("/assets/obj/dressed-catenoids/h3/2v1.obj");
 
 /* MATERIALS, TEXTURES */
-setHyperbolicMaterial(obj);
+setHyperbolicMaterial(obj, 1.0);
 setTexture(obj);
 
 /* SYMMETRIES */
@@ -76,6 +76,7 @@ controls.panSpeed = 0.5;
 addEventListener("keydown", numberPadSwitch(pieces));
 addEventListener("keydown", allVisible(pieces));
 addEventListener("keydown", initialPosition(camera, initialCamera));
+addEventListener("keydown", increaseLorentzAngle(0.1));
 
 /* ANIMATION */
 let frame = 0;
@@ -89,3 +90,24 @@ function animate() {
 /* MAIN */
 // controls.noPan = true;
 animate();
+
+/*Utils*/
+
+function increaseLorentzAngle(t) {
+  return (event) => {
+    if (event.key === "ArrowLeft") {
+      obj.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          child.material.userData.uniforms.hyperbolic_u.value += t;
+        }
+      });
+    }
+    if (event.key === "ArrowRight") {
+      obj.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          child.material.userData.uniforms.hyperbolic_u.value -= t;
+        }
+      });
+    }
+  };
+}

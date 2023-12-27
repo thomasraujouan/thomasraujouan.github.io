@@ -23,12 +23,16 @@ var customUniforms = THREE.UniformsUtils.merge([
 // customMaterial2.uniforms = customUniforms;
 // customMaterial2.name = "custom-material";
 
-var hyperbolicMaterial = new THREE.MeshPhongMaterial({
+var hyperbolicMaterial = new THREE.MeshStandardMaterial({
   color: 0xbbbbbb, // Set your desired color
   shininess: 10, // Set the shininess (adjust as needed)
   name: "hyperbolicMaterial",
   // map: texture,
 });
+
+hyperbolicMaterial.userData.uniforms = {
+  hyperbolic_u: { value: 1.0 },
+};
 
 // Usage: const obj = await loadOBJModel(objPath);
 const loadOBJModel = async function (objPath) {
@@ -114,12 +118,13 @@ const setMaterial = function (object, material = defaultMaterial) {
   });
 };
 
-const setHyperbolicMaterial = function (object) {
-  setMaterial(object);
+const setHyperbolicMaterial = function (object, lorentzAngle) {
+  setMaterial(object, hyperbolicMaterial);
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
       child.material.onBeforeCompile = function (shader) {
-        shader.uniforms.myUniform = { value: 1.0 };
+        shader.uniforms.myUniform =
+          child.material.userData.uniforms.hyperbolic_u;
         shader.vertexShader = hyperbolicVertex.text;
       };
     }
