@@ -9,6 +9,8 @@ categories: jekyll update
 
 # [Hyperbolic test page][hyperbolic]
 
+# [Custom vertex shader][vshader]
+
 # [Katrin test page][katrin]
 
 # [dragndrop][dragndrop]
@@ -51,3 +53,4 @@ $$
 [hyperbolic]: /surfaces/hyperbolic-test.html
 [katrin]: /surfaces/test-katrin.html
 [dragndrop]: /surfaces/dragndrop.html
+[vshader]: /custom-vertex-shader.html
