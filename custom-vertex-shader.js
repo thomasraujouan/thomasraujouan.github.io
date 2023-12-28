@@ -12,13 +12,13 @@ function init() {
     0.1,
     100
   );
-  camera.position.z = 20;
+  camera.position.z = 5;
 
   scene = new THREE.Scene();
 
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  let mesh = new THREE.Mesh(geometry, buildTwistMaterial(2.0));
-  mesh.position.x = -0;
+  const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+  const mesh = new THREE.Mesh(geometry, buildTwistMaterial());
+  mesh.position.x = -0.0;
   mesh.position.y = -0.0;
   scene.add(mesh);
 
@@ -27,14 +27,12 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  //
-
   // EVENTS
 
   window.addEventListener("resize", onWindowResize);
 }
 
-function buildTwistMaterial(amount) {
+function buildTwistMaterial() {
   const material = new THREE.MeshNormalMaterial();
   material.onBeforeCompile = function (shader) {
     shader.uniforms.time = { value: 0 };
@@ -43,7 +41,7 @@ function buildTwistMaterial(amount) {
     shader.vertexShader = shader.vertexShader.replace(
       "#include <begin_vertex>",
       [
-        `float theta = sin( time + position.y ) / ${amount.toFixed(1)};`,
+        "float theta = sin( time + position.y );",
         "float c = cos( theta );",
         "float s = sin( theta );",
         "mat3 m = mat3( c, 0, s, 0, 1, 0, -s, 0, c );",
@@ -51,14 +49,9 @@ function buildTwistMaterial(amount) {
         "vNormal = vNormal * m;",
       ].join("\n")
     );
+    // console.log(shader.vertexShader);
 
     material.userData.shader = shader;
-  };
-
-  // Make sure WebGLRenderer doesnt reuse a single program
-
-  material.customProgramCacheKey = function () {
-    return amount.toFixed(1);
   };
 
   return material;
