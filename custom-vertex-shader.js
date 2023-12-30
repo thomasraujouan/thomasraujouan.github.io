@@ -4,29 +4,62 @@ import { OBJLoader } from "./js/modules/OBJLoader.module.js";
 
 THREE.Cache.enabled = true; // for text loading
 
-let camera, scene, renderer, controls, object;
+let camera, scene, renderer, controls, object, vertexShader;
+
+// 1ST LOAD: obj
 
 const loader = new OBJLoader();
 loader.load(
   "/assets/obj/dressed-catenoids/h3/2v1.obj",
   function (obj) {
-    bindMaterial(obj, "/glsl/example-vshader.glsl");
+    object = obj;
+    console.log("OBJ model succesfully loaded.");
+    fetchVertexShader("/glsl/example-vshader.glsl");
   },
-  objOnProgress,
-  objOnError
+  objLoadOnProgress,
+  objLoadOnError
 );
 
-function init() {
-  camera = new THREE.PerspectiveCamera(
-    27,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    100
-  );
-  camera.position.z = 5;
+// 2ND LOAD: vertex shader
 
+function fetchVertexShader(path) {
+  const loader = new THREE.FileLoader();
+  loader.load(
+    // resource URL
+    path,
+    // onLoad callback
+    function (data) {
+      vertexShader = data;
+      console.log("Vertex shader succesfully loaded.");
+      main();
+    },
+    textLoadOnProgress(path),
+    textLoadOnError(path)
+  );
+}
+
+// MAIN
+
+function main() {
+  init();
+  animate();
+}
+
+function init() {
   scene = new THREE.Scene();
+
+  object.traverse(function (child) {
+    if (child.isMesh) {
+      child.material = buildCustomMaterial(vertexShader);
+    }
+  });
+
+  object.position.y = -0.0;
+  object.scale.setScalar(1.0);
+
   scene.add(object);
+
+  createCamera();
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -41,22 +74,18 @@ function init() {
   render();
 }
 
-function buildTwistMaterial(data) {
-  // define material
+function buildCustomMaterial(vertexShader) {
   const material = new THREE.MeshNormalMaterial();
   material.onBeforeCompile = function (shader) {
     // set uniforms
     shader.uniforms.time = { value: 0 };
 
     // write shaders
-    shader.vertexShader = data;
+    shader.vertexShader = vertexShader;
 
     material.userData.shader = shader;
-
     material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
-    console.log(material);
   };
-
   return material;
 }
 
@@ -81,6 +110,7 @@ function animate() {
 }
 
 function render() {
+  // update uniforms
   scene.traverse(function (child) {
     if (child.isMesh) {
       const shader = child.material.userData.shader;
@@ -104,51 +134,33 @@ function createControls(camera) {
   controls.keys = ["KeyA", "KeyS", "KeyD"];
 }
 
-function main(obj, data) {
-  object = obj;
-  obj.traverse(function (child) {
-    if (child.isMesh) {
-      child.material = buildTwistMaterial(data);
-    }
-  });
-
-  obj.position.y = -0.0;
-  obj.scale.setScalar(1.0);
-  init();
-  animate();
-}
-
-function bindMaterial(obj, path) {
-  const shaderLoader = new THREE.FileLoader();
-
-  shaderLoader.load(
-    // resource URL
-    path,
-    // onLoad callback
-    function (data) {
-      // output the text to the console
-      // console.log(data);
-      // callback(data);
-      main(obj, data);
-    },
-    // onProgress callback
-    function (xhr) {
-      console.log("Loading vertex shader at " + path);
-    },
-    // onError callback
-    function (err) {
-      console.error(
-        "An error happened while load the vertex shader at " + path
-      );
-    }
+function createCamera() {
+  camera = new THREE.PerspectiveCamera(
+    27,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    100
   );
+  camera.position.z = 5;
 }
 
-function objOnProgress(xhr) {
+function objLoadOnProgress(xhr) {
   if (xhr.lengthComputable) {
     const percentComplete = (xhr.loaded / xhr.total) * 100;
-    console.log("model " + percentComplete.toFixed(2) + "% downloaded");
+    console.log("OBJ model " + percentComplete.toFixed(2) + "% downloaded");
   }
 }
 
-function objOnError() {}
+function objLoadOnError() {}
+
+function textLoadOnProgress(path) {
+  return () => {
+    console.log("Loading vertex shader at " + path);
+  };
+}
+
+function textLoadOnError(path) {
+  return () => {
+    console.error("An error happened while loading the text shader at " + path);
+  };
+}
