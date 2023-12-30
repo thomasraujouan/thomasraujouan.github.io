@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import { TrackballControls } from "/js/modules/TrackballControls.js";
+import { OBJLoader } from "./js/modules/OBJLoader.module.js";
 
-let camera, scene, renderer, controls;
+let camera, scene, renderer, controls, object;
 
 init();
 animate();
@@ -16,6 +17,43 @@ function init() {
   camera.position.z = 5;
 
   scene = new THREE.Scene();
+
+  // manager
+
+  function loadModel() {
+    object.traverse(function (child) {
+      if (child.isMesh) child.material = buildTwistMaterial();
+    });
+
+    object.position.y = -0.95;
+    object.scale.setScalar(0.01);
+    scene.add(object);
+
+    render();
+  }
+
+  // model
+
+  const manager = new THREE.LoadingManager(loadModel);
+
+  function onProgress(xhr) {
+    if (xhr.lengthComputable) {
+      const percentComplete = (xhr.loaded / xhr.total) * 100;
+      console.log("model " + percentComplete.toFixed(2) + "% downloaded");
+    }
+  }
+
+  function onError() {}
+
+  const loader = new OBJLoader(manager);
+  loader.load(
+    "/assets/obj/costa.obj",
+    function (obj) {
+      object = obj;
+    },
+    onProgress,
+    onError
+  );
 
   const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
   const mesh = new THREE.Mesh(geometry, buildTwistMaterial());
@@ -43,7 +81,7 @@ function buildTwistMaterial() {
     shader.vertexShader = shader.vertexShader.replace(
       "#include <begin_vertex>",
       [
-        "float theta = sin( time + position.y );",
+        "float theta = sin( time + position.y )/10.0;",
         "float c = cos( theta );",
         "float s = sin( theta );",
         "mat3 m = mat3( c, 0, s, 0, 1, 0, -s, 0, c );",
