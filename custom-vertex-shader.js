@@ -22,11 +22,13 @@ function init() {
 
   function loadModel() {
     object.traverse(function (child) {
-      if (child.isMesh) child.material = buildTwistMaterial();
+      if (child.isMesh) {
+        child.material = buildTwistMaterial();
+      }
     });
 
-    object.position.y = -0.95;
-    object.scale.setScalar(0.01);
+    object.position.y = -0.0;
+    object.scale.setScalar(0.1);
     scene.add(object);
 
     render();
@@ -54,12 +56,6 @@ function init() {
     onProgress,
     onError
   );
-
-  const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-  const mesh = new THREE.Mesh(geometry, buildTwistMaterial());
-  mesh.position.x = -0.0;
-  mesh.position.y = -0.0;
-  scene.add(mesh);
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
