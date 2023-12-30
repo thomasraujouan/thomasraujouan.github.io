@@ -57,9 +57,7 @@ function init() {
 
   object.position.y = -0.0;
   object.scale.setScalar(1.0);
-  object.lorentzDeltaX = 0;
-  object.lorentzDeltaY = 0;
-  object.lorentzMatrix = xBoost(object.lorentzDeltaX);
+  object.lorentzMatrix = new Matrix4();
 
   scene.add(object);
 
@@ -84,9 +82,6 @@ function buildCustomMaterial(vertexShader) {
   material.onBeforeCompile = function (shader) {
     // set uniforms
     shader.uniforms.time = { value: 0 };
-    shader.uniforms.lorentzX = { value: 0.0 };
-    shader.uniforms.lorentzY = { value: 0.0 };
-    shader.uniforms.lorentzZ = { value: 0.0 };
     shader.uniforms.lorentzMatrix = { value: new Matrix4() };
 
     // write shaders
@@ -126,11 +121,7 @@ function render() {
 
       if (shader) {
         shader.uniforms.time.value = performance.now() / 1000;
-        shader.uniforms.lorentzX.value += object.lorentzDeltaX;
-        shader.uniforms.lorentzY.value += object.lorentzDeltaY;
         shader.uniforms.lorentzMatrix.value = object.lorentzMatrix;
-        object.lorentzDeltaX = 0;
-        object.lorentzDeltaY = 0;
       }
     }
   });
@@ -178,8 +169,6 @@ function textLoadOnError(path) {
     console.error("An error happened while loading the text shader at " + path);
   };
 }
-
-function listenArrows() {}
 
 function changeLorentzAngle(event) {
   if (event.key === "ArrowRight") {
