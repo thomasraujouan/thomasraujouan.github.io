@@ -2,6 +2,7 @@ uniform float time;
 uniform float lorentzX;
 uniform float lorentzY;
 uniform float lorentzZ;
+uniform mat4 lorentzMatrix;
 
 #define NORMAL
 
@@ -38,8 +39,7 @@ vec4 lorentzty(vec4 p, float a) {
 }
 vec3 hyperbolicMovement(vec3 p) {
     vec4 v = antiStereographicProjection(p);
-    v = lorentztx(v, lorentzX);
-    v = lorentzty(v, lorentzY);
+    v = lorentzMatrix * v;
     return stereographicProjection(v);
 }
 

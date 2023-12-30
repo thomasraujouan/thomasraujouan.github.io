@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { TrackballControls } from "/js/modules/TrackballControls.js";
 import { OBJLoader } from "./js/modules/OBJLoader.module.js";
+import { Matrix4 } from "./js/modules/three.module.js";
 
 THREE.Cache.enabled = true; // for text loading
 
@@ -57,6 +58,8 @@ function init() {
   object.position.y = -0.0;
   object.scale.setScalar(1.0);
   object.lorentzDeltaX = 0;
+  object.lorentzDeltaY = 0;
+  object.lorentzMatrix = xBoost(object.lorentzDeltaX);
 
   scene.add(object);
 
@@ -84,6 +87,7 @@ function buildCustomMaterial(vertexShader) {
     shader.uniforms.lorentzX = { value: 0.0 };
     shader.uniforms.lorentzY = { value: 0.0 };
     shader.uniforms.lorentzZ = { value: 0.0 };
+    shader.uniforms.lorentzMatrix = { value: new Matrix4() };
 
     // write shaders
     shader.vertexShader = vertexShader;
@@ -123,7 +127,10 @@ function render() {
       if (shader) {
         shader.uniforms.time.value = performance.now() / 1000;
         shader.uniforms.lorentzX.value += object.lorentzDeltaX;
+        shader.uniforms.lorentzY.value += object.lorentzDeltaY;
+        shader.uniforms.lorentzMatrix.value = object.lorentzMatrix;
         object.lorentzDeltaX = 0;
+        object.lorentzDeltaY = 0;
       }
     }
   });
@@ -176,9 +183,64 @@ function listenArrows() {}
 
 function changeLorentzAngle(event) {
   if (event.key === "ArrowRight") {
-    object.lorentzDeltaX += 0.1;
+    object.lorentzMatrix.multiply(xBoost(0.1));
+    console.log(camera.matrixWorld);
   }
   if (event.key === "ArrowLeft") {
-    object.lorentzDeltaX -= 0.1;
+    object.lorentzMatrix.multiply(xBoost(-0.1));
   }
+  if (event.key === "ArrowUp") {
+    object.lorentzMatrix.multiply(yBoost(0.1));
+  }
+  if (event.key === "ArrowDown") {
+    object.lorentzMatrix.multiply(yBoost(-0.1));
+  }
+}
+
+function xBoost(a) {
+  const result = new Matrix4();
+  result.set(
+    Math.cosh(a),
+    Math.sinh(a),
+    0,
+    0,
+    Math.sinh(a),
+    Math.cosh(a),
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1
+  );
+  return result;
+}
+function yBoost(a) {
+  const result = new Matrix4();
+  result.set(
+    Math.cosh(a),
+    0,
+    Math.sinh(a),
+    0,
+    //
+    0,
+    1,
+    0,
+    0,
+    //
+    Math.sinh(a),
+    0,
+    Math.cosh(a),
+    0,
+    //
+    0,
+    0,
+    0,
+    1
+  );
+  return result;
 }
