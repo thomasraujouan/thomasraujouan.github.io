@@ -56,6 +56,7 @@ function init() {
 
   object.position.y = -0.0;
   object.scale.setScalar(1.0);
+  object.lorentzDeltaX = 0;
 
   scene.add(object);
 
@@ -69,6 +70,7 @@ function init() {
   // EVENTS
 
   window.addEventListener("resize", onWindowResize);
+  window.addEventListener("keydown", changeLorentzAngle);
   createControls(camera);
 
   render();
@@ -79,9 +81,9 @@ function buildCustomMaterial(vertexShader) {
   material.onBeforeCompile = function (shader) {
     // set uniforms
     shader.uniforms.time = { value: 0 };
-    shader.uniforms.lorentzX = { value: 1.0 };
-    shader.uniforms.lorentzY = { value: 1.0 };
-    shader.uniforms.lorentzZ = { value: 1.0 };
+    shader.uniforms.lorentzX = { value: 0.0 };
+    shader.uniforms.lorentzY = { value: 0.0 };
+    shader.uniforms.lorentzZ = { value: 0.0 };
 
     // write shaders
     shader.vertexShader = vertexShader;
@@ -120,6 +122,8 @@ function render() {
 
       if (shader) {
         shader.uniforms.time.value = performance.now() / 1000;
+        shader.uniforms.lorentzX.value += object.lorentzDeltaX;
+        object.lorentzDeltaX = 0;
       }
     }
   });
@@ -130,7 +134,7 @@ function render() {
 function createControls(camera) {
   controls = new TrackballControls(camera, renderer.domElement);
 
-  controls.rotateSpeed = 1.0;
+  controls.rotateSpeed = 5.0;
   controls.zoomSpeed = 1.2;
   controls.panSpeed = 0.8;
 
@@ -166,4 +170,15 @@ function textLoadOnError(path) {
   return () => {
     console.error("An error happened while loading the text shader at " + path);
   };
+}
+
+function listenArrows() {}
+
+function changeLorentzAngle(event) {
+  if (event.key === "ArrowRight") {
+    object.lorentzDeltaX += 0.1;
+  }
+  if (event.key === "ArrowLeft") {
+    object.lorentzDeltaX -= 0.1;
+  }
 }

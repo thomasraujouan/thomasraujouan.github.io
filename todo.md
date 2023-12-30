@@ -93,6 +93,7 @@ if I chose non-relative, vscode writes "js/" instead of "/js/"
 [ ] Find the period of the dressed helicoid and display two of them
 [ ] Helicoid conformal coords
 [x] Use a local version of OBJLoader
+[ ] Change favicon
 
 # Katrin's viewer
 
