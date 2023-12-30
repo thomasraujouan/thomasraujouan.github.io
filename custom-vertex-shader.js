@@ -1,6 +1,7 @@
 import * as THREE from "three";
+import { TrackballControls } from "/js/modules/TrackballControls.js";
 
-let camera, scene, renderer;
+let camera, scene, renderer, controls;
 
 init();
 animate();
@@ -30,6 +31,7 @@ function init() {
   // EVENTS
 
   window.addEventListener("resize", onWindowResize);
+  createControls(camera);
 }
 
 function buildTwistMaterial() {
@@ -73,7 +75,7 @@ function onWindowResize() {
 
 function animate() {
   requestAnimationFrame(animate);
-
+  controls.update();
   render();
 }
 
@@ -89,4 +91,14 @@ function render() {
   });
 
   renderer.render(scene, camera);
+}
+
+function createControls(camera) {
+  controls = new TrackballControls(camera, renderer.domElement);
+
+  controls.rotateSpeed = 1.0;
+  controls.zoomSpeed = 1.2;
+  controls.panSpeed = 0.8;
+
+  controls.keys = ["KeyA", "KeyS", "KeyD"];
 }
