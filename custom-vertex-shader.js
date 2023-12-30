@@ -2,12 +2,19 @@ import * as THREE from "three";
 import { TrackballControls } from "/js/modules/TrackballControls.js";
 import { OBJLoader } from "./js/modules/OBJLoader.module.js";
 
-THREE.Cache.enabled = true; // for text loading text
+THREE.Cache.enabled = true; // for text loading
 
-let camera, scene, renderer, controls, manager, object;
+let camera, scene, renderer, controls, object;
 
-init();
-animate();
+const loader = new OBJLoader();
+loader.load(
+  "/assets/obj/dressed-catenoids/h3/2v1.obj",
+  function (obj) {
+    bindMaterial(obj, "/glsl/example-vshader.glsl");
+  },
+  objOnProgress,
+  objOnError
+);
 
 function init() {
   camera = new THREE.PerspectiveCamera(
@@ -19,45 +26,7 @@ function init() {
   camera.position.z = 5;
 
   scene = new THREE.Scene();
-
-  // manager
-
-  function loadModel() {
-    object.traverse(function (child) {
-      if (child.isMesh) {
-        child.material = buildTwistMaterial();
-      }
-    });
-
-    object.position.y = -0.0;
-    object.scale.setScalar(1.0);
-    scene.add(object);
-
-    render();
-  }
-
-  // model
-
-  manager = new THREE.LoadingManager(loadModel);
-
-  function onProgress(xhr) {
-    if (xhr.lengthComputable) {
-      const percentComplete = (xhr.loaded / xhr.total) * 100;
-      console.log("model " + percentComplete.toFixed(2) + "% downloaded");
-    }
-  }
-
-  function onError() {}
-
-  const loader = new OBJLoader(manager);
-  loader.load(
-    "/assets/obj/dressed-catenoids/h3/2v1.obj",
-    function (obj) {
-      object = obj;
-    },
-    onProgress,
-    onError
-  );
+  scene.add(object);
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -68,39 +37,11 @@ function init() {
 
   window.addEventListener("resize", onWindowResize);
   createControls(camera);
+
+  render();
 }
 
-function buildTwistMaterial() {
-  // Load vertex shader
-
-  const shaderLoader = new THREE.FileLoader();
-  function loadShader(path, callback) {
-    shaderLoader.load(
-      // resource URL
-      path,
-
-      // onLoad callback
-      function (data) {
-        // output the text to the console
-        // console.log(data);
-        callback(data);
-      },
-
-      // onProgress callback
-      function (xhr) {
-        console.log("Loading vertex shader at " + path);
-      },
-
-      // onError callback
-      function (err) {
-        console.error(
-          "An error happened while load the vertex shader at " + path
-        );
-      }
-    );
-  }
-  loadShader("/glsl/hyperbolic_vertex.glsl", console.log);
-
+function buildTwistMaterial(data) {
   // define material
   const material = new THREE.MeshNormalMaterial();
   material.onBeforeCompile = function (shader) {
@@ -108,22 +49,12 @@ function buildTwistMaterial() {
     shader.uniforms.time = { value: 0 };
 
     // write shaders
-    shader.vertexShader = "uniform float time;\n" + shader.vertexShader;
-    shader.vertexShader = shader.vertexShader.replace(
-      "#include <begin_vertex>",
-      [
-        "float theta = sin( time + position.y )/10.0;",
-        "float c = cos( theta );",
-        "float s = sin( theta );",
-        "mat3 m = mat3( c, 0, s, 0, 1, 0, -s, 0, c );",
-        "vec3 transformed = vec3( position ) * m;",
-        "vNormal = vNormal * m;",
-      ].join("\n")
-    );
-    // console.log(shader.vertexShader);
+    shader.vertexShader = data;
 
     material.userData.shader = shader;
+
     material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
+    console.log(material);
   };
 
   return material;
@@ -172,3 +103,52 @@ function createControls(camera) {
 
   controls.keys = ["KeyA", "KeyS", "KeyD"];
 }
+
+function main(obj, data) {
+  object = obj;
+  obj.traverse(function (child) {
+    if (child.isMesh) {
+      child.material = buildTwistMaterial(data);
+    }
+  });
+
+  obj.position.y = -0.0;
+  obj.scale.setScalar(1.0);
+  init();
+  animate();
+}
+
+function bindMaterial(obj, path) {
+  const shaderLoader = new THREE.FileLoader();
+
+  shaderLoader.load(
+    // resource URL
+    path,
+    // onLoad callback
+    function (data) {
+      // output the text to the console
+      // console.log(data);
+      // callback(data);
+      main(obj, data);
+    },
+    // onProgress callback
+    function (xhr) {
+      console.log("Loading vertex shader at " + path);
+    },
+    // onError callback
+    function (err) {
+      console.error(
+        "An error happened while load the vertex shader at " + path
+      );
+    }
+  );
+}
+
+function objOnProgress(xhr) {
+  if (xhr.lengthComputable) {
+    const percentComplete = (xhr.loaded / xhr.total) * 100;
+    console.log("model " + percentComplete.toFixed(2) + "% downloaded");
+  }
+}
+
+function objOnError() {}
