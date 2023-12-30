@@ -14,7 +14,7 @@ loader.load(
   function (obj) {
     object = obj;
     console.log("OBJ model succesfully loaded.");
-    fetchVertexShader("/glsl/example-vshader.glsl");
+    fetchVertexShader("/glsl/hyperbolic-vertex.glsl");
   },
   objLoadOnProgress,
   objLoadOnError
@@ -79,6 +79,7 @@ function buildCustomMaterial(vertexShader) {
   material.onBeforeCompile = function (shader) {
     // set uniforms
     shader.uniforms.time = { value: 0 };
+    shader.uniforms.lorentzX = { value: 0 };
 
     // write shaders
     shader.vertexShader = vertexShader;
