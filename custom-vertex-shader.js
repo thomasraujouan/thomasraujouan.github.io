@@ -2,7 +2,9 @@ import * as THREE from "three";
 import { TrackballControls } from "/js/modules/TrackballControls.js";
 import { OBJLoader } from "./js/modules/OBJLoader.module.js";
 
-let camera, scene, renderer, controls, object;
+THREE.Cache.enabled = true; // for text loading text
+
+let camera, scene, renderer, controls, manager, object;
 
 init();
 animate();
@@ -28,7 +30,7 @@ function init() {
     });
 
     object.position.y = -0.0;
-    object.scale.setScalar(0.1);
+    object.scale.setScalar(1.0);
     scene.add(object);
 
     render();
@@ -36,7 +38,7 @@ function init() {
 
   // model
 
-  const manager = new THREE.LoadingManager(loadModel);
+  manager = new THREE.LoadingManager(loadModel);
 
   function onProgress(xhr) {
     if (xhr.lengthComputable) {
@@ -69,10 +71,43 @@ function init() {
 }
 
 function buildTwistMaterial() {
+  // Load vertex shader
+
+  const shaderLoader = new THREE.FileLoader();
+  function loadShader(path, callback) {
+    shaderLoader.load(
+      // resource URL
+      path,
+
+      // onLoad callback
+      function (data) {
+        // output the text to the console
+        // console.log(data);
+        callback(data);
+      },
+
+      // onProgress callback
+      function (xhr) {
+        console.log("Loading vertex shader at " + path);
+      },
+
+      // onError callback
+      function (err) {
+        console.error(
+          "An error happened while load the vertex shader at " + path
+        );
+      }
+    );
+  }
+  loadShader("/glsl/hyperbolic_vertex.glsl", console.log);
+
+  // define material
   const material = new THREE.MeshNormalMaterial();
   material.onBeforeCompile = function (shader) {
+    // set uniforms
     shader.uniforms.time = { value: 0 };
 
+    // write shaders
     shader.vertexShader = "uniform float time;\n" + shader.vertexShader;
     shader.vertexShader = shader.vertexShader.replace(
       "#include <begin_vertex>",
