@@ -49,7 +49,7 @@ function init() {
 
   const loader = new OBJLoader(manager);
   loader.load(
-    "/assets/obj/costa.obj",
+    "/assets/obj/dressed-catenoids/h3/2v1.obj",
     function (obj) {
       object = obj;
     },
@@ -88,6 +88,7 @@ function buildTwistMaterial() {
     // console.log(shader.vertexShader);
 
     material.userData.shader = shader;
+    material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
   };
 
   return material;
