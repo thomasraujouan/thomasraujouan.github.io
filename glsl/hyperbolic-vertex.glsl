@@ -1,5 +1,7 @@
 uniform float time;
-uniform float myUniform;
+uniform float lorentzX;
+uniform float lorentzY;
+uniform float lorentzZ;
 
 #define NORMAL
 
@@ -19,7 +21,7 @@ vec3 stereographicProjection(vec4 p) {
     return vec3(p.y, p.z, p.w) / denominator;
 }
 vec4 lorentztx(vec4 p, float a) {
-    vec4 c1 = vec4(cosh(a), sinh(a), 1.0, 0.0);
+    vec4 c1 = vec4(cosh(a), sinh(a), 0.0, 0.0);
     vec4 c2 = vec4(sinh(a), cosh(a), 0.0, 0.0);
     vec4 c3 = vec4(0.0, 0.0, 1.0, 0.0);
     vec4 c4 = vec4(0.0, 0.0, 0.0, 1.0);
@@ -36,7 +38,8 @@ vec4 lorentzty(vec4 p, float a) {
 }
 vec3 hyperbolicMovement(vec3 p) {
     vec4 v = antiStereographicProjection(p);
-    v = lorentzty(v, time);
+    v = lorentztx(v, lorentzX);
+    v = lorentzty(v, lorentzY);
     return stereographicProjection(v);
 }
 
@@ -56,16 +59,7 @@ void main() {
 	#include <skinnormal_vertex>
 	#include <defaultnormal_vertex>
 	#include <normal_vertex>
-
     vec3 transformed = hyperbolicMovement(position);
-
-	// float theta = sin(time + position.y) / 1.0;
-	// float c = cos(theta);
-	// float s = sin(theta);
-	// mat3 m = mat3(c, 0, s, 0, 1, 0, -s, 0, c);
-	// transformed = vec3(position) * m;
-	// vNormal = vNormal * m;
-
 	#include <morphtarget_vertex>
 	#include <skinning_vertex>
 	#include <displacementmap_vertex>

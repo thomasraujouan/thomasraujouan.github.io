@@ -79,7 +79,9 @@ function buildCustomMaterial(vertexShader) {
   material.onBeforeCompile = function (shader) {
     // set uniforms
     shader.uniforms.time = { value: 0 };
-    shader.uniforms.lorentzX = { value: 0 };
+    shader.uniforms.lorentzX = { value: 1.0 };
+    shader.uniforms.lorentzY = { value: 1.0 };
+    shader.uniforms.lorentzZ = { value: 1.0 };
 
     // write shaders
     shader.vertexShader = vertexShader;
