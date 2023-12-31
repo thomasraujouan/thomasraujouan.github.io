@@ -18,6 +18,16 @@ vec3 stereographicProjection(vec4 p) {
     float denominator = 1.0 + p.x;
     return vec3(p.y, p.z, p.w) / denominator;
 }
+// vec4 antiStereographicProjection(vec3 p) {
+//     float norm2 = p.x * p.x + p.y * p.y + p.z * p.z;
+//     float t = (1.0 + norm2) / (1.0 - norm2);
+//     vec3 v = 2.0 * p / (1.0 - norm2);
+//     return vec4(t, v.x, v.y, v.z);
+// }
+// vec3 stereographicProjection(vec4 p) {
+//     float denominator = 1.0 + p.x;
+//     return vec3(p.y, p.z, p.w) / denominator;
+// }
 vec3 hyperbolicMovement(vec3 p) {
     vec4 v = antiStereographicProjection(p);
     v = lorentzMatrix * v;

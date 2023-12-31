@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { TrackballControls } from "/js/modules/TrackballControls.js";
 import { OBJLoader } from "./js/modules/OBJLoader.module.js";
-import { Matrix4 } from "./js/modules/three.module.js";
+import { Matrix3, Matrix4 } from "./js/modules/three.module.js";
 
 THREE.Cache.enabled = true; // for text loading
 
@@ -171,9 +171,11 @@ function textLoadOnError(path) {
 }
 
 function changeLorentzAngle(event) {
+  object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
+
   if (event.key === "ArrowRight") {
     object.lorentzMatrix.multiply(xBoost(0.1));
-    console.log(camera.matrixWorld);
+    console.log(object.lorentzMatrix);
   }
   if (event.key === "ArrowLeft") {
     object.lorentzMatrix.multiply(xBoost(-0.1));
@@ -184,6 +186,7 @@ function changeLorentzAngle(event) {
   if (event.key === "ArrowDown") {
     object.lorentzMatrix.multiply(yBoost(-0.1));
   }
+  object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorld));
 }
 
 function xBoost(a) {
@@ -230,6 +233,30 @@ function yBoost(a) {
     0,
     0,
     1
+  );
+  return result;
+}
+
+function makeSO3Matrix4(m) {
+  const result = new Matrix4();
+  const el = m.elements;
+  result.set(
+    1,
+    0,
+    0,
+    0,
+    0,
+    el[0],
+    el[1],
+    el[2],
+    0,
+    el[4],
+    el[5],
+    el[6],
+    0,
+    el[8],
+    el[9],
+    el[10]
   );
   return result;
 }
