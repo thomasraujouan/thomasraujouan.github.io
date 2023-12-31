@@ -118,12 +118,11 @@ Goal: be able to move a dressed catenoid in the poincare ball model
     [x] Hyperbolic motion using the uniform
     [x] Projection function
     [x] Import the glsl file as a string
-    [ ] Fix the "string is null" bug
     [ ] Fix the texture
-    [ ] A custom vertex shader is available at https://threejs.org/examples/webgl_materials_modified.html
+    [x] A custom vertex shader is available at https://threejs.org/examples/webgl_materials_modified.html
 [x] Put the vertex shader in the pipeline
 [ ] Controls: use the right-click to move in hyperbolic space
     it should control the uniform to apply on R4 in the vertex shader
     [x] Plug it to the arrow keys first
     [ ] Plug it to Trackball controls
-    [ ] Make it go in the right direction
+    [ ] Fix non comutativity of Lorentz boosts

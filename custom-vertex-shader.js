@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { TrackballControls } from "/js/modules/TrackballControls.js";
 import { OBJLoader } from "./js/modules/OBJLoader.module.js";
-import { Matrix3, Matrix4 } from "./js/modules/three.module.js";
+import { Matrix4 } from "./js/modules/three.module.js";
 
 THREE.Cache.enabled = true; // for text loading
 
@@ -70,9 +70,12 @@ function init() {
 
   // EVENTS
 
+  createControls(camera);
   window.addEventListener("resize", onWindowResize);
   window.addEventListener("keydown", changeLorentzAngle);
-  createControls(camera);
+  window.addEventListener("mousedown", startPan);
+  window.addEventListener("mousemove", onPan);
+  window.addEventListener("mouseup", endPan);
 
   render();
 }
@@ -131,10 +134,11 @@ function render() {
 
 function createControls(camera) {
   controls = new TrackballControls(camera, renderer.domElement);
-
+  controls.noPan = true;
+  controls.isPanning = false;
   controls.rotateSpeed = 5.0;
   controls.zoomSpeed = 1.2;
-  controls.panSpeed = 0.8;
+  controls.panSpeed = 5;
 
   controls.keys = ["KeyA", "KeyS", "KeyD"];
 }
@@ -171,22 +175,52 @@ function textLoadOnError(path) {
 }
 
 function changeLorentzAngle(event) {
-  object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
+  if (event.type === "keydown") {
+    object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
 
-  if (event.key === "ArrowRight") {
-    object.lorentzMatrix.multiply(xBoost(0.1));
-    console.log(object.lorentzMatrix);
+    if (event.key === "ArrowRight") {
+      object.lorentzMatrix.multiply(xBoost(0.1));
+      console.log(object.up);
+    }
+    if (event.key === "ArrowLeft") {
+      object.lorentzMatrix.multiply(xBoost(-0.1));
+    }
+    if (event.key === "ArrowUp") {
+      object.lorentzMatrix.multiply(yBoost(0.1));
+    }
+    if (event.key === "ArrowDown") {
+      object.lorentzMatrix.multiply(yBoost(-0.1));
+    }
+    object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorld));
   }
-  if (event.key === "ArrowLeft") {
-    object.lorentzMatrix.multiply(xBoost(-0.1));
+}
+
+function startPan(event) {
+  if (event.type === "mousedown") {
+    if (event.button === 2) {
+      controls.isPanning = true;
+    }
   }
-  if (event.key === "ArrowUp") {
-    object.lorentzMatrix.multiply(yBoost(0.1));
+}
+
+function onPan(event) {
+  if (controls.isPanning) {
+    object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
+    object.lorentzMatrix.multiply(
+      xBoost((controls.panSpeed * event.movementX) / renderer.domElement.width)
+    );
+    object.lorentzMatrix.multiply(
+      yBoost(
+        (-controls.panSpeed * event.movementY) / renderer.domElement.height
+      )
+    );
+    object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorld));
+    render();
   }
-  if (event.key === "ArrowDown") {
-    object.lorentzMatrix.multiply(yBoost(-0.1));
-  }
-  object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorld));
+}
+
+function endPan(event) {
+  controls.isPanning = false;
 }
 
 function xBoost(a) {
