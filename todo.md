@@ -124,5 +124,5 @@ Goal: be able to move a dressed catenoid in the poincare ball model
 [ ] Controls: use the right-click to move in hyperbolic space
     it should control the uniform to apply on R4 in the vertex shader
     [x] Plug it to the arrow keys first
-    [ ] Plug it to Trackball controls
+    [x] Plug it to right click
     [ ] Fix non comutativity of Lorentz boosts

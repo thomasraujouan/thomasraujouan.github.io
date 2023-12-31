@@ -5,7 +5,14 @@ import { Matrix4 } from "./js/modules/three.module.js";
 
 THREE.Cache.enabled = true; // for text loading
 
-let camera, scene, renderer, controls, object, vertexShader;
+let camera,
+  hyperbolicCamera,
+  scene,
+  renderer,
+  controls,
+  hyperbolicControls,
+  object,
+  vertexShader;
 
 // 1ST LOAD: obj
 
@@ -54,14 +61,12 @@ function init() {
       child.material = buildCustomMaterial(vertexShader);
     }
   });
-
   object.position.y = -0.0;
   object.scale.setScalar(1.0);
-  object.lorentzMatrix = new Matrix4();
-
   scene.add(object);
 
   createCamera();
+  createHyperbolicCamera();
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -71,10 +76,12 @@ function init() {
   // EVENTS
 
   createControls(camera);
+  createHyperbolicControls(hyperbolicCamera);
   window.addEventListener("resize", onWindowResize);
-  window.addEventListener("mousedown", startPan);
-  window.addEventListener("mousemove", onPan);
-  window.addEventListener("mouseup", endPan);
+  // window.addEventListener("keydown", onWindowKeydown);
+  // window.addEventListener("mousedown", onWindowMouseDown);
+  // window.addEventListener("mousemove", onWindowMouseMove);
+  // window.addEventListener("mouseup", onWindowMouseUp);
 
   render();
 }
@@ -107,11 +114,19 @@ function onWindowResize() {
   renderer.setSize(width, height);
 }
 
+function startPan(event) {}
+
+function onPan(event) {}
+
+function endPan(event) {
+  hyperbolicControls.isPanning = false;
+}
 //
 
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
+  hyperbolicControls.update();
   render();
 }
 
@@ -123,7 +138,9 @@ function render() {
 
       if (shader) {
         shader.uniforms.time.value = performance.now() / 1000;
-        shader.uniforms.lorentzMatrix.value = object.lorentzMatrix;
+        shader.uniforms.lorentzMatrix.value = lorentzBoostFromPosition(
+          hyperbolicCamera.position
+        );
       }
     }
   });
@@ -137,9 +154,16 @@ function createControls(camera) {
   controls.isPanning = false;
   controls.rotateSpeed = 5.0;
   controls.zoomSpeed = 1.2;
-  controls.panSpeed = 5;
-
   controls.keys = ["KeyA", "KeyS", "KeyD"];
+}
+
+function createHyperbolicControls(camera) {
+  hyperbolicControls = new TrackballControls(camera, renderer.domElement);
+  hyperbolicControls.noRotate = true;
+  hyperbolicControls.noZoom = false;
+  hyperbolicControls.noPan = false;
+  hyperbolicControls.panSpeed = 0.5;
+  hyperbolicControls.keys = ["KeyA", "KeyS", "KeyD"];
 }
 
 function createCamera() {
@@ -150,6 +174,15 @@ function createCamera() {
     100
   );
   camera.position.z = 5;
+}
+function createHyperbolicCamera() {
+  hyperbolicCamera = new THREE.PerspectiveCamera(
+    27,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    100
+  );
+  hyperbolicCamera.position.z = 5;
 }
 
 function objLoadOnProgress(xhr) {
@@ -171,34 +204,6 @@ function textLoadOnError(path) {
   return () => {
     console.error("An error happened while loading the text shader at " + path);
   };
-}
-
-function startPan(event) {
-  if (event.type === "mousedown") {
-    if (event.button === 2) {
-      controls.isPanning = true;
-    }
-  }
-}
-
-function onPan(event) {
-  if (controls.isPanning) {
-    object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
-    object.lorentzMatrix.multiply(
-      xBoost((controls.panSpeed * event.movementX) / renderer.domElement.width)
-    );
-    object.lorentzMatrix.multiply(
-      yBoost(
-        (-controls.panSpeed * event.movementY) / renderer.domElement.height
-      )
-    );
-    object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorld));
-    render();
-  }
-}
-
-function endPan(event) {
-  controls.isPanning = false;
 }
 
 function xBoost(a) {
@@ -249,6 +254,15 @@ function yBoost(a) {
   return result;
 }
 
+function lorentzBoostFromPosition(vec3) {
+  const result = new Matrix4();
+  result.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
+  result.multiply(xBoost(-vec3.x));
+  result.multiply(yBoost(-vec3.y));
+  result.multiply(makeSO3Matrix4(camera.matrixWorld));
+  return result;
+}
+
 function makeSO3Matrix4(m) {
   const result = new Matrix4();
   const el = m.elements;
@@ -271,4 +285,8 @@ function makeSO3Matrix4(m) {
     el[10]
   );
   return result;
+}
+
+function onKeyDown(event) {
+  console.log(hyperbolicControls);
 }
