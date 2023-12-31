@@ -65,8 +65,8 @@ function init() {
   object.scale.setScalar(1.0);
   scene.add(object);
 
-  createCamera();
-  createHyperbolicCamera();
+  camera = createCamera();
+  hyperbolicCamera = createCamera();
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -75,8 +75,8 @@ function init() {
 
   // EVENTS
 
-  createControls(camera);
-  createHyperbolicControls(hyperbolicCamera);
+  controls = createControls(camera);
+  hyperbolicControls = createHyperbolicControls(hyperbolicCamera);
   window.addEventListener("resize", onWindowResize);
   // window.addEventListener("keydown", onWindowKeydown);
   // window.addEventListener("mousedown", onWindowMouseDown);
@@ -114,13 +114,6 @@ function onWindowResize() {
   renderer.setSize(width, height);
 }
 
-function startPan(event) {}
-
-function onPan(event) {}
-
-function endPan(event) {
-  hyperbolicControls.isPanning = false;
-}
 //
 
 function animate() {
@@ -135,7 +128,6 @@ function render() {
   scene.traverse(function (child) {
     if (child.isMesh) {
       const shader = child.material.userData.shader;
-
       if (shader) {
         shader.uniforms.time.value = performance.now() / 1000;
         shader.uniforms.lorentzMatrix.value = lorentzBoostFromPosition(
@@ -144,7 +136,6 @@ function render() {
       }
     }
   });
-
   renderer.render(scene, camera);
 }
 
@@ -155,6 +146,7 @@ function createControls(camera) {
   controls.rotateSpeed = 5.0;
   controls.zoomSpeed = 1.2;
   controls.keys = ["KeyA", "KeyS", "KeyD"];
+  return controls;
 }
 
 function createHyperbolicControls(camera) {
@@ -164,25 +156,18 @@ function createHyperbolicControls(camera) {
   hyperbolicControls.noPan = false;
   hyperbolicControls.panSpeed = 0.5;
   hyperbolicControls.keys = ["KeyA", "KeyS", "KeyD"];
+  return hyperbolicControls;
 }
 
 function createCamera() {
-  camera = new THREE.PerspectiveCamera(
+  const camera = new THREE.PerspectiveCamera(
     27,
     window.innerWidth / window.innerHeight,
     0.1,
     100
   );
   camera.position.z = 5;
-}
-function createHyperbolicCamera() {
-  hyperbolicCamera = new THREE.PerspectiveCamera(
-    27,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    100
-  );
-  hyperbolicCamera.position.z = 5;
+  return camera;
 }
 
 function objLoadOnProgress(xhr) {
@@ -285,8 +270,4 @@ function makeSO3Matrix4(m) {
     el[10]
   );
   return result;
-}
-
-function onKeyDown(event) {
-  console.log(hyperbolicControls);
 }
