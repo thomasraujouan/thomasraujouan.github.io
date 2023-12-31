@@ -72,7 +72,6 @@ function init() {
 
   createControls(camera);
   window.addEventListener("resize", onWindowResize);
-  window.addEventListener("keydown", changeLorentzAngle);
   window.addEventListener("mousedown", startPan);
   window.addEventListener("mousemove", onPan);
   window.addEventListener("mouseup", endPan);
@@ -172,27 +171,6 @@ function textLoadOnError(path) {
   return () => {
     console.error("An error happened while loading the text shader at " + path);
   };
-}
-
-function changeLorentzAngle(event) {
-  if (event.type === "keydown") {
-    object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
-
-    if (event.key === "ArrowRight") {
-      object.lorentzMatrix.multiply(xBoost(0.1));
-      console.log(object.up);
-    }
-    if (event.key === "ArrowLeft") {
-      object.lorentzMatrix.multiply(xBoost(-0.1));
-    }
-    if (event.key === "ArrowUp") {
-      object.lorentzMatrix.multiply(yBoost(0.1));
-    }
-    if (event.key === "ArrowDown") {
-      object.lorentzMatrix.multiply(yBoost(-0.1));
-    }
-    object.lorentzMatrix.multiply(makeSO3Matrix4(camera.matrixWorld));
-  }
 }
 
 function startPan(event) {
