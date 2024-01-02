@@ -18,11 +18,11 @@ let camera,
 
 const loader = new OBJLoader();
 loader.load(
-  "/assets/obj/dressed-catenoids/h3/2v1.obj",
+  "/assets/obj/dressed-catenoids/h3/1end.obj",
   function (obj) {
     object = obj;
     console.log("OBJ model succesfully loaded.");
-    fetchVertexShader("/glsl/hyperbolic-vertex.glsl");
+    fetchVertexShader("/glsl/hyperbolic-lambert-vertex.glsl");
   },
   objLoadOnProgress,
   objLoadOnError
@@ -55,7 +55,6 @@ function main() {
 
 function init() {
   scene = new THREE.Scene();
-
   object.traverse(function (child) {
     if (child.isMesh) {
       child.material = buildCustomMaterial(vertexShader);
@@ -63,6 +62,10 @@ function init() {
   });
   object.position.y = -0.0;
   object.scale.setScalar(1.0);
+
+  setTexture(object);
+  lightScene(scene);
+
   scene.add(object);
 
   camera = createCamera();
@@ -87,7 +90,7 @@ function init() {
 }
 
 function buildCustomMaterial(vertexShader) {
-  const material = new THREE.MeshNormalMaterial();
+  const material = new THREE.MeshLambertMaterial({ color: 0xffffff });
   material.onBeforeCompile = function (shader) {
     // set uniforms
     shader.uniforms.time = { value: 0 };
@@ -95,6 +98,9 @@ function buildCustomMaterial(vertexShader) {
 
     // write shaders
     shader.vertexShader = vertexShader;
+
+    // // replace shader
+    // shader.vertexShader = replaceVertexShader(shader.vertexShader);
 
     material.userData.shader = shader;
     material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
@@ -270,4 +276,38 @@ function makeSO3Matrix4(m) {
     el[10]
   );
   return result;
+}
+
+function lightScene(scene) {
+  const light = new THREE.AmbientLight(0xaaaaaa); // soft white light
+  scene.add(light);
+
+  // For Lambert-type materials:
+  const light1 = new THREE.DirectionalLight(0xffffff, 0.5);
+  light1.position.set(0, 200, 0);
+  scene.add(light1);
+
+  const light2 = new THREE.DirectionalLight(0xffffff, 0.5);
+  light2.position.set(100, 200, 100);
+  scene.add(light2);
+
+  const light3 = new THREE.DirectionalLight(0xffffff, 0.5);
+  light3.position.set(-100, -200, -100);
+  scene.add(light3);
+}
+
+function setTexture(
+  object,
+  texturePath = "/assets/textures/chess-texture.svg",
+  flip = false
+) {
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load(texturePath, (texture) => {
+    texture.flipY = flip;
+  });
+  object.traverse(function (child) {
+    if (child instanceof THREE.Mesh) {
+      child.material.map = texture;
+    }
+  });
 }
