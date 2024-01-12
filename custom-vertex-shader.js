@@ -158,7 +158,7 @@ function createControls(camera) {
 function createHyperbolicControls(camera) {
   hyperbolicControls = new TrackballControls(camera, renderer.domElement);
   hyperbolicControls.noRotate = true;
-  hyperbolicControls.noZoom = false;
+  hyperbolicControls.noZoom = true;
   hyperbolicControls.noPan = false;
   hyperbolicControls.panSpeed = 0.5;
   hyperbolicControls.keys = ["KeyA", "KeyS", "KeyD"];
@@ -279,7 +279,7 @@ function makeSO3Matrix4(m) {
 }
 
 function lightScene(scene) {
-  const light = new THREE.AmbientLight(0xaaaaaa); // soft white light
+  const light = new THREE.AmbientLight(0xaaaaaa, 0.75); // soft white light
   scene.add(light);
 
   // For Lambert-type materials:
