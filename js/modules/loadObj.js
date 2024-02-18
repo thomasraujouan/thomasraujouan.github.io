@@ -1,6 +1,6 @@
 import { OBJLoader } from "./OBJLoader.module.js";
 import * as THREE from "three";
-import { hyperbolicVertex } from "./read-vertex-shader.js/index.js";
+// import { hyperbolicVertex } from "./read-vertex-shader.js";
 
 const defaultMaterial = new THREE.MeshPhongMaterial({
   color: 0xbbbbbb, // Set your desired color
