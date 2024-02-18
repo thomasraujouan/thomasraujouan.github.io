@@ -6,13 +6,14 @@ date: 2023-08-29 08:28:52 +0900
 categories: dressed-catenoids
 ---
 
-Joint work with N. Schmitt.
+Joint work with Nick Schmitt and Jonas Ziefle.
 
 Press number keys hide or show the fundamental pieces. Press the "a" key to show all pieces. Press the space bar to put the camera back to its original position.
 
 # 1 planar end
 
 - [Vertical end][1v]
+
 
 # 2 planar ends
 
@@ -24,12 +25,12 @@ Press number keys hide or show the fundamental pieces. Press the "a" key to show
 # 3 planar ends
 
 - [Vertical ends][3v]
-- [Non-vertical ends][3dfull]
+<!-- - [Non-vertical ends][3dfull] -->
 
 # In hyperbolic space (Poincaré ball model)
 
 - [1 end][h3-1end]
-- [2 ends][h3-2v1]
+<!-- - [2 ends][h3-2v1] -->
 
 # Extras
 

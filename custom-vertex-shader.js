@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { TrackballControls } from "/js/modules/TrackballControls.js";
 import { OBJLoader } from "./js/modules/OBJLoader.module.js";
-import { Matrix4 } from "./js/modules/three.module.js";
+import { Matrix4, Vector4 } from "./js/modules/three.module.js";
 
 THREE.Cache.enabled = true; // for text loading
 
@@ -69,7 +69,10 @@ function init() {
   scene.add(object);
 
   camera = createCamera();
+  camera.position.z = 5;
+
   hyperbolicCamera = createCamera();
+  hyperbolicCamera.position.z = 1;
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -82,9 +85,9 @@ function init() {
   hyperbolicControls = createHyperbolicControls(hyperbolicCamera);
   window.addEventListener("resize", onWindowResize);
   // window.addEventListener("keydown", onWindowKeydown);
-  // window.addEventListener("mousedown", onWindowMouseDown);
+  window.addEventListener("mousedown", onWindowMouseDown);
   // window.addEventListener("mousemove", onWindowMouseMove);
-  // window.addEventListener("mouseup", onWindowMouseUp);
+  window.addEventListener("mouseup", onWindowMouseUp);
 
   render();
 }
@@ -118,6 +121,17 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
 
   renderer.setSize(width, height);
+}
+
+function onWindowMouseDown(event) {
+  if (event.button === 2) {
+    hyperbolicControls.isPanning = true;
+  }
+}
+function onWindowMouseUp(event) {
+  if (event.button === 2) {
+    hyperbolicControls.isPanning = false;
+  }
 }
 
 //
@@ -157,10 +171,11 @@ function createControls(camera) {
 
 function createHyperbolicControls(camera) {
   hyperbolicControls = new TrackballControls(camera, renderer.domElement);
-  hyperbolicControls.noRotate = true;
+  hyperbolicControls.noRotate = false;
   hyperbolicControls.noZoom = true;
   hyperbolicControls.noPan = false;
-  hyperbolicControls.panSpeed = 0.5;
+  hyperbolicControls.panSpeed = 1;
+  hyperbolicControls.rotateSpeed = 5.0;
   hyperbolicControls.keys = ["KeyA", "KeyS", "KeyD"];
   return hyperbolicControls;
 }
@@ -172,7 +187,6 @@ function createCamera() {
     0.1,
     100
   );
-  camera.position.z = 5;
   return camera;
 }
 
@@ -247,10 +261,19 @@ function yBoost(a) {
 
 function lorentzBoostFromPosition(vec3) {
   const result = new Matrix4();
-  result.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
-  result.multiply(xBoost(-vec3.x));
-  result.multiply(yBoost(-vec3.y));
-  result.multiply(makeSO3Matrix4(camera.matrixWorld));
+  // result.multiply(makeSO3Matrix4(camera.matrixWorldInverse));
+  // const vec4 = new Vector4(0, vec3.x, vec3.y, vec3.z);
+  // vec4.applyMatrix4(makeSO3Matrix4(camera.matrixWorldInverse));
+  if (hyperbolicControls.isPanning) {
+    console.log("pan!");
+    // const v = vec3.clone();
+    // vec3 = camera.up;
+    // console.log(hyperbolicCamera.position);
+  }
+  result.multiply(xBoost(vec3.x));
+  result.multiply(yBoost(vec3.y));
+  // console.log(camera.up);
+  // result.multiply(makeSO3Matrix4(camera.matrixWorld));
   return result;
 }
 
