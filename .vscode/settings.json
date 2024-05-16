@@ -1,3 +1,4 @@
 {
-  "javascript.preferences.importModuleSpecifier": "relative"
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "liveServer.settings.port": 5501
 }
