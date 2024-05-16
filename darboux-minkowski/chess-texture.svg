@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" version="1.1">
+  <rect x="0" y="0" width="30" height="30" fill="#3e6deb" />
+  <rect x="30" y="0" width="30" height="30" fill="#ebbc3e" />
+  <rect x="60" y="0" width="30" height="30" fill="#3e6deb" />
+  <rect x="90" y="0" width="30" height="30" fill="#ebbc3e" />
+  <rect x="120" y="0" width="30" height="30" fill="#3e6deb" />
+  <rect x="150" y="0" width="30" height="30" fill="#ebbc3e" />
+  <rect x="180" y="0" width="30" height="30" fill="#3e6deb" />
+  <rect x="210" y="0" width="30" height="30" fill="#ebbc3e" />
+  
+  <rect x="0" y="30" width="30" height="30" fill="#ebbc3e" />
+  <rect x="30" y="30" width="30" height="30" fill="#3e6deb" />
+  <rect x="60" y="30" width="30" height="30" fill="#ebbc3e" />
+  <rect x="90" y="30" width="30" height="30" fill="#3e6deb" />
+  <rect x="120" y="30" width="30" height="30" fill="#ebbc3e" />
+  <rect x="150" y="30" width="30" height="30" fill="#3e6deb" />
+  <rect x="180" y="30" width="30" height="30" fill="#ebbc3e" />
+  <rect x="210" y="30" width="30" height="30" fill="#3e6deb" />
+  
+  <rect x="0" y="60" width="30" height="30" fill="#3e6deb" />
+  <rect x="30" y="60" width="30" height="30" fill="#ebbc3e" />
+  <rect x="60" y="60" width="30" height="30" fill="#3e6deb" />
+  <rect x="90" y="60" width="30" height="30" fill="#ebbc3e" />
+  <rect x="120" y="60" width="30" height="30" fill="#3e6deb" />
+  <rect x="150" y="60" width="30" height="30" fill="#ebbc3e" />
+  <rect x="180" y="60" width="30" height="30" fill="#3e6deb" />
+  <rect x="210" y="60" width="30" height="30" fill="#ebbc3e" />
+  
+  <rect x="0" y="90" width="30" height="30" fill="#ebbc3e" />
+  <rect x="30" y="90" width="30" height="30" fill="#3e6deb" />
+  <rect x="60" y="90" width="30" height="30" fill="#ebbc3e" />
+  <rect x="90" y="90" width="30" height="30" fill="#3e6deb" />
+  <rect x="120" y="90" width="30" height="30" fill="#ebbc3e" />
+  <rect x="150" y="90" width="30" height="30" fill="#3e6deb" />
+  <rect x="180" y="90" width="30" height="30" fill="#ebbc3e" />
+  <rect x="210" y="90" width="30" height="30" fill="#3e6deb" />
+  
+  <rect x="0" y="120" width="30" height="30" fill="#3e6deb" />
+  <rect x="30" y="120" width="30" height="30" fill="#ebbc3e" />
+  <rect x="60" y="120" width="30" height="30" fill="#3e6deb" />
+  <rect x="90" y="120" width="30" height="30" fill="#ebbc3e" />
+  <rect x="120" y="120" width="30" height="30" fill="#3e6deb" />
+  <rect x="150" y="120" width="30" height="30" fill="#ebbc3e" />
+  <rect x="180" y="120" width="30" height="30" fill="#3e6deb" />
+  <rect x="210" y="120" width="30" height="30" fill="#ebbc3e" />
+  
+  <rect x="0" y="150" width="30" height="30" fill="#ebbc3e" />
+  <rect x="30" y="150" width="30" height="30" fill="#3e6deb" />
+  <rect x="60" y="150" width="30" height="30" fill="#ebbc3e" />
+  <rect x="90" y="150" width="30" height="30" fill="#3e6deb" />
+  <rect x="120" y="150" width="30" height="30" fill="#ebbc3e" />
+  <rect x="150" y="150" width="30" height="30" fill="#3e6deb" />
+  <rect x="180" y="150" width="30" height="30" fill="#ebbc3e" />
+  <rect x="210" y="150" width="30" height="30" fill="#3e6deb" />
+  
+  <rect x="0" y="180" width="30" height="30" fill="#3e6deb" />
+  <rect x="30" y="180" width="30" height="30" fill="#ebbc3e" />
+  <rect x="60" y="180" width="30" height="30" fill="#3e6deb" />
+  <rect x="90" y="180" width="30" height="30" fill="#ebbc3e" />
+  <rect x="120" y="180" width="30" height="30" fill="#3e6deb" />
+  <rect x="150" y="180" width="30" height="30" fill="#ebbc3e" />
+  <rect x="180" y="180" width="30" height="30" fill="#3e6deb" />
+  <rect x="210" y="180" width="30" height="30" fill="#ebbc3e" />
+  
+  <rect x="0" y="210" width="30" height="30" fill="#ebbc3e" />
+  <rect x="30" y="210" width="30" height="30" fill="#3e6deb" />
+  <rect x="60" y="210" width="30" height="30" fill="#ebbc3e" />
+  <rect x="90" y="210" width="30" height="30" fill="#3e6deb" />
+  <rect x="120" y="210" width="30" height="30" fill="#ebbc3e" />
+  <rect x="150" y="210" width="30" height="30" fill="#3e6deb" />
+  <rect x="180" y="210" width="30" height="30" fill="#ebbc3e" />
+  <rect x="210" y="210" width="30" height="30" fill="#3e6deb" />
+</svg>

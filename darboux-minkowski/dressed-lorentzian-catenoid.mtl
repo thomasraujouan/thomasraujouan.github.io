@@ -1,0 +1,8 @@
+# Created with the Wolfram Language : www.wolfram.com
+
+newmtl DefaultMaterial
+Kd 0.60000002 0.60000002 0.60000002
+Ka 0.050000001 0.050000001 0.050000001
+Ks 0.60000002 0.60000002 0.60000002
+illum 1
+
