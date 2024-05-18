@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from "./modules/three.module.js";
 import  {Surface} from "./modules/Surface.js";
 import { TrackballControls } from "./modules/TrackballControls.js"; // controls the camera
 import {
@@ -19,7 +19,7 @@ import { initialPosition } from "./modules/keyboard.js";
 /* SCENE, LIGHTS */
 const scene = new THREE.Scene();
 
-scene.background = new THREE.Color("black");
+scene.background = new THREE.Color("white");
 lightScene(scene);
 
 /* OBJ LOADING */
@@ -29,6 +29,7 @@ const obj = await loadOBJModel(
 
 /* MATERIALS, TEXTURES */
 setMaterial(obj, phongMaterial);
+setTexture(obj, "./checkerboard16.svg");
 
 /* SYMMETRIES, POSITIONING*/
 const pieces = [];
@@ -46,17 +47,20 @@ const geometry = new THREE.ConeGeometry(
   16, 
   1, 
   true); 
+const material = new THREE.LineBasicMaterial({
+  color: 0x00ffff,
+  depthTest: true,
+  transparent: true,
+  opacity: 0.5
+});
 const wireframe = new THREE.WireframeGeometry( geometry );
-const cone1 = new THREE.LineSegments( wireframe );
+const cone1 = new THREE.LineSegments( wireframe, material );
 cone1.translateY(-0.5*coneRadius);
-const cone2 = new THREE.LineSegments( wireframe );
+const cone2 = new THREE.LineSegments( wireframe, material );
 cone2.translateY(0.5*coneRadius);
 cone2.rotateX(Math.PI);
 const cones = [cone1, cone2];
 cones.forEach(cone => {
-  cone.material.depthTest = true;
-  cone.material.transparent = true;
-  cone.material.opacity = 0.5;
   scene.add( cone )
 });
 

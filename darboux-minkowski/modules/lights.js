@@ -3,7 +3,7 @@ import * as THREE from "three";
 const makeLights = (
   position = [100, 100, 100],
   color = 0xffffff,
-  intensity = 0.25
+  intensity = 0.4
 ) => {
   const defaultLights = {
     front: new THREE.DirectionalLight(color, intensity),
@@ -11,7 +11,7 @@ const makeLights = (
     ambient: new THREE.AmbientLight(color),
   };
   defaultLights.front.position.set(...position);
-  const backPosition = [-position[0], -position[1], -position[2]];
+  const backPosition = [position[0], position[1], -position[2]];
   defaultLights.back.position.set(...backPosition);
   return defaultLights;
 };

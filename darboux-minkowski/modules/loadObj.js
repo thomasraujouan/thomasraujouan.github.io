@@ -3,7 +3,7 @@ import * as THREE from "three";
 // import { hyperbolicVertex } from "./read-vertex-shader.js/index.js";
 
 const phongMaterial = new THREE.MeshPhongMaterial({
-  color: 0x999999, // Set your desired color
+  color: 0xbbbbbb, // Set your desired color
   shininess: 10, // Set the shininess (adjust as needed)
   // map: texture,
 });
