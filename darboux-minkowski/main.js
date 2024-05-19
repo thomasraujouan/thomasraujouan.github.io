@@ -1,118 +1,140 @@
 import * as THREE from "./modules/three.module.js";
-import  {Surface} from "./modules/Surface.js";
-import { TrackballControls } from "./modules/TrackballControls.js"; // controls the camera
-import {
-  computeRadius,
-  flipTexture,
-  loadOBJModel,
-  phongMaterial,
-  setMaterial,
-  setTexture,
-} from "./modules/loadObj.js";
-import { lightScene } from "./modules/lights.js";
-import { fittingDistance, makeCamera } from "./modules/camera.js";
-import { allVisible, numberPadSwitch } from "./modules/keyboard.js";
-import { onWindowResize } from "./modules/window.js";
-import { ColorManagement } from "./modules/three.module.js";
-import { initialPosition } from "./modules/keyboard.js";
+import { OBJLoader } from "./modules/OBJLoader.module.js";
+import { TrackballControls } from "./modules/TrackballControls.js";
 
-/* SCENE, LIGHTS */
-const scene = new THREE.Scene();
+let object, camera, initialCamera, scene, renderer;
 
-scene.background = new THREE.Color("white");
-lightScene(scene);
+init();
 
-/* OBJ LOADING */
-const obj = await loadOBJModel(
-  "./dressed-lorentzian-catenoid.obj"
-);
+function init() {
+  // SCENE, LIGHTS
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color("white");
+  const ambientLight = new THREE.AmbientLight(0xffffff);
+  scene.add(ambientLight);
+  const pointLight = new THREE.PointLight(0xffffff, 0.5);
 
-/* MATERIALS, TEXTURES */
-setMaterial(obj, phongMaterial);
-setTexture(obj, "./checkerboard16.svg");
+  // CAMERA
+  const fov = 30;
+  const radius = 2.2384183406829834; // cf computeRadius()
+  const distance = 8.64; // cf fittingDistance()
+  const position = {
+    x: -Math.sqrt((2 * (distance * distance)) / 5),
+    y: Math.sqrt((distance * distance) / 5),
+    z: -Math.sqrt((2 * (distance * distance)) / 5),
+  };
+  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.1, 500);
+  camera.position.x = position.x;
+  camera.position.y = position.y;
+  camera.position.z = position.z;
+  camera.lookAt(0, 0, 0);
+  initialCamera = camera.clone();
+  camera.add(pointLight);
+  scene.add(camera);
 
-/* SYMMETRIES, POSITIONING*/
-const pieces = [];
-obj.rotateX(1*Math.PI / 2);
-pieces.push(obj);
-for (let index = 0; index < pieces.length; index++) {
-  scene.add(pieces[index]);
+  // MODEL LOADER MANAGER
+  const manager = new THREE.LoadingManager(loadModel);
+  function loadModel() {
+    object.traverse(function (child) {
+      if (child.isMesh) {
+        child.material = new THREE.MeshPhongMaterial({
+          color: 0xbbbbbb, // Set your desired color
+          shininess: 15, // Set the shininess (adjust as needed)
+          map: texture,
+        });
+        child.castShadow = true;
+        child.receiveShadow = true;
+        child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
+      }
+    });
+    // POSITIONING
+    object.rotateX(Math.PI / 2);
+    scene.add(object);
+    animate();
+  }
+
+  // TEXTURE
+  const textureLoader = new THREE.TextureLoader(manager);
+  const texture = textureLoader.load("./checkerboard16.svg", render);
+
+  // OBJ LOADER
+  const loader = new OBJLoader(manager);
+  loader.load("./dressed-lorentzian-catenoid.obj", function (obj) {
+    object = obj;
+  }, onProgress, onError);
+  function onProgress(xhr) {
+    if (xhr.lengthComputable) {
+      const percentComplete = xhr.loaded / xhr.total * 100;
+      console.log('model ' + percentComplete.toFixed(2) + '% downloaded');
+    }
+  }
+  function onError() { }
+
+  // LIGHT CONE 
+  const geometry = new THREE.ConeGeometry(
+    radius,
+    radius,
+    16,
+    1,
+    true);
+  const material = new THREE.LineBasicMaterial({
+    color: 0x00ffff,
+    depthTest: true,
+    transparent: true,
+    opacity: 0.5
+  });
+  const wireframe = new THREE.WireframeGeometry(geometry);
+  const cone1 = new THREE.LineSegments(wireframe, material);
+  cone1.translateY(-0.5 * radius);
+  const cone2 = new THREE.LineSegments(wireframe, material);
+  cone2.translateY(0.5 * radius);
+  cone2.rotateX(Math.PI);
+  const cones = [cone1, cone2];
+  cones.forEach(cone => {
+    scene.add(cone)
+  });
+
+  // RENDERER
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // WINDOW
+  window.addEventListener('resize', onWindowResize);
+
+  // CONTROLS
+  const controls = new TrackballControls(camera, renderer.domElement);
+  controls.target.set(0, 0, 0);
+  controls.rotateSpeed = 2.0;
+  controls.zoomSpeed = 0.5;
+  controls.panSpeed = 0.5;
+
+  // KEYBOARD
+  addEventListener("keydown", initialPosition);
+
+  // ANIMATION 
+  let frame = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+    controls.update();
+    frame += 0.01;
+  }
 }
 
-/* LIGHT CONE */
-const coneRadius = 2.3;
-const geometry = new THREE.ConeGeometry(
-  coneRadius, 
-  coneRadius, 
-  16, 
-  1, 
-  true); 
-const material = new THREE.LineBasicMaterial({
-  color: 0x00ffff,
-  depthTest: true,
-  transparent: true,
-  opacity: 0.5
-});
-const wireframe = new THREE.WireframeGeometry( geometry );
-const cone1 = new THREE.LineSegments( wireframe, material );
-cone1.translateY(-0.5*coneRadius);
-const cone2 = new THREE.LineSegments( wireframe, material );
-cone2.translateY(0.5*coneRadius);
-cone2.rotateX(Math.PI);
-const cones = [cone1, cone2];
-cones.forEach(cone => {
-  scene.add( cone )
-});
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
 
-/* CAMERA */
-const fov = 30;
-const radius = computeRadius(obj);
-const distance = fittingDistance(fov, radius);
-const position = {
-  x: -Math.sqrt((2 * (distance * distance)) / 5),
-  y: Math.sqrt((distance * distance) / 5),
-  z: -Math.sqrt((2 * (distance * distance)) / 5),
-};
-const camera = makeCamera(
-  fov,
-  innerWidth / innerHeight,
-  0.1,
-  500,
-  undefined,
-  position
-);
-const initialCamera = camera.clone();
+function initialPosition(event) {
+  if (event.key === " ") {
+    camera.copy(initialCamera);
+  }
+}
 
-/* GUI */
-
-/* RENDERER, WINDOW */
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(innerWidth, innerHeight);
-renderer.setPixelRatio(devicePixelRatio); //Is it really less jagged?
-document.body.appendChild(renderer.domElement);
-window.addEventListener("resize", onWindowResize(camera, renderer), false);
-
-/* MOUSE */
-const controls = new TrackballControls(camera, renderer.domElement);
-const initialTarget = camera.initialTarget;
-controls.target.set(initialTarget.x, initialTarget.y, initialTarget.z);
-controls.rotateSpeed = 2.0;
-controls.zoomSpeed = 0.5;
-controls.panSpeed = 0.5;
-
-/* KEYBOARD */
-addEventListener("keydown", numberPadSwitch(pieces));
-addEventListener("keydown", allVisible(pieces));
-addEventListener("keydown", initialPosition(camera, initialCamera));
-
-/* ANIMATION */
-let frame = 0;
-function animate() {
-  requestAnimationFrame(animate);
+function render() {
   renderer.render(scene, camera);
-  controls.update();
-  frame += 0.01;
 }
-
-/* MAIN */
-animate();

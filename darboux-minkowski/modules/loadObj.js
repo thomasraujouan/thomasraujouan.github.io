@@ -2,6 +2,36 @@ import { OBJLoader } from "./OBJLoader.module.js";
 import * as THREE from "three";
 // import { hyperbolicVertex } from "./read-vertex-shader.js/index.js";
 
+// Usage: const obj = await loadOBJModel(objPath);
+const loadOBJModel = async function (objPath) {
+  const loader = new OBJLoader();
+  try {
+    const obj = await new Promise((resolve, reject) => {
+      loader.load(
+        objPath,
+        (loadedObj) => {
+          resolve(loadedObj); // Resolve the Promise with the loaded object
+        },
+        function (xhr) {
+          // Compute the loading progression
+          const load = xhr.loaded / xhr.total;
+          const loadText = Math.floor(load*100) + "% loaded";
+          console.log(loadText);
+          // Display the loading progression
+          const info = document.getElementById("info");
+          if (load != 1) {
+            info.innerText = loadText;
+          } else info.innerText = "";
+        },
+        reject
+      ); // Reject the Promise if there's an error
+    });
+    return obj; // Return the loaded object
+  } catch (error) {
+    throw new Error("Error loading OBJ model: " + error);
+  }
+};
+
 const phongMaterial = new THREE.MeshPhongMaterial({
   color: 0xbbbbbb, // Set your desired color
   shininess: 10, // Set the shininess (adjust as needed)
@@ -39,35 +69,7 @@ hyperbolicMaterial.userData.uniforms = {
   hyperbolic_u: { value: 1.0 },
 };
 
-// Usage: const obj = await loadOBJModel(objPath);
-const loadOBJModel = async function (objPath) {
-  const loader = new OBJLoader();
-  try {
-    const obj = await new Promise((resolve, reject) => {
-      loader.load(
-        objPath,
-        (loadedObj) => {
-          resolve(loadedObj); // Resolve the Promise with the loaded object
-        },
-        function (xhr) {
-          // Compute the loading progression
-          const load = xhr.loaded / xhr.total;
-          const loadText = load * 100 + "% loaded";
-          console.log(loadText);
-          // Display the loading progression
-          const info = document.getElementById("info");
-          if (load != 1) {
-            info.innerText = loadText;
-          } else info.innerText = "";
-        },
-        reject
-      ); // Reject the Promise if there's an error
-    });
-    return obj; // Return the loaded object
-  } catch (error) {
-    throw new Error("Error loading OBJ model: " + error);
-  }
-};
+
 
 const loadOBJString = async function (string) {
   const loader = new OBJLoader();
@@ -112,6 +114,11 @@ const computeRadius = function (object) {
   return Math.max(Math.abs(min), Math.abs(max));
 };
 
+/**
+ * 
+ * @param {*} object 
+ * @param {THREE.Material} material 
+ */
 const setMaterial = function (object, material = normalMaterial) {
   object.traverse(function (child) {
     if (child instanceof THREE.Mesh) {
