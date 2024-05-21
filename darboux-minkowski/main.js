@@ -3,6 +3,34 @@ import { OBJLoader } from "./modules/OBJLoader.module.js";
 import { TrackballControls } from "./modules/TrackballControls.js";
 
 let object, camera, initialCamera, scene, renderer;
+let lorentz = new Number(0.0);
+let lorentzMatrix = new THREE.Matrix3();
+function attachBoostFunctions(matrix) {
+  matrix.boostX = function (x) {
+    const c = Math.cosh(x);
+    const s = Math.sinh(x);
+    const boostMatrix = new THREE.Matrix3();
+    boostMatrix.set(
+      c, 0, s,
+      0, 1, 0,
+      s, 0, c
+    );
+    this.multiply(boostMatrix);
+  };
+  matrix.boostY = function (x) {
+    const c = Math.cosh(x);
+    const s = Math.sinh(x);
+    const boostMatrix = new THREE.Matrix3();
+    boostMatrix.set(
+      1, 0, 0,
+      0, c, s,
+      0, s, c
+    );
+    this.multiply(boostMatrix);
+  };
+}
+attachBoostFunctions(lorentzMatrix);
+
 
 init();
 
@@ -42,6 +70,14 @@ function init() {
           shininess: 15, // Set the shininess (adjust as needed)
           map: texture,
         });
+        child.material.onBeforeCompile = (shader, renderer) => {
+          shader.uniforms.lorentz = { value: lorentz };
+          shader.uniforms.lorentzMatrix = { value: lorentzMatrix };
+          shader.vertexShader = shader.vertexShader.replace(defaultUniforms, customUniforms);
+          shader.vertexShader = shader.vertexShader.replace(defaultBeginVertex,
+            newBeginVertex);
+          child.material.userData.shader = shader;
+        };
         child.castShadow = true;
         child.receiveShadow = true;
         child.material.side = THREE.DoubleSide; // (or THREE.FrontSide) no face culling
@@ -59,9 +95,11 @@ function init() {
 
   // OBJ LOADER
   const loader = new OBJLoader(manager);
-  loader.load("./dressed-lorentzian-catenoid.obj", function (obj) {
+  loader.load("./dressed-lorentzian-catenoid.obj", onLoad, onProgress, onError);
+  function onLoad(obj) {
     object = obj;
-  }, onProgress, onError);
+    object.lorentzBoost = 0;
+  }
   function onProgress(xhr) {
     if (xhr.lengthComputable) {
       const percentComplete = xhr.loaded / xhr.total * 100;
@@ -112,6 +150,8 @@ function init() {
 
   // KEYBOARD
   addEventListener("keydown", initialPosition);
+  addEventListener("keydown", boost);
+  addEventListener("keydown", resetUniforms);
 
   // ANIMATION 
   let frame = 0;
@@ -123,18 +163,64 @@ function init() {
   }
 }
 
+// EVENT LISTENERS CALLBACKS
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
-
 function initialPosition(event) {
   if (event.key === " ") {
     camera.copy(initialCamera);
   }
 }
+function boost(event) {
+  if (event.key === "ArrowRight") {
+    lorentzMatrix.boostX(0.1)
+  }
+  else if (event.key === "ArrowLeft") {
+    lorentzMatrix.boostX(-0.1);
+  }
+  else if (event.key === "ArrowDown") {
+    lorentzMatrix.boostY(-0.1);
+  }
+  else if (event.key === "ArrowUp") {
+    lorentzMatrix.boostY(0.1);
+  }
+  updateLorentzMatrix();
+  render();
+}
+function resetUniforms(event) {
+  if (event.key === " ") {
+    lorentzMatrix.set(1, 0, 0, 0, 1, 0, 0, 0, 1);
+    updateLorentzMatrix();
+  }
+}
 
+// RENDERING
+function updateLorentzMatrix() {
+  scene.traverse(function (child) {
+    if (child.isMesh) {
+      const shader = child.material.userData.shader;
+      if (shader) {
+        shader.uniforms.lorentzMatrix.value = lorentzMatrix;
+      }
+    }
+  });
+}
 function render() {
   renderer.render(scene, camera);
 }
+
+// NEW VERTEX SHADERS
+const defaultUniforms = "void main()";
+const customUniforms = `// Here are the custom uniforms
+uniform float lorentz;
+uniform mat3 lorentzMatrix;
+void main()
+`;
+const defaultBeginVertex = `#include <begin_vertex>`;
+const newBeginVertex = `// The following replaces the default <begin_vertex>:
+vec3 newPosition = position*lorentzMatrix;
+vec3 transformed = vec3( newPosition );
+`;

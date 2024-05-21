@@ -11723,6 +11723,7 @@ var aomap_fragment =
 var aomap_pars_fragment =
   "#ifdef USE_AOMAP\n\tuniform sampler2D aoMap;\n\tuniform float aoMapIntensity;\n#endif";
 
+// THOMAS: this is what you need to modify for custom vertex shader
 var begin_vertex = "vec3 transformed = vec3( position );";
 
 var beginnormal_vertex =
