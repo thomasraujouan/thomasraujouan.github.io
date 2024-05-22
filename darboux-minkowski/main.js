@@ -91,7 +91,7 @@ function init() {
 
   // TEXTURE
   const textureLoader = new THREE.TextureLoader(manager);
-  const texture = textureLoader.load("./checkerboard16.svg", render);
+  const texture = textureLoader.load("./texture.svg", render);
 
   // OBJ LOADER
   const loader = new OBJLoader(manager);
