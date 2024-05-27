@@ -18,8 +18,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Thomas Raujouan
-email: thomas@kobe-u.ac.jp
+title: yet another math page
+author: Thomas Raujouan
+email: thomas@math.kobe-u.ac.jp
 description: >- # >- means to ignore newlines until "baseurl:"
   Department of Mathematics -- 
   Graduate School of Science, Kobe University --
