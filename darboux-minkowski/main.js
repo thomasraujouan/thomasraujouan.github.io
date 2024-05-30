@@ -51,7 +51,7 @@ function init() {
     y: Math.sqrt((distance * distance) / 5),
     z: -Math.sqrt((2 * (distance * distance)) / 5),
   };
-  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.1, 500);
+  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.01, 1000);
   camera.position.x = position.x;
   camera.position.y = position.y;
   camera.position.z = position.z;
@@ -92,6 +92,7 @@ function init() {
   // TEXTURE
   const textureLoader = new THREE.TextureLoader(manager);
   const texture = textureLoader.load("./texture.svg", render);
+  texture.anisotropy = 4
 
   // OBJ LOADER
   const loader = new OBJLoader(manager);

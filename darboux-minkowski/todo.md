@@ -49,3 +49,5 @@ https://stackoverflow.com/questions/59548828/how-to-give-vertex-shader-to-a-geom
 3. Fundamental piece on/off
 4. Clean the code?
 5. I cannot open in a new tab
+6. The texture is blurry when viewed from far away, not from close
+    -> anisotropy! (try to understand)
