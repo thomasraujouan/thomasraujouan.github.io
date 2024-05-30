@@ -4,6 +4,7 @@ permalink: /dressed-catenoids/
 title: "Dressing the catenoid"
 date: 2023-08-29 08:28:52 +0900
 categories: dressed-catenoids
+hide-nav: true
 ---
 
 Joint work with Nick Schmitt and Jonas Ziefle.

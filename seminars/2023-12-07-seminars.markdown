@@ -4,6 +4,7 @@ title: "Seminars"
 date: 2023-12-07 02:28:52 +0900
 categories:
 permalink: seminars
+hide-nav: true
 ---
 
 ## Research meeting on Integrable Systems, Harmonic Maps and Surface Geometry

@@ -1,9 +1,10 @@
 ---
-layout: post
+layout: page
 title: "Read and write files"
 date: 2023-08-15 06:28:52 +0900
 categories: xlab
 permalink: xlab/read
+hide-nav: true
 ---
 
 This post is a continuation of [this one][share], where we computed our first example with xlab.
@@ -36,4 +37,4 @@ xlab --compute --gui=gtk shared/my-surface.xlab
 {% endhighlight %}
 You can now read the contents of the examples section (to come).
 
-[share]:{% post_url 2023-08-14-xlab-share %}
+[share]: [xlab/share]

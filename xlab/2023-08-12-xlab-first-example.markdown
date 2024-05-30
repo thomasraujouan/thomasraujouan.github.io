@@ -1,9 +1,10 @@
 ---
-layout: post
+layout: page
 title: "Compute an example"
 date: 2023-08-12 08:28:52 +0900
 categories: xlab
-permalink: xlab/catenoid
+permalink: xlab/example
+hide-nav: true
 ---
 
 We compute our first example with Xlab: a catenoid.
@@ -56,4 +57,4 @@ Now you may want to [export your experiments][share].
 
 [install]: /xlab/install
 
-[share]: {% post_url 2023-08-14-xlab-share %}
+[share]: [xlab/share]

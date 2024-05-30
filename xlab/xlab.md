@@ -32,6 +32,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 [screenshots]: http://raujouan.eu/xlab/screenshots/
 [quickstart]: /xlab/install
 [install]: /xlab/install
-[example]: /xlab/catenoid
+[example]: /xlab/example
 [share]: /xlab/share
 [read]: /xlab/read

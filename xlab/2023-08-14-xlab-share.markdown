@@ -1,9 +1,10 @@
 ---
-layout: post
+layout: page
 title: "Sharing directories"
 date: 2023-08-14 07:28:52 +0900
 categories: xlab
 permalink: xlab/share
+hide-nav: true
 ---
 
 The docker container and the host machine can share directories, allowing you to bring your experiments home.
@@ -70,5 +71,5 @@ xhost -local:
 
 8. Open shared/my-picture.png. Congratulations, you brought your picture home. Now you can [save your experiments][save].
 
-[catenoid]: {% post_url 2023-08-12-xlab-first-example %}
-[save]: {% post_url 2023-08-15-xlab-read %}
+[catenoid]: [xlab/catenoid]
+[save]: [xlab/read]

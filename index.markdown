@@ -9,11 +9,27 @@ layout: home
 
 # Surfaces
 
-- [Dressed catenoids][dressed-catenoids]
+- [Dressed catenoids (in space forms)][dressed-catenoids]
+-
+- [Darboux transformations of catenoids in Minkowski space][DT-catenoids]
 -
 
 # [XLab][xlab]
 
+- [Install][xlab-install]
+-
+- [First example][xlab-example]
+-
+- [Share directories][xlab-share]
+-
+- [Read files][xlab-read]
+-
+
 [costa]: /surfaces/costa.html
 [dressed-catenoids]: /dressed-catenoids
 [xlab]: /xlab
+[DT-catenoids]: /darboux
+[xlab-install]: xlab/install
+[xlab-example]: xlab/example
+[xlab-share]: xlab/share
+[xlab-read]: xlab/read

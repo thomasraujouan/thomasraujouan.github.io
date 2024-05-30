@@ -1,9 +1,10 @@
 ---
-layout: post
+layout: page
 title: "Installing XLab"
 date: 2023-07-23 08:28:52 +0900
 categories: xlab
 permalink: xlab/install
+hide-nav: true
 ---
 
 # 1. Install Docker
