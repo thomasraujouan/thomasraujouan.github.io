@@ -3,6 +3,23 @@ Taken from https://unpkg.com/three@0.139.2/examples/jsm/loaders/OBJLoader.js
 on 2023 Oct. 15
 */
 
+// import {
+//   BufferGeometry,
+//   FileLoader,
+//   Float32BufferAttribute,
+//   Group,
+//   LineBasicMaterial,
+//   LineSegments,
+//   Loader,
+//   Material,
+//   Mesh,
+//   MeshPhongMaterial,
+//   Points,
+//   PointsMaterial,
+//   Vector3,
+//   Color,
+// } from "three";
+
 import {
   BufferGeometry,
   FileLoader,
@@ -18,7 +35,8 @@ import {
   PointsMaterial,
   Vector3,
   Color,
-} from "three";
+} from "./three.module.js";
+
 
 // o object_name | g group_name
 const _object_pattern = /^[og]\s*(.+)?/;

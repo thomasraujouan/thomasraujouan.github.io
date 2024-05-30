@@ -2,7 +2,7 @@
 Copied from https://unpkg.com/three@0.139.2/examples/jsm/controls/TrackballControls.js
 */
 
-import { EventDispatcher, MOUSE, Quaternion, Vector2, Vector3 } from "three";
+import { EventDispatcher, MOUSE, Quaternion, Vector2, Vector3 } from "./three.module.js";
 
 const _changeEvent = { type: "change" };
 const _startEvent = { type: "start" };

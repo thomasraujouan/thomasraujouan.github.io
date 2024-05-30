@@ -2,6 +2,9 @@ import * as THREE from "./modules/three.module.js";
 import { OBJLoader } from "./modules/OBJLoader.module.js";
 import { TrackballControls } from "./modules/TrackballControls.js";
 
+const objPath = "./obj/dressed-lorentzian-catenoid.obj";
+const texturePath = "./texture.svg";
+
 let object, camera, initialCamera, scene, renderer;
 let lorentz = new Number(0.0);
 let lorentzMatrix = new THREE.Matrix3();
@@ -91,12 +94,12 @@ function init() {
 
   // TEXTURE
   const textureLoader = new THREE.TextureLoader(manager);
-  const texture = textureLoader.load("./texture.svg", render);
+  const texture = textureLoader.load(texturePath, render);
   texture.anisotropy = 4
 
   // OBJ LOADER
   const loader = new OBJLoader(manager);
-  loader.load("./dressed-lorentzian-catenoid.obj", onLoad, onProgress, onError);
+  loader.load(objPath, onLoad, onProgress, onError);
   function onLoad(obj) {
     object = obj;
     object.lorentzBoost = 0;
