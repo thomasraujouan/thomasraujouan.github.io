@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /darboux/
-title: "DT of catenoids in Minkowski space"
+title: "Darboux transformations of catenoids in Minkowski space"
 date: 2024-05-16 08:28:52 +0900
 categories: dressed-catenoids
 hide-nav: true

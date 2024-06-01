@@ -9,9 +9,9 @@ layout: home
 
 # Surfaces
 
-- [Dressed catenoids (in space forms)][dressed-catenoids]
+- [Dressed catenoids ($$\mathbb{E}^3$$ and $$\mathbb{H}^3$$)][dressed-catenoids]
 -
-- [Darboux transformations of catenoids in Minkowski space][DT-catenoids]
+- [Darboux transformations of catenoids ($$\mathbb{R}^{1,2}$$)][DT-catenoids]
 -
 
 # [XLab][xlab]

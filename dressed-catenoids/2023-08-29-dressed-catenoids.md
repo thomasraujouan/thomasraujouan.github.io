@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 permalink: /dressed-catenoids/
 title: "Dressing the catenoid"
 date: 2023-08-29 08:28:52 +0900
@@ -9,34 +9,73 @@ hide-nav: true
 
 Joint work with Nick Schmitt and Jonas Ziefle.
 
+These are minimal surfaces in the Euclidean space $$\mathbb{E}^3$$ and CMC 1 surfaces in the hyperbolic space $$\mathbb{H}^3$$. They are made using the Loop Weierstrass Representation. 
+
 Press number keys hide or show the fundamental pieces. Press the "a" key to show all pieces. Press the space bar to put the camera back to its original position.
 
-# 1 planar end
+## Euclidean space 
 
-- [Vertical end][1v]
+### No planar end
 
+No planar end is the plain catenoid.
 
-# 2 planar ends
+### 1 planar end
 
-- [Vertical ends][2v]
-- [Non-vertical ends][2d]
+This case is tricky as it is made from the double cover of a catenoid.
 
- <!-- -- [half 2][2dhalf2] is broken -->
+- [Vertical][1v]
+- Tilted (todo)
 
-# 3 planar ends
+### 2 planar ends
 
-- [Vertical ends][3v]
-<!-- - [Non-vertical ends][3dfull] -->
+- [Vertical][2v]
+- [Tilted][2d]
 
-# In hyperbolic space (Poincaré ball model)
+### 3 planar ends
 
-- [1 end][h3-1end]
-<!-- - [2 ends][h3-2v1] -->
+- [Vertical][3v]
+- Tilted (todo)
 
-# Extras
+## Hyperbolic space
+
+The surfaces are displayed in the Poincaré ball model of $$\mathbb{H}^3$$.
+
+### No planar end
+
+No planar end is the plain catenoid. But in the hyperbolic space, they come in a one-parameter family: (todo)
+
+- Embedded, large neck
+- Embedded, thin neck
+- Touching horospheres
+- Non-embedded, thin neck
+- Non-embedded, large neck
+
+### 1 planar end
+
+This case is tricky as it is made from the double cover of a catenoid.
+
+- [Vertical][h3-1end]
+- Tilted (todo)
+
+### 2 planar ends (todo)
+
+- Vertical
+- Tilted
+
+### 3 planar ends (todo)
+
+- Vertical
+- Tilted
+
+## Extras
 
 - [Dressed helicoid][helicoid]
 - [Dressed Enneper][enneper]
+
+ <!-- -- [half 2][2dhalf2] is broken -->
+<!-- - [Non-vertical ends][3dfull] -->
+<!-- - [2 ends][h3-2v1] -->
+
 
 [2vfull]: /surfaces/dressed-catenoids/2vfull.html
 [2vhalf1]: /surfaces/dressed-catenoids/2vhalf1.html
