@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { TrackballControls } from "../../modules/TrackballControls.js"; // controls the camera
+import { TrackballControls } from "../../TrackballControls.js"; // controls the camera
 import {
   computeRadius,
   flipTexture,
@@ -14,7 +14,7 @@ import { onWindowResize } from "../../modules/window.js";
 import {
   ColorManagement,
   DirectionalLight,
-} from "../../modules/three.module.js";
+} from "../../three.module.js";
 import { initialPosition } from "../../modules/keyboard.js";
 
 const parameters = {

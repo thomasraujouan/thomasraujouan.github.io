@@ -1,10 +1,8 @@
-/*TODO: switch between pieces*/
+import * as THREE from "/js/three.module.js";
+import { OBJLoader } from "/js/OBJLoader.module.js";
+import { TrackballControls } from "/js/TrackballControls.js";
 
-import * as THREE from "./modules/three.module.js";
-import { OBJLoader } from "./modules/OBJLoader.module.js";
-import { TrackballControls } from "./modules/TrackballControls.js";
-
-const objPath = "/assets/obj/dressed-catenoids/dressed-cat-1plane.obj";
+const objPath = "./dressed-cat-1plane.obj";
 const texturePath = "./texture.svg";
 
 let object, camera, initialCamera, scene, renderer;
@@ -111,6 +109,8 @@ function init() {
 
   // KEYBOARD
   addEventListener("keydown", initialPosition);
+  addEventListener("keydown", numberPadSwitch(scene));
+  addEventListener("keydown", allVisible(scene));
 
   // ANIMATION 
   let frame = 0;
@@ -131,8 +131,44 @@ function onWindowResize() {
 function initialPosition(event) {
   if (event.key === " ") {
     camera.copy(initialCamera);
+    const p = getPieces(scene);
+    p[2].visible = !p[2].visible;
+  };
+};
+function numberPadSwitch(scene) {
+  return (event) => {
+    var temp = getPieces(scene);
+    const keys = [];
+    for (let index = 0; index < temp.length; index++) {
+      keys.push((index + 1).toString());
+    }
+    if (keys.includes(event.key)) {
+      temp[parseInt(event.key) - 1].visible =
+      !temp[parseInt(event.key) - 1].visible;
+    }
+  };
+};
+function allVisible(scene) {
+  return (event) => {
+    if (event.key === "0") {
+      var temp = getPieces(scene);
+      for (let index = 0; index < temp.length; index++) {
+        temp[index].visible = true;
+      };
+      
+    }
   }
-}
+};
+function getPieces(scene) {
+  const result = [];
+  scene.traverse(function (child) {
+    if (child.isMesh) {
+      result.push(child);
+    }
+  });
+  return result;
+};
+
 // RENDERING
 function render() {
   renderer.render(scene, camera);

@@ -13,7 +13,7 @@ import {
   numberPadSwitch,
 } from "../modules/keyboard.js";
 import { onWindowResize } from "../modules/window.js";
-import { TrackballControls } from "../modules/TrackballControls.js";
+import { TrackballControls } from "../TrackballControls.js";
 
 /* GUI */
 

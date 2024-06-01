@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { TrackballControls } from "../modules/TrackballControls.js"; // controls the camera
+import { TrackballControls } from "../TrackballControls.js"; // controls the camera
 import { loadOBJModel, setMaterial, setTexture } from "../modules/loadObj.js";
 import { lightScene } from "../modules/lights.js";
 import { makeCamera } from "../modules/camera.js";

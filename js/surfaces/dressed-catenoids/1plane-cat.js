@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { TrackballControls } from "../../modules/TrackballControls.js"; // controls the camera
+import { TrackballControls } from "../../TrackballControls.js"; // controls the camera
 import {
   computeRadius,
   flipTexture,
@@ -11,7 +11,7 @@ import { lightScene } from "../../modules/lights.js";
 import { fittingDistance, makeCamera } from "../../modules/camera.js";
 import { allVisible, numberPadSwitch } from "../../modules/keyboard.js";
 import { onWindowResize } from "../../modules/window.js";
-import { ColorManagement } from "../../modules/three.module.js";
+import { ColorManagement } from "../../three.module.js";
 import { initialPosition } from "../../modules/keyboard.js";
 
 /* SCENE, LIGHTS */

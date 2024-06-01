@@ -5,7 +5,7 @@ import { lightScene } from "/js/modules/lights.js";
 import { makeCamera } from "/js/modules/camera.js";
 import { allVisible, numberPadSwitch } from "/js/modules/keyboard.js";
 import { onWindowResize } from "../modules/window.js";
-import { ColorManagement } from "../modules/three.module.js";
+import { ColorManagement } from "../three.module.js";
 import { initialPosition } from "../modules/keyboard.js";
 
 /* GUI */

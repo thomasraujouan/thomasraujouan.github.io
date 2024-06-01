@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { TrackballControls } from "/js/modules/TrackballControls.js";
-import { OBJLoader } from "./js/modules/OBJLoader.module.js";
-import { Matrix4, Vector4 } from "./js/modules/three.module.js";
+import { OBJLoader } from "./js/OBJLoader.module.js";
+import { Matrix4, Vector4 } from "./js/three.module.js";
 
 THREE.Cache.enabled = true; // for text loading
 
