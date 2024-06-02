@@ -23,17 +23,17 @@ No planar end is the plain catenoid.
 
 This case is tricky as it is made from the double cover of a catenoid.
 
-- [Vertical][1v]
+- [Vertical][e31v]
 - Tilted (todo)
 
 ### 2 planar ends
 
-- [Vertical][2v]
-- [Tilted][2d]
+- [Vertical][e32v]
+- [Tilted][e32d]
 
 ### 3 planar ends
 
-- [Vertical][3v]
+- [Vertical][e33v]
 - Tilted (todo)
 
 ## Hyperbolic space
@@ -54,7 +54,7 @@ No planar end is the plain catenoid. But in the hyperbolic space, they come in a
 
 This case is tricky as it is made from the double cover of a catenoid.
 
-- [Vertical][h3-1end]
+- [Vertical][h3v]
 - Tilted (todo)
 
 ### 2 planar ends (todo)
@@ -92,7 +92,15 @@ This case is tricky as it is made from the double cover of a catenoid.
 [2v]: /surfaces/dressed-catenoids/2v.html
 [2d]: /surfaces/dressed-catenoids/2d.html
 [3v]: /surfaces/dressed-catenoids/3v.html
-[helicoid]: /surfaces/dressed-helicoid.html
 [enneper]: /surfaces/enneper.html
 [1v]: /surfaces/dressed-catenoids/1plane-cat.html
 [h3-1end]: /surfaces/dressed-catenoids/1plane-cat-h3.html
+
+
+[e31v]: /dressed-catenoids/E3/1-plane/vertical/index.html
+[e32v]: /dressed-catenoids/E3/2-plane/vertical/index.html
+[e32d]: /dressed-catenoids/E3/2-plane/tilt/index.html
+[e33v]: /dressed-catenoids/E3/3-plane/vertical/index.html
+[h3v]: /dressed-catenoids/H3/1-plane/vertical/index.html
+[helicoid]: /dressed-catenoids/extras/dressed-helicoid/index.html
+[enneper]: /dressed-catenoids/extras/dressed-enneper/index.html

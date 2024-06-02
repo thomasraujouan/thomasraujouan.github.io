@@ -1,10 +1,8 @@
-/*TODO: switch between pieces*/
-
 import * as THREE from "/js/three.module.js";
 import { OBJLoader } from "/js/OBJLoader.module.js";
 import { TrackballControls } from "/js/TrackballControls.js";
 
-const objPath = "./dressed-cat-1plane.obj";
+const objPath = "./e3-2v.obj";
 const texturePath = "./texture.svg";
 
 let object, camera, initialCamera, scene, renderer;
@@ -22,7 +20,7 @@ function init() {
   // CAMERA
   const fov = 30;
   const radius = 2.2384183406829834; // cf computeRadius()
-  const distance = 25; // cf fittingDistance()
+  const distance = 8; // cf fittingDistance()
   const position = {
     x: -Math.sqrt((2 * (distance * distance)) / 5),
     y: Math.sqrt((distance * distance) / 5),
@@ -54,16 +52,16 @@ function init() {
     });
     // POSITIONING
     const pieces = [];
-    object.rotateY((1 * Math.PI) / 8);
-    object.rotateX((-0 * Math.PI) / 16);
-    object.rotateZ((0 * Math.PI) / 2);
+    object.rotateZ(0);
+    object.rotateX(Math.PI / 2);
+    object.rotateY(Math.PI / 2);
     const copy1 = object.clone();
     const copy2 = object.clone();
     const copy3 = object.clone();
-    copy1.scale.y = -1;
-    copy3.scale.y = -1;
-    copy2.rotateX(Math.PI);
+    copy1.rotateX(Math.PI);
+    copy2.rotateY(Math.PI);
     copy3.rotateX(Math.PI);
+    copy3.rotateY(Math.PI);
     pieces.push(object);
     pieces.push(copy1);
     pieces.push(copy2);
@@ -92,7 +90,7 @@ function init() {
     }
   }
   function onError() { }
-
+  
   // RENDERER
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -111,6 +109,8 @@ function init() {
 
   // KEYBOARD
   addEventListener("keydown", initialPosition);
+  addEventListener("keydown", numberPadSwitch(scene));
+  addEventListener("keydown", allVisible(scene));
 
   // ANIMATION 
   let frame = 0;
@@ -122,6 +122,11 @@ function init() {
   }
 }
 
+// RENDERING
+function render() {
+  renderer.render(scene, camera);
+}
+
 // EVENT LISTENERS CALLBACKS
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -131,9 +136,41 @@ function onWindowResize() {
 function initialPosition(event) {
   if (event.key === " ") {
     camera.copy(initialCamera);
+    onWindowResize();
+  };
+};
+function numberPadSwitch(scene) {
+  return (event) => {
+    var temp = getPieces(scene);
+    const keys = [];
+    for (let index = 0; index < temp.length; index++) {
+      keys.push((index + 1).toString());
+    }
+    if (keys.includes(event.key)) {
+      temp[parseInt(event.key) - 1].visible =
+        !temp[parseInt(event.key) - 1].visible;
+    }
+  };
+};
+function allVisible(scene) {
+  return (event) => {
+    if (event.key === "0") {
+      var temp = getPieces(scene);
+      for (let index = 0; index < temp.length; index++) {
+        temp[index].visible = true;
+      };
+
+    }
   }
-}
-// RENDERING
-function render() {
-  renderer.render(scene, camera);
-}
+};
+
+// Some functions
+function getPieces(scene) {
+  const result = [];
+  scene.traverse(function (child) {
+    if (child.isMesh) {
+      result.push(child);
+    }
+  });
+  return result;
+};

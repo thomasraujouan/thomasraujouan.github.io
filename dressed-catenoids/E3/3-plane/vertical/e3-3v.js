@@ -2,7 +2,7 @@ import * as THREE from "/js/three.module.js";
 import { OBJLoader } from "/js/OBJLoader.module.js";
 import { TrackballControls } from "/js/TrackballControls.js";
 
-const objPath = "./dressed-cat-1plane.obj";
+const objPath = "./e3-3v.obj";
 const texturePath = "./texture.svg";
 
 let object, camera, initialCamera, scene, renderer;
@@ -20,7 +20,7 @@ function init() {
   // CAMERA
   const fov = 30;
   const radius = 2.2384183406829834; // cf computeRadius()
-  const distance = 25; // cf fittingDistance()
+  const distance = 8; // cf fittingDistance()
   const position = {
     x: -Math.sqrt((2 * (distance * distance)) / 5),
     y: Math.sqrt((distance * distance) / 5),
@@ -52,20 +52,19 @@ function init() {
     });
     // POSITIONING
     const pieces = [];
-    object.rotateY((1 * Math.PI) / 8);
-    object.rotateX((-0 * Math.PI) / 16);
-    object.rotateZ((0 * Math.PI) / 2);
-    const copy1 = object.clone();
-    const copy2 = object.clone();
-    const copy3 = object.clone();
-    copy1.scale.y = -1;
-    copy3.scale.y = -1;
-    copy2.rotateX(Math.PI);
-    copy3.rotateX(Math.PI);
-    pieces.push(object);
-    pieces.push(copy1);
-    pieces.push(copy2);
-    pieces.push(copy3);
+    for (let k = 0; k < 6; k++) {
+      pieces.push(object.clone());
+    }
+    for (let index = 0; index < pieces.length; index++) {
+      pieces[index].rotateZ(Math.PI / 2);
+    }
+    pieces[1].rotateX((2 * Math.PI) / 3);
+    pieces[2].rotateX((4 * Math.PI) / 3);
+    pieces[3].scale.x = -1;
+    pieces[4].rotateX((2 * Math.PI) / 3);
+    pieces[4].scale.x = -1;
+    pieces[5].rotateX((4 * Math.PI) / 3);
+    pieces[5].scale.x = -1;
     for (let index = 0; index < pieces.length; index++) {
       scene.add(pieces[index]);
     }
@@ -90,7 +89,7 @@ function init() {
     }
   }
   function onError() { }
-
+  
   // RENDERER
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -122,6 +121,11 @@ function init() {
   }
 }
 
+// RENDERING
+function render() {
+  renderer.render(scene, camera);
+}
+
 // EVENT LISTENERS CALLBACKS
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -131,8 +135,7 @@ function onWindowResize() {
 function initialPosition(event) {
   if (event.key === " ") {
     camera.copy(initialCamera);
-    const p = getPieces(scene);
-    p[2].visible = !p[2].visible;
+    onWindowResize();
   };
 };
 function numberPadSwitch(scene) {
@@ -144,7 +147,7 @@ function numberPadSwitch(scene) {
     }
     if (keys.includes(event.key)) {
       temp[parseInt(event.key) - 1].visible =
-      !temp[parseInt(event.key) - 1].visible;
+        !temp[parseInt(event.key) - 1].visible;
     }
   };
 };
@@ -155,10 +158,12 @@ function allVisible(scene) {
       for (let index = 0; index < temp.length; index++) {
         temp[index].visible = true;
       };
-      
+
     }
   }
 };
+
+// Some functions
 function getPieces(scene) {
   const result = [];
   scene.traverse(function (child) {
@@ -168,8 +173,3 @@ function getPieces(scene) {
   });
   return result;
 };
-
-// RENDERING
-function render() {
-  renderer.render(scene, camera);
-}
