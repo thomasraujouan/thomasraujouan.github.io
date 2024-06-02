@@ -52,6 +52,7 @@ function init() {
     });
     // POSITIONING
     const pieces = [];
+    object.rotateY(-Math.PI/4);
     pieces.push(object);
     for (let index = 0; index < pieces.length; index++) {
       scene.add(pieces[index]);
