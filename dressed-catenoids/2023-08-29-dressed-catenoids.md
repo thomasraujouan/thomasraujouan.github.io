@@ -11,7 +11,9 @@ Joint work with Nick Schmitt and Jonas Ziefle.
 
 These are minimal surfaces in the Euclidean space $$\mathbb{E}^3$$ and CMC 1 surfaces in the hyperbolic space $$\mathbb{H}^3$$. They are made using the Loop Weierstrass Representation. 
 
-Press number keys hide or show the fundamental pieces. Press the "a" key to show all pieces. Press the space bar to put the camera back to its original position.
+Key bindings:
+- NUMPAD: hide/show piece. Press 0 to show them all
+- SPACE: put the camera back to its original position
 
 ## Euclidean space 
 

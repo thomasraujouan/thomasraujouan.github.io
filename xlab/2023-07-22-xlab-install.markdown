@@ -41,13 +41,18 @@ Log out, log in, and check that you can run docker without sudo:
 docker run --rm hello-world
 {% endhighlight %}
 
-# 2. Load the Xlab image
+# 2. Pull the Xlab image
 
-[Click here][download] to download an Xlab image (1.3 GB), then load the image on your system: inside your download directory,
+Pull the image from DockerHub:
 {% highlight bash %}
-docker load < xlab-docker-123456.tar.gz
+docker pull xlabimage/xlab
 {% endhighlight %}
 It can take a few minutes.
+
+Once it is done, let us rename the image:
+{% highlight bash %}
+docker image tag xlabimage/xlab xlab
+{% endhighlight %}
 
 # 3. Run an Xlab container
 
