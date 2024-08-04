@@ -13,6 +13,8 @@ layout: home
 -
 - [Darboux transformations of catenoids ($$\mathbb{R}^{1,2}$$)][DT-catenoids]
 -
+- [Lawson surfaces][gallery]
+-
 
 # [XLab][xlab]
 
@@ -25,6 +27,7 @@ layout: home
 - [Read files][xlab-read]
 -
 
+[gallery]: /gallery/
 [costa]: /surfaces/costa.html
 [dressed-catenoids]: /dressed-catenoids
 [xlab]: /xlab

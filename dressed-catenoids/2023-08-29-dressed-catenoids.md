@@ -23,7 +23,7 @@ No planar end is the plain catenoid.
 
 ### 1 planar end
 
-This case is tricky as it is made from the double cover of a catenoid.
+This case is made from the double cover of a catenoid.
 
 - [Vertical][e31v]
 - Tilted (todo)
