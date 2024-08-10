@@ -13,7 +13,9 @@ layout: home
 -
 - [Darboux transformations of catenoids ($$\mathbb{R}^{1,2}$$)][DT-catenoids]
 -
-- [Lawson surfaces][gallery]
+- [Lawson surfaces][lawson]
+-
+- [Dressed Delaunay (bubbleton)][bubbleton]
 -
 
 # [XLab][xlab]
@@ -27,7 +29,8 @@ layout: home
 - [Read files][xlab-read]
 -
 
-[gallery]: /gallery/
+[lawson]: /lawson/
+[bubbleton]: /gallery/bubbleton.html
 [costa]: /surfaces/costa.html
 [dressed-catenoids]: /dressed-catenoids
 [xlab]: /xlab
