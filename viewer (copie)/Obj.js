@@ -31,13 +31,14 @@ function parseVertexLine(str) {
     resultString.forEach(element => {
         result.push(parseFloat(element));
     });
-    return result;
+    return new Vec(...result);
 };
 
 class Obj {
     constructor(vertices = [], faces = []) {
         this.vertices = vertices;
         this.faces = faces;
+        this.normals = null;
         this.matrices = null;
         this.vertexBuffer = null;
         this.normalBuffer = null;
@@ -141,10 +142,9 @@ class Obj {
      * Compute the face normals from this.vertices and feed this.normalBuffer
      * @returns a buffer containing the normals
      */
-    computeNormalBuffer() {
+    computeFaceNormalsBuffer() {
         const result = new Array();
-        this.faces.forEach(triple => {
-            const [i, j, k] = triple;
+        this.faces.forEach(([i, j, k]) => {
             const v1 = new Vec(...this.vertices[i - 1]);
             const v2 = new Vec(...this.vertices[j - 1]);
             const v3 = new Vec(...this.vertices[k - 1]);
@@ -152,6 +152,59 @@ class Obj {
             result.push(...normal);
             result.push(...normal);
             result.push(...normal);
+        });
+        this.normalBuffer = new Float32Array(result);//TODO: do this for all computers?
+    }
+    /**
+     * this.faceNormals[i][j] is the jth normal attached to the ith vertex
+     */
+    computeFaceNormals() {
+        // face normals indexed as vertices
+        this.faceNormals = [];
+        for (let i = 0; i < this.vertices.length; i++) {
+            this.faceNormals.push([]);
+        }
+        this.faces.forEach(([i, j, k]) => {
+            const v1 = this.vertices[i - 1];
+            const v2 = this.vertices[j - 1];
+            const v3 = this.vertices[k - 1];
+            const normal = Vec.normal(v1, v2, v3);
+            this.faceNormals[i - 1].push(normal);
+            this.faceNormals[j - 1].push(normal);
+            this.faceNormals[k - 1].push(normal);
+        });
+    }
+    computeVertexNormals() {
+        this.vertexNormals = [];
+        this.computeFaceNormals();
+        // orient the face normals in the same direction:
+        this.faceNormals.forEach(normals => {
+            const refNormal = normals[0];
+            for (let i = 1; i < normals.length; i++) {
+                var dot = refNormal.dot(normals[i]);
+                if (dot < 0) {
+                    normals[i].negate();
+                }
+            }
+        })
+        // compute the mean value of all the normals attached to each vertex
+        this.faceNormals.forEach(list => {
+            const v = Vec.mean(...list);
+            v.normalize()
+            this.vertexNormals.push(v);
+        });
+    }
+    computeVertexNormalsBuffer() {
+        this.computeVertexNormals();
+        // feed the buffer
+        const result = new Array();
+        this.faces.forEach(([i, j, k]) => {
+            const n1 = this.vertexNormals[i - 1];
+            const n2 = this.vertexNormals[j - 1];
+            const n3 = this.vertexNormals[k - 1];
+            result.push(...n1);
+            result.push(...n2);
+            result.push(...n3);
         });
         this.normalBuffer = new Float32Array(result);//TODO: do this for all computers?
     }

@@ -11,13 +11,8 @@ const model = new Obj();
 Promise.all([// wait for all promises to be resolved
   loadText('vshader.glsl', (text) => { shaders[0] = text; }),
   loadText('fshader.glsl', (text) => { shaders[1] = text; }),
+  // objPath is meant to be defined in the .html
   loadText(objPath, (text) => { model.parseObj(text); })
-  // loadText('lawson-xi22.npy.obj', (text) => { model.parseObj(text); })
-  // loadText('catenoid.obj', (text) => {model.parseObj(text);})
-  // loadText('costa.obj', (text) => { model.parseObj(text); })
-  // loadText('F.obj', (text) => { model.parseObj(text); })
-  // loadText('cube.obj', (text) => { model.parseObj(text); })
-  //loadText('e3-2v.obj', (text) => { model.parseObj(text); })
 ])
   .then(main);
 
@@ -68,7 +63,8 @@ function main() {
     m4.identity,
     //...dressedCatenoidSymmetries
   ]
-  model.computeNormalBuffer(); // face-normals in R^3
+  model.computeVertexNormalsBuffer() // vertex-normals in R^3
+  // model.computeFaceNormalsBuffer(); // face-normals in R^3
   model.toS3(); // anti-stereographic projection of vertices
   model.computeVertexBuffer(); // each vertex has now 4 components
 

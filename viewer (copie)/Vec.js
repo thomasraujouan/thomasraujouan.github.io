@@ -68,17 +68,15 @@ class Vec extends Array {
         n.normalize();
         return n;
     }
-    static mean(v1, v2, v3) {
-        const sum = new Vec(0,0,0);
-        sum.add(v1);
-        sum.add(v2);
-        sum.add(v3);
-        const result = [];
-        for (let i = 0; i < 3; i++) {
-            result.push(sum[i]/3);
-        }
-        return new Vec(...result);
-    }   
+    static mean(...list) {
+        const sum = new Vec(0, 0, 0);
+        const n = list.length;
+        list.forEach(vector => {
+            sum.add(vector);
+        });
+        var [x, y, z] = sum;
+        return new Vec(x / n, y / n, z / n);
+    }
     /**
      * 
      * @param {Vec} v (v1, ..., vn)

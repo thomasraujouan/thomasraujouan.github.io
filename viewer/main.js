@@ -118,6 +118,12 @@ function main() {
     wheel: 0
   };
 
+  // FINGERS
+  const fingers = {
+    length: 0,
+    position: [0, 0]
+  };
+
   // CAMERA
   const camera = {
     fov: degToRad(60),
@@ -160,12 +166,27 @@ function main() {
   window.addEventListener('resize', onWindowResize);
   document.addEventListener("contextmenu", (e) => { e.preventDefault() });
   document.addEventListener("mousedown", mouseDownHandler, false);
+  document.addEventListener("touchstart", touchstartHandler, false);
   document.addEventListener("mousemove", mouseMoveHandler, false);
+  document.addEventListener("touchmove", touchmoveHandler, false);
   document.addEventListener("mouseup", mouseUpHandler, false);
+  document.addEventListener("touchend", touchendHandler, false);
   document.addEventListener("wheel", wheelHandler, false);
   function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     drawScene()
+  }
+  function mouseDownHandler(event) {
+    if (event.button == 0) {
+      mouse.leftButton.isDown = true;
+    }
+    if (event.button == 1) {
+      mouse.middleButton.isDown = true
+    }
+    if (event.button == 2) {
+      mouse.rightButton.isDown = true;
+    }
+    mouse.position = [event.clientX, event.clientY];
   }
   function mouseMoveHandler(event) {
     const xNew = event.clientX;
@@ -185,18 +206,6 @@ function main() {
     drawScene();
     mouse.position = [xNew, yNew];
   }
-  function mouseDownHandler(event) {
-    if (event.button == 0) {
-      mouse.leftButton.isDown = true;
-    }
-    if (event.button == 1) {
-      mouse.middleButton.isDown = true
-    }
-    if (event.button == 2) {
-      mouse.rightButton.isDown = true;
-    }
-    mouse.position = [event.clientX, event.clientY];
-  }
   function mouseUpHandler(event) {
     if (event.button == 0) {
       mouse.leftButton.isDown = false;
@@ -214,6 +223,32 @@ function main() {
     const factor = Math.exp(-dy * 0.0002);//TODO: magic number
     camera.distanceToOrigin = camera.distanceToOrigin * factor;
     drawScene()
+  }
+  function touchstartHandler(event) {
+    fingers.length += 1;
+    fingers.position = [event.touches[0].clientX, event.touches[0].clientY];
+  }
+  function touchmoveHandler(event) {
+    const xNew = event.touches[0].clientX;
+    const yNew = event.touches[0].clientY;
+    const dx = xNew - fingers.position[0];
+    const dy = yNew - fingers.position[1];
+    console.log(fingers.length)
+    if (fingers.length === 2) {
+      // Euclidean translation:
+      // camera.translate(dx, -dy, 1);//TODO: magic number
+      // Moebius transfomration:
+      camera.moebiusMove(dx, dy, 0.003 * Math.exp(-mouse.wheel / 1000000));//TODO: magic number
+    }
+    if (fingers.length === 1) {
+      //TODO: fix magic numbers
+      camera.rotate(dx, dy, 0.007 * Math.exp(-mouse.wheel / 1000000));//TODO: magic number
+    }
+    drawScene();
+    fingers.position = [xNew, yNew];
+  }
+  function touchendHandler(event) {
+    fingers.length -= 1;
   }
   drawScene();
   /**
