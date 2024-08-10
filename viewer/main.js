@@ -225,15 +225,16 @@ function main() {
     drawScene()
   }
   function touchstartHandler(event) {
+    event.preventDefault();
     fingers.length += 1;
     fingers.position = [event.touches[0].clientX, event.touches[0].clientY];
   }
   function touchmoveHandler(event) {
+    event.preventDefault();
     const xNew = event.touches[0].clientX;
     const yNew = event.touches[0].clientY;
     const dx = xNew - fingers.position[0];
     const dy = yNew - fingers.position[1];
-    console.log(fingers.length)
     if (fingers.length === 2) {
       // Euclidean translation:
       // camera.translate(dx, -dy, 1);//TODO: magic number
@@ -248,6 +249,7 @@ function main() {
     fingers.position = [xNew, yNew];
   }
   function touchendHandler(event) {
+    event.preventDefault();
     fingers.length -= 1;
   }
   drawScene();
