@@ -76,7 +76,7 @@ exit
 
 You can now used Xlab and [compute your first example][example].
 
-[example]: /xlab/catenoid
+[example]: /xlab/example
 [docker]: https://docs.docker.com/engine/install/
 [windows]: https://github.com/docker/for-win/issues/1549
 [sudo]: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user

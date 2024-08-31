@@ -56,5 +56,4 @@ xhost -local:
 Now you may want to [export your experiments][share].
 
 [install]: /xlab/install
-
-[share]: [xlab/share]
+[share]: /xlab/share

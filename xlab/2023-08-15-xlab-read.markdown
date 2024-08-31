@@ -37,4 +37,4 @@ xlab --compute --gui=gtk shared/my-surface.xlab
 {% endhighlight %}
 You can now read the contents of the examples section (to come).
 
-[share]: [xlab/share]
+[share]: /xlab/share

@@ -71,5 +71,5 @@ xhost -local:
 
 8. Open shared/my-picture.png. Congratulations, you brought your picture home. Now you can [save your experiments][save].
 
-[catenoid]: [xlab/catenoid]
-[save]: [xlab/read]
+[catenoid]: /xlab/catenoid
+[save]: /xlab/read
