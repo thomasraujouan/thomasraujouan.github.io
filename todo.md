@@ -95,6 +95,7 @@ if I chose non-relative, vscode writes "js/" instead of "/js/"
 [ ] Helicoid conformal coords
 [x] Use a local version of OBJLoader
 [ ] Change favicon
+[ ] Google
 
 # Katrin's viewer
 

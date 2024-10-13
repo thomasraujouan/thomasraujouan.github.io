@@ -28,7 +28,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 {% endhighlight %} -->
 
-[nick]: https://page.math.tu-berlin.de/~schmitt/
+[nick]: https://xlab-geom.github.io/gallery/
 [screenshots]: http://raujouan.eu/xlab/screenshots/
 [quickstart]: /xlab/install
 [install]: /xlab/install

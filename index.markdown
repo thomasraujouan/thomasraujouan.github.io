@@ -29,6 +29,10 @@ layout: home
 - [Read files][xlab-read]
 -
 
+# Nick's gallery
+
+Nick Schmitt's gallery of surfaces is available [here][nick].
+
 [lawson]: /lawson/
 [bubbleton]: /gallery/bubbleton.html
 [costa]: /surfaces/costa.html
@@ -39,3 +43,4 @@ layout: home
 [xlab-example]: xlab/example
 [xlab-share]: xlab/share
 [xlab-read]: xlab/read
+[nick]: https://xlab-geom.github.io/gallery/
