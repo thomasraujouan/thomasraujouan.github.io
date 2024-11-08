@@ -3,6 +3,7 @@ import { OBJLoader } from "/js/OBJLoader.module.js";
 import { TrackballControls } from "/js/TrackballControls.js";
 
 const objPath = "./e3-2v.obj";
+// const objPath = "./2planesstraight.obj";
 const texturePath = "./texture.svg";
 
 let object, camera, initialCamera, scene, renderer;
