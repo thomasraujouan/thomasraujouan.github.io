@@ -2,27 +2,26 @@ import * as THREE from "/js/three.module.js";
 import { OBJLoader } from "/js/OBJLoader.module.js";
 import { TrackballControls } from "/js/TrackballControls.js";
 
-const objPath = "./e3-1v.obj";
-const texturePath = "./texture.svg";
 
 let object, camera, initialCamera, scene, renderer;
 
-init();
+const objPath = "./e3-1v.obj";
+const texturePath = "./texture.svg";
+const config = {
+  backgroundColor: "white",
+  ambientLight: 0xffffff,
+  pointLightColor: 0xffffff,
+  pointLightIntensity: 0.5
+}
 
-// Testing data transfer
-// Select the script tag
-const surfaceParametersText = document.getElementById('surfaceData').textContent;
-// Parse the JSON data
-const surface = JSON.parse(surfaceParametersText);
-console.log(surface.name); // Outputs the name
+init();
 
 function init() {
   // SCENE, LIGHTS
   scene = new THREE.Scene();
-  scene.background = new THREE.Color("white");
-  const ambientLight = new THREE.AmbientLight(0xffffff);
+  scene.background = new THREE.Color(config.backgroundColor);
+  const ambientLight = new THREE.AmbientLight(config.ambientLight);
   scene.add(ambientLight);
-  const pointLight = new THREE.PointLight(0xffffff, 0.5);
 
   // CAMERA
   const fov = 30;
@@ -39,6 +38,7 @@ function init() {
   camera.position.z = position.z;
   camera.lookAt(0, 0, 0);
   initialCamera = camera.clone();
+  const pointLight = new THREE.PointLight(config.pointLightColor, config.pointLightIntensity);
   camera.add(pointLight);
   scene.add(camera);
 
