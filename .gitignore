@@ -5,5 +5,5 @@ _site
 vendor
 token
 cheat
-todo
+**/todo
 jekyll

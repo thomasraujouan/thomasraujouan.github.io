@@ -8,6 +8,7 @@ hide-nav: true
 ---
 
 Joint work with Nick Schmitt and Jonas Ziefle.
+[Link to preprint.][arxiv]
 
 These are minimal surfaces in the Euclidean space $$\mathbb{E}^3$$ and CMC 1 surfaces in the hyperbolic space $$\mathbb{H}^3$$. They are made using the Loop Weierstrass Representation. 
 
@@ -106,3 +107,5 @@ This case is tricky as it is made from the double cover of a catenoid.
 [h3v]: /dressed-catenoids/H3/1-plane/vertical/index.html
 [helicoid]: /dressed-catenoids/extras/dressed-helicoid/index.html
 [enneper]: /dressed-catenoids/extras/dressed-enneper/index.html
+
+[arxiv]: https://arxiv.org/abs/2411.04626

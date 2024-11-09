@@ -9,6 +9,13 @@ let object, camera, initialCamera, scene, renderer;
 
 init();
 
+// Testing data transfer
+// Select the script tag
+const surfaceParametersText = document.getElementById('surfaceData').textContent;
+// Parse the JSON data
+const surface = JSON.parse(surfaceParametersText);
+console.log(surface.name); // Outputs the name
+
 function init() {
   // SCENE, LIGHTS
   scene = new THREE.Scene();
@@ -90,7 +97,7 @@ function init() {
     }
   }
   function onError() { }
-  
+
   // RENDERER
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
