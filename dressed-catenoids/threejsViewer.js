@@ -52,7 +52,7 @@ export class Viewer {
         return new Promise((resolve, reject) => {
             const loader = new OBJLoader();
             loader.load(
-                "./e3-1v.obj",
+                this.params.objSource,
                 object => {
                     this.loadedObject = object;
                     this.scene.add(object);
@@ -71,7 +71,7 @@ export class Viewer {
         if (this.loadedObject) {
             // TEXTURE
             const textureLoader = new THREE.TextureLoader();
-            const texture = textureLoader.load("./texture.svg", () => this.render());
+            const texture = textureLoader.load(this.params.textureSource, () => this.render());
             texture.anisotropy = 4;
             this.loadedObject.traverse(function (child) {
                 if (child.isMesh) {

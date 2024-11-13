@@ -3,8 +3,6 @@ import { Viewer } from "/dressed-catenoids/threejsViewer.js";
 
 // Configuration (specific to each surface)
 const config = {
-    objSource: "./e3-1v.obj",
-    textureSource: "./texture.svg",
     backgroundColor: "white", // White for this page
     numberOfCopies: 3,
     globalTransform:
