@@ -109,7 +109,7 @@ export class Viewer {
                 transform(copy);
             }
             // Collect pieces
-            pieces.push(this.loadedObject, copies[0], copies[1], copies[2]);
+            pieces.push(this.loadedObject, ...copies);
             // Add each piece to the scene
             for (let index = 0; index < pieces.length; index++) {
                 this.scene.add(pieces[index]);
