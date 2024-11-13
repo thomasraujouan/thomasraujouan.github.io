@@ -32,7 +32,9 @@ export class Viewer {
             0.01,
             1000
         );
-        this.camera.position.z = 15;
+        this.camera.position.setX((this.params.cameraPosition) ? this.params.cameraPosition.x : 0);
+        this.camera.position.setY((this.params.cameraPosition) ? this.params.cameraPosition.y : 0);
+        this.camera.position.setZ((this.params.cameraPosition) ? this.params.cameraPosition.z : 15);
         this.initialCamera = this.camera.clone();
         // RENDERER
         this.renderer = new THREE.WebGLRenderer({ antialias: true });

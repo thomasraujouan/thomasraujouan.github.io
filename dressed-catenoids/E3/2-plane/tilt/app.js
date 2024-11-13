@@ -3,13 +3,13 @@ import { Viewer } from "/dressed-catenoids/threejsViewer.js";
 
 // Configuration (specific to each surface)
 const config = {
+    objSource: "./e3-2d.obj",
+    textureSource: "./texture.svg",
     backgroundColor: "white", // White for this page
     numberOfCopies: 3,
     globalTransform:
         (obj) => {
-            obj.rotateY((1 * Math.PI) / 8);
-            obj.rotateX((-0 * Math.PI) / 16);
-            obj.rotateZ((0 * Math.PI) / 2);
+            obj.rotateZ(Math.PI / 2);
         },
     copiesTransforms: [
         (obj) => obj.scale.y = -1,
@@ -19,6 +19,7 @@ const config = {
             obj.rotateX(Math.PI);
         }
     ],
+    cameraPosition: {x: 0, y:0, z:5},
     // Add more params as needed
 };
 
