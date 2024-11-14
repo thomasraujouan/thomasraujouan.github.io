@@ -9,7 +9,23 @@ export class Viewer {
         this.initScene();
         this.initControls();
         this.loadSurface().then(() => {
-            this.setMaterial();
+            if (this.params.textureSource != null) {
+                this.setMaterial();
+            } else {
+                const surfaceColor = this.params.surfaceColor;
+                console.log('no texture');
+                this.loadedObject.traverse(function (child) {
+                    if (child.isMesh) {
+                        child.material = new THREE.MeshPhongMaterial({
+                            color: (surfaceColor) ? surfaceColor : 0xff0000,
+                            shininess: 20,
+                            side: THREE.DoubleSide // (or THREE.FrontSide) no face culling
+                        });
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+            }
             this.applyTransforms();
             this.animate();
             this.addEvents();
@@ -22,9 +38,15 @@ export class Viewer {
         this.scene.background = new THREE.Color(this.params.backgroundColor || 0x00ff00);
         // LIGHTS
         this.scene.add(new THREE.AmbientLight(this.params.ambientLightColor || 0xffffff));
-        const pointLight = new THREE.PointLight(this.params.pointLightColor || 0xffffff, this.params.pointLightIntensity || 0.25);
-        pointLight.position.set(-50, 0, 0);
-        this.scene.add(pointLight);
+        const pointLight1 = new THREE.PointLight(this.params.pointLightColor || 0xffffff, this.params.pointLightIntensity || 0.15);
+        pointLight1.position.set(50, 0, 0);
+        this.scene.add(pointLight1);
+        const pointLight2 = new THREE.PointLight(this.params.pointLightColor || 0xffffff, this.params.pointLightIntensity || 0.15);
+        pointLight2.position.set(-50, 0, 0);
+        this.scene.add(pointLight2);
+        const pointLight3 = new THREE.PointLight(this.params.pointLightColor || 0xffffff, this.params.pointLightIntensity || 0.15);
+        pointLight3.position.set(0, 20, 20);
+        this.scene.add(pointLight3);
         // CAMERA
         this.camera = new THREE.PerspectiveCamera(
             30,
@@ -35,6 +57,9 @@ export class Viewer {
         this.camera.position.setX((this.params.cameraPosition) ? this.params.cameraPosition.x : 0);
         this.camera.position.setY((this.params.cameraPosition) ? this.params.cameraPosition.y : 0);
         this.camera.position.setZ((this.params.cameraPosition) ? this.params.cameraPosition.z : 15);
+        if (this.params.cameraTransform != null) {
+            this.params.cameraTransform(this.camera);
+        }
         this.initialCamera = this.camera.clone();
         // RENDERER
         this.renderer = new THREE.WebGLRenderer({ antialias: true });

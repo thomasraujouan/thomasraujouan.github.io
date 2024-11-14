@@ -21,6 +21,7 @@ const config = {
             obj.rotateX(Math.PI);
         }
     ],
+    // cameraPosition: { x: 0, y: 0, z: 40 }
     // Add more params as needed
 };
 
