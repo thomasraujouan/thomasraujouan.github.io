@@ -99,7 +99,7 @@ export class Viewer {
             // TEXTURE
             const textureLoader = new THREE.TextureLoader();
             const texture = textureLoader.load(this.params.textureSource, () => this.render());
-            texture.anisotropy = 4;
+            texture.anisotropy = (this.params.textureAnisotropy) ? this.params.textureAnisotropy : 4;
             this.loadedObject.traverse(function (child) {
                 if (child.isMesh) {
                     child.material = new THREE.MeshPhongMaterial({

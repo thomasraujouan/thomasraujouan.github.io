@@ -3,9 +3,11 @@ import { Viewer } from "/dressed-catenoids/threejsViewer.js";
 
 // Configuration (specific to each surface)
 const config = {
-    objSource: "./e3-1v-mathematica.obj",
-    // textureSource: "./texture.svg",
-    backgroundColor: "grey", // White for this page
+    // objSource: "./e3-1v-mathematica.obj",
+    objSource: "./output.obj",
+    textureSource: "./texture.svg",
+    textureAnisotropy: 4, // usually a power of 2
+    backgroundColor: "white", // White for this page
     surfaceColor: 0xcc0000,
     // numberOfCopies: 3,
     globalTransform:
