@@ -3,7 +3,6 @@ import { Viewer } from "/dressed-catenoids/threejsViewer.js";
 
 // Configuration (specific to each surface)
 const config = {
-    // objSource: "./e3-1v-mathematica.obj",
     objSource: "./e3-1v.obj",
     textureSource: "./texture.svg",
     textureAnisotropy: 4, // usually a power of 2
