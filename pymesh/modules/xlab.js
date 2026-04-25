@@ -1164,8 +1164,8 @@ async function fetchText(url) {
   const result = await fetch(url, { cache: "no-store" }) // no cache = no need for ctrl+F5;
   return await result.text();
 }
-xlab.vshader = await fetchText("/shaders/vshader.glsl");
-xlab.fshader = await fetchText("/shaders/fshader.glsl");
+xlab.vshader = await fetchText("./shaders/vshader.glsl");
+xlab.fshader = await fetchText("./shaders/fshader.glsl");
 /* global
    xwebgl
    ,xlab
