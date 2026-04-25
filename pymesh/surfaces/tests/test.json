@@ -1,0 +1,49 @@
+{
+  "spaceform": {
+    "sign": 0
+  },
+  "vertex": {
+    "packing": [
+      { "name": "position", "type": "float32", "stride": 4 },
+      { "name": "normal",   "type": "float32", "stride": 4 }
+    ],
+    "data": [
+      -1.0, -1.0, 0.0, 1.0,
+       0.0,  0.0, 1.0, 0.0,
+
+       1.0, -1.0, 0.0, 1.0,
+       0.0,  0.0, 1.0, 0.0,
+
+       1.0,  1.0, 0.0, 1.0,
+       0.0,  0.0, 1.0, 0.0,
+
+      -1.0,  1.0, 0.0, 1.0,
+       0.0,  0.0, 1.0, 0.0
+    ]
+  },
+  "element": {
+    "mode": "triangles",
+    "type": "uint16",
+    "data": [0, 1, 2, 0, 2, 3]
+  },
+  "transform": {
+    "packing": [
+      { "name": "transform",   "type": "float32", "stride": 16 },
+      { "name": "orientation", "type": "float32", "stride": 2 }
+    ],
+    "count": 1,
+    "block_count": 1,
+    "data": [
+      1.0, 0.0, 0.0, 0.0,
+      0.0, 1.0, 0.0, 0.0,
+      0.0, 0.0, 1.0, 0.0,
+      0.0, 0.0, 0.0, 1.0,
+
+      1.0, 1.0
+    ]
+  },
+  "box": {
+    "center": [0.0, 0.0, 0.0],
+    "radius": [1.0, 1.0, 0.1]
+  }
+}

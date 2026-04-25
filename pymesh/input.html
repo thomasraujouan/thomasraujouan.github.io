@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Input surfaces</title>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="./pi.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "xwebgl": "./modules/xwebgl.js",
+      "xlab": "./modules/xlab.js",
+      "wgl": "./modules/wgl.js",
+      "loaders": "./modules/loaders.js"
+    }
+  }
+  </script>
+  <script type="module" src="input.js"></script>
+  <script type="module" src="main.js"></script>
+</head>
+
+<body>
+  <form name="uploadForm">
+    <div>
+      <input id="input" type="file" />
+    </div>
+  </form>
+</body>
+
+</html>

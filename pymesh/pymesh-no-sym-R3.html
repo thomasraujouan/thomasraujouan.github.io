@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PyMesh surfaces in R3 made without symmetries</title>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="./pi.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "xwebgl": "./modules/xwebgl.js",
+      "xlab": "./modules/xlab.js",
+      "wgl": "./modules/wgl.js"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</head>
+
+<body>
+  <script type="module">
+    import { run } from "./main.js";
+    const directory = "./surfaces/pymesh-no-sym-R3/"
+    const surfacePaths = [];
+    surfacePaths.push(directory + "lawson3.wgl");
+    surfacePaths.push(directory + "scherk15.wgl");
+    surfacePaths.push(directory + "scherktwo15.wgl");
+    surfacePaths.push(directory + "unduloid.wgl");
+    surfacePaths.push(directory + "lawson4complete.wgl");
+    surfacePaths.push(directory + "scherk45.wgl");
+    surfacePaths.push(directory + "scherktwo45.wgl");
+
+    run(surfacePaths);
+  </script>
+  <script type="module">
+    import { wgl_to_json, loadFile } from "wgl"
+    const file = await loadFile(directory + "lawsonS3pymesh.wgl");
+    wgl_to_json(file);
+  </script>
+</body>
+
+</html>

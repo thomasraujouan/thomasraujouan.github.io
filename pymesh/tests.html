@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Test surfaces</title>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="./pi.png">
+  <script type="importmap">
+  {
+    "imports": {
+      "xwebgl": "./modules/xwebgl.js",
+      "xlab": "./modules/xlab.js",
+      "wgl": "./modules/wgl.js",
+      "loaders": "./modules/loaders.js"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</head>
+
+<body>
+  <script type="module">
+    import { run } from "./main.js";
+    const surfacePaths = [];
+    surfacePaths.push(`./surfaces/tests/test.obj`);
+    surfacePaths.push(`./surfaces/tests/test.wgl`);
+    surfacePaths.push(`./surfaces/tests/test.json`);
+    run(surfacePaths);
+  </script>
+  <script type="module">
+    import { wgl_to_json, loadFile } from "wgl"
+    const file = await loadFile(`./surfaces/tests/test.wgl`);
+    wgl_to_json(file);
+  </script>
+</body>
+
+</html>
